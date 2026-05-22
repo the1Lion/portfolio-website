@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* ── Design tokens ──────────────────────────────────────────────────────────
+   Fonts are loaded via React 19 <link rel="stylesheet"> in layout.tsx.
+   We set the font-family directly on body and reference family names by
+   string in Tailwind's arbitrary-value classes, e.g. font-[Inter,sans-serif].
+   This avoids any @import injection into this file that would break Tailwind
+   v4's PostCSS pipeline.
+────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --font-inter: "Inter", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+  --font-jetbrains: "JetBrains Mono", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  /* Apply Inter as the base font family via standard CSS — no @theme needed */
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
