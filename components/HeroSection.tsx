@@ -83,8 +83,7 @@ export default function HeroSection() {
   const rawBgScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.08]);
   const bgScale = useSmoothed(rawBgScale, 50, 20);
 
-  // ── Horizontal rule at top ────────────────────────────────────────────────
-  const lineScaleX = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+
 
   return (
     <>
@@ -98,7 +97,7 @@ export default function HeroSection() {
       <section
         ref={containerRef}
         id="about"
-        className="relative h-[200vh] bg-[#0a0a0a]"
+        className="relative h-[200vh] bg-transparent"
         aria-label="About section"
       >
         {/* ── Sticky viewport ───────────────────────────────────────────── */}
@@ -116,6 +115,7 @@ export default function HeroSection() {
                 text-[12vw] sm:text-[10vw] lg:text-[7.2vw]
                 opacity-[0.04]
                 tracking-tighter text-center
+                -translate-y-16 md:-translate-y-24 lg:-translate-y-32
               "
             >
               {personalInfo.name.split(" ").map((part) => (
@@ -136,18 +136,7 @@ export default function HeroSection() {
             <div className="absolute bottom-0 left-0 w-[40vw] h-[40vh] rounded-full bg-gradient-radial from-violet-900/10 via-transparent to-transparent blur-3xl" />
           </motion.div>
 
-          {/* ── Decorative top horizontal rule ─────────────────────────────── */}
-          <motion.div
-            aria-hidden
-            className="absolute top-8 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent z-30 origin-left"
-            style={{ scaleX: lineScaleX }}
-          />
 
-          {/* ── Decorative bottom horizontal rule ──────────────────────────── */}
-          <div
-            aria-hidden
-            className="absolute bottom-8 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent z-30"
-          />
 
           {/* ── Z-10 · Portrait ────────────────────────────────────────────── */}
           <motion.div
@@ -201,7 +190,7 @@ export default function HeroSection() {
             {/* Main headline */}
             <motion.h1
               className="
-                font-[var(--font-inter)] font-black text-white leading-[1.05]
+                font-[var(--font-playfair)] font-black text-white leading-[1.05]
                 text-4xl
                 sm:text-5xl
                 md:text-6xl
@@ -243,8 +232,8 @@ export default function HeroSection() {
             {/* Sub-text descriptor */}
             <motion.p
               className="
-                mt-6 text-sm sm:text-base text-neutral-500 leading-relaxed
-                max-w-sm font-[var(--font-inter)] font-light tracking-wide
+                mt-6 text-base sm:text-lg text-neutral-400 leading-relaxed
+                max-w-sm font-[var(--font-lora)] font-normal italic tracking-wide
               "
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -255,9 +244,9 @@ export default function HeroSection() {
               }}
             >
               Building elegant systems at the intersection of
-              <span className="text-neutral-300"> science </span>
+              <span className="text-neutral-200"> science </span>
               and
-              <span className="text-neutral-300"> craft</span>.
+              <span className="text-neutral-200"> craft</span>.
             </motion.p>
 
             {/* CTA strip */}
@@ -272,7 +261,7 @@ export default function HeroSection() {
               }}
             >
               <a
-                href="#work"
+                href="#projects"
                 id="hero-cta-work"
                 className="
                   group relative inline-flex items-center gap-2
@@ -342,28 +331,6 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* ── Bottom-right metadata strip ────────────────────────────────── */}
-          <motion.div
-            aria-hidden
-            className="absolute right-6 sm:right-10 top-1/2 -translate-y-1/2 z-20 hidden lg:flex flex-col items-end gap-5"
-            initial={{ opacity: 0, x: 12 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.1, duration: 0.8 }}
-            style={{
-              opacity: useTransform(scrollYProgress, [0, 0.4], [1, 0]),
-            }}
-          >
-            {["About", "Skills", "Journey", "Projects", "Contact"].map(
-              (tag, i) => (
-                <span
-                  key={tag}
-                  className="font-[var(--font-jetbrains)] text-xs tracking-[0.18em] text-zinc-400 uppercase font-semibold"
-                >
-                  {String(i + 1).padStart(2, "0")} {tag}
-                </span>
-              )
-            )}
-          </motion.div>
 
         </div>{/* /sticky */}
       </section>

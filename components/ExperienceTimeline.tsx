@@ -23,8 +23,8 @@ export default function ExperienceTimeline() {
   return (
     <section
       ref={containerRef}
-      id="experience-timeline"
-      className="py-24 px-6 sm:px-12 md:px-24 bg-black relative border-t border-zinc-900"
+      id="journey"
+      className="py-24 px-6 sm:px-12 md:px-24 bg-transparent relative"
       aria-label="Interactive Experience Timeline"
     >
       <div className="max-w-4xl mx-auto">
@@ -33,7 +33,7 @@ export default function ExperienceTimeline() {
           <p className="font-[var(--font-jetbrains)] text-xs sm:text-sm tracking-[0.25em] text-zinc-300 uppercase mb-4 font-semibold">
             03 Journey
           </p>
-          <h2 className="font-[var(--font-inter)] font-black text-white text-4xl sm:text-5xl tracking-tight">
+          <h2 className="font-[var(--font-playfair)] font-black text-white text-4xl sm:text-5xl tracking-tight">
             Experience Timeline
           </h2>
           <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
@@ -88,7 +88,7 @@ export default function ExperienceTimeline() {
                     </span>
 
                     {/* Title & Company */}
-                    <h4 className="font-[var(--font-inter)] font-bold text-white text-lg sm:text-xl mt-1 flex flex-wrap items-baseline gap-y-1">
+                    <h4 className="font-[var(--font-playfair)] font-bold text-white text-lg sm:text-xl mt-1 flex flex-wrap items-baseline gap-y-1">
                       <span>{role.role}</span>
                       <span className="text-sm sm:text-base font-semibold text-zinc-300 font-mono sm:ml-2.5">
                         @ {role.company}

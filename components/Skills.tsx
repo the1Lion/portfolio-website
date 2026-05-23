@@ -57,7 +57,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-24 px-6 sm:px-12 md:px-24 bg-black relative border-t border-white/5"
+      className="py-24 px-6 sm:px-12 md:px-24 bg-transparent relative"
       aria-label="Skills Bento Section"
     >
       <div className="max-w-7xl mx-auto">
@@ -66,7 +66,7 @@ export default function Skills() {
           <p className="font-[var(--font-jetbrains)] text-xs sm:text-sm tracking-[0.25em] text-zinc-300 uppercase mb-4 font-semibold">
             02 Competencies
           </p>
-          <h2 className="font-[var(--font-inter)] font-black text-white text-4xl sm:text-5xl tracking-tight">
+          <h2 className="font-[var(--font-playfair)] font-black text-white text-4xl sm:text-5xl tracking-tight">
             Skills Bento Box
           </h2>
           <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
@@ -119,7 +119,7 @@ export default function Skills() {
                         key={skill.name}
                         className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900 border border-white/10 transition-all duration-300 hover:bg-neutral-800 hover:border-white/20 select-none"
                       >
-                        <span className="text-sm font-semibold text-white">
+                        <span className="text-sm font-semibold text-white font-[var(--font-inter)]">
                           {skill.name}
                         </span>
                         {skill.level && (

@@ -119,8 +119,8 @@ export default function ProjectCards() {
 
   return (
     <section
-      id="work"
-      className="py-24 px-6 sm:px-12 md:px-24 bg-black relative border-t border-zinc-900"
+      id="projects"
+      className="py-24 px-6 sm:px-12 md:px-24 bg-transparent relative"
       aria-label="Spotlight Project Section"
     >
       <div className="max-w-7xl mx-auto">

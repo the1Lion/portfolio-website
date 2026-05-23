@@ -27,8 +27,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-[#0a0a0a] text-white antialiased">
+    <html lang="en" className="dark bg-[#0a0a0a]">
+      <body className="bg-[#0a0a0a] text-white antialiased min-h-[100dvh] flex flex-col">
         {/*
          * React 19 supports <link rel="stylesheet"> directly in JSX.
          * This avoids next/font/google injecting @import url() into the CSS
@@ -43,8 +43,8 @@ export default function RootLayout({
         />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=JetBrains+Mono:wght@400;500&display=swap"
-          // React 19 hoists this to <head> and handles de-duplication
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+        // React 19 hoists this to <head> and handles de-duplication
         />
         {children}
       </body>
