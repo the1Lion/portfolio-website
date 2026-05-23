@@ -107,10 +107,10 @@ export default function ContactSection() {
             <p className="font-[var(--font-jetbrains)] text-xs tracking-[0.25em] text-neutral-500 uppercase select-none">
               05 Contact
             </p>
-            <h2 className="font-[var(--font-inter)] font-black text-white leading-tight text-4xl sm:text-5xl md:text-6xl tracking-tight">
+            <h2 className="font-[var(--font-playfair)] font-black text-white leading-tight text-4xl sm:text-5xl md:text-6xl tracking-tight">
               Let&apos;s Talk
             </h2>
-            <p className="text-sm sm:text-base text-neutral-400 leading-relaxed font-[var(--font-inter)] font-light tracking-wide max-w-lg">
+            <p className="text-sm sm:text-base text-neutral-400 leading-relaxed font-[var(--font-lora)] italic tracking-wide max-w-lg">
               Interested in working together, exploring custom integrations, or just want to connect? Unlock my coordinates below.
             </p>
           </div>
@@ -223,7 +223,7 @@ export default function ContactSection() {
           {/* Interactive Social Links */}
           <div className="flex flex-wrap justify-center gap-3 items-center pt-4">
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/mohamad-katramez-a24705215"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-zinc-800/80 bg-zinc-950/50 hover:bg-zinc-900 hover:border-zinc-700/80 text-zinc-400 hover:text-white transition-all duration-300 text-xs font-semibold uppercase tracking-wider"
@@ -234,7 +234,7 @@ export default function ContactSection() {
               LinkedIn
             </a>
             <a
-              href="https://github.com/MohamadKatramez"
+              href="https://github.com/the1Lion"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-zinc-800/80 bg-zinc-950/50 hover:bg-zinc-900 hover:border-zinc-700/80 text-zinc-400 hover:text-white transition-all duration-300 text-xs font-semibold uppercase tracking-wider"

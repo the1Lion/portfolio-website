@@ -155,7 +155,7 @@ export default function ExperienceTimeline() {
                     </span>
 
                     {/* Title & Institution */}
-                    <h4 className="font-[var(--font-inter)] font-bold text-white text-lg sm:text-xl mt-1 flex flex-wrap items-baseline gap-y-1">
+                    <h4 className="font-[var(--font-playfair)] font-bold text-white text-lg sm:text-xl mt-1 flex flex-wrap items-baseline gap-y-1">
                       <span>{edu.degree}</span>
                       <span className="text-sm sm:text-base font-semibold text-zinc-300 font-mono sm:ml-2.5">
                         @ {edu.institution}

@@ -66,7 +66,7 @@ function SpotlightCard({ project, className = "" }: SpotlightCardProps) {
             </span>
 
             {/* Project Title */}
-            <h4 className="font-[var(--font-inter)] font-black text-white text-xl sm:text-2xl leading-tight">
+            <h4 className="font-[var(--font-playfair)] font-black text-white text-xl sm:text-2xl leading-tight">
               {project.title}
             </h4>
 
@@ -129,7 +129,7 @@ export default function ProjectCards() {
           <p className="font-[var(--font-jetbrains)] text-xs sm:text-sm tracking-[0.25em] text-zinc-300 uppercase mb-4 font-semibold">
             04 Portfolio
           </p>
-          <h2 className="font-[var(--font-inter)] font-black text-white text-4xl sm:text-5xl tracking-tight">
+          <h2 className="font-[var(--font-playfair)] font-black text-white text-4xl sm:text-5xl tracking-tight">
             Selected Projects
           </h2>
           <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
