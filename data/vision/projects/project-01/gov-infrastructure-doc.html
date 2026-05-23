@@ -1,0 +1,4617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syria Digital — National Infrastructure Proposal</title>
+<meta name="description" content="A sovereign digital infrastructure designed for 30M+ Syrian citizens — built like a central bank, governed like a public good.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Sora:wght@200..800&family=JetBrains+Mono:wght@300..600&family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@400..700&family=Cairo:wght@200..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Tajawal:wght@200..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
+
+<style>
+/* ════════════════════════════════════════════════════════════ */
+/*  SYRIA DIGITAL · NATIONAL DESIGN SYSTEM                       */
+/*  Official Syrian Identity Palette                             */
+/*  Forest · Gold · Damask · Mountain Teal · Ivory               */
+/* ════════════════════════════════════════════════════════════ */
+
+:root {
+  /* 🎨 COLOR PALETTE TOKENS */
+  --palette-forest:           #002623;
+  --palette-emerald-shadow:   #054239;
+  --palette-mountain-teal:    #428177;
+  --palette-golden-wheat:     #988561;
+  --palette-antique-sand:     #B9A779;
+  --palette-ivory-mist:       #EDEBE0;
+  --palette-deep-umber:       #260F14;
+  --palette-black-cherry:     #4A151E;
+  --palette-damask-red:       #6B1F2A;
+  --palette-charcoal:         #161616;
+  --palette-stone:            #3D3A3B;
+  --palette-white:            #FFFFFF;
+
+  /* RGB Components for transparency */
+  --rgb-forest:               0, 38, 35;
+  --rgb-emerald:              5, 66, 57;
+  --rgb-teal:                 66, 129, 119;
+  --rgb-gold:                 152, 133, 97;
+  --rgb-sand:                 185, 167, 121;
+  --rgb-red:                  107, 31, 42;
+  --rgb-charcoal:             22, 22, 22;
+  --rgb-stone:                61, 58, 59;
+  --rgb-umber:                38, 15, 20;
+
+  /* ⚙️ THEME CONFIGURATION: A (Premium Dark - Default) */
+  --theme-app-bg:             var(--palette-charcoal);
+  --theme-container-bg:       var(--palette-forest);
+  --theme-container-bg-glass: rgba(var(--rgb-forest), 0.5);
+  --theme-border:             var(--palette-stone);
+  --theme-text-primary:       var(--palette-ivory-mist);
+  --theme-text-secondary:     var(--palette-antique-sand);
+  --theme-cta-primary:        var(--palette-golden-wheat);
+  --theme-accent-secondary:   var(--palette-mountain-teal);
+  --theme-alert:              var(--palette-damask-red);
+
+  /* 🏛️ SEMANTIC MAPPING */
+  --bg:               var(--theme-app-bg);
+  --bg-deep:          var(--palette-deep-umber);
+  --bg-soft:          var(--palette-emerald-shadow);
+  --surface:          var(--theme-container-bg-glass);
+  --surface-elev:     rgba(255, 255, 255, 0.03);
+  --text:             var(--theme-text-primary);
+  --text-soft:        var(--theme-text-secondary);
+  --text-dim:         rgba(var(--rgb-sand), 0.6);
+  --accent:           var(--theme-cta-primary);
+  --accent-bright:    var(--palette-antique-sand);
+  --accent-soft:      rgba(var(--rgb-gold), 0.12);
+  --teal:             var(--theme-accent-secondary);
+  --red:              var(--theme-alert);
+
+  /* Buttons & States */
+  --btn-text:         var(--palette-deep-umber);
+  --btn-sec-text:     var(--palette-mountain-teal);
+  --status-success-bg: var(--palette-mountain-teal);
+  --status-success-text: var(--palette-charcoal);
+  
+  /* Interactive */
+  --link-text:        var(--palette-mountain-teal);
+  --link-hover:       var(--palette-golden-wheat);
+  --input-focus:      var(--palette-mountain-teal);
+
+  --line:             var(--theme-border);
+  --line-strong:      rgba(var(--rgb-stone), 0.6);
+  --line-gold:        rgba(var(--rgb-gold), 0.28);
+  --line-ink:         rgba(var(--rgb-forest), 0.12);
+
+  /* Scrollbar */
+  --sb-track:         var(--palette-charcoal);
+  --sb-thumb:         var(--palette-stone);
+
+  /* ── FONTS ── */
+  --display:          'Fraunces', 'Newsreader', Georgia, serif;
+  --body:             'Sora', system-ui, sans-serif;
+  --mono:             'JetBrains Mono', 'SF Mono', monospace;
+  --arabic:           'Amiri', serif;
+  --arabic-display:   'Reem Kufi', 'Amiri', serif;
+
+  /* ── SPACE ── */
+  --max:              1400px;
+  --gutter:           clamp(20px, 4.5vw, 72px);
+
+  /* ── MOTION ── */
+  --ease-out:         cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-spring:      cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ⚙️ THEME CONFIGURATION: B (Sophisticated Light - No Green) */
+.theme-light {
+  --theme-app-bg:             var(--palette-ivory-mist);
+  --theme-container-bg:       var(--palette-white);
+  --theme-container-bg-glass: rgba(255, 255, 255, 0.7);
+  --theme-border:             rgba(var(--rgb-sand), 0.5);
+  --theme-text-primary:       var(--palette-charcoal);
+  --theme-text-secondary:     var(--palette-deep-umber);
+  --theme-cta-primary:        var(--palette-golden-wheat);
+  --theme-accent-secondary:   var(--palette-antique-sand);
+  --theme-alert:              var(--palette-damask-red);
+
+  /* Re-mapping semantics for Light */
+  --bg:               var(--theme-app-bg);
+  --bg-deep:          var(--palette-antique-sand);
+  --bg-soft:          var(--palette-white);
+  --surface:          var(--theme-container-bg-glass);
+  --surface-elev:     rgba(var(--rgb-umber), 0.03);
+  --text:             var(--theme-text-primary);
+  --text-soft:        var(--theme-text-secondary);
+  --text-dim:         rgba(var(--rgb-stone), 0.6);
+  --accent:           var(--theme-cta-primary);
+  --accent-bright:    var(--palette-black-cherry);
+  --accent-soft:      rgba(var(--rgb-gold), 0.08);
+  --teal:             var(--theme-accent-secondary);
+  --red:              var(--theme-alert);
+
+  /* Buttons & States */
+  --btn-text:         var(--palette-deep-umber);
+  --btn-sec-text:     var(--palette-stone);
+  --status-success-bg: var(--palette-antique-sand);
+  --status-success-text: var(--palette-deep-umber);
+
+  /* Interactive */
+  --link-text:        var(--palette-black-cherry);
+  --link-hover:       var(--palette-golden-wheat);
+  --input-focus:      var(--palette-golden-wheat);
+
+  --line:             var(--theme-border);
+  --line-strong:      rgba(var(--rgb-sand), 0.3);
+  --line-gold:        rgba(var(--rgb-gold), 0.4);
+
+  /* Scrollbar */
+  --sb-track:         var(--palette-ivory-mist);
+  --sb-thumb:         var(--palette-antique-sand);
+}
+
+
+.theme-light .band--ivory {
+  background: var(--palette-white);
+}
+
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-weight: 350;
+  line-height: 1.55;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+::selection { background: var(--accent); color: var(--bg-deep); }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--sb-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ── FILM GRAIN ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.76  0 0 0 0 0.74  0 0 0 0 0.66  0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+}
+
+/* ── GLOBAL ATMOSPHERE ── */
+body::after {
+  content: '';
+  position: fixed;
+  top: -20%; left: -10%;
+  width: 70%; height: 80%;
+  background: radial-gradient(circle, rgba(var(--rgb-teal), 0.08), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 22s ease-in-out infinite;
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); opacity: 1; }
+  50% { transform: translate(20%, 10%); opacity: 0.6; }
+}
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+  will-change: opacity, transform;
+}
+.reveal--active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal--left { transform: translateX(-40px); opacity: 0; }
+.reveal--right { transform: translateX(40px); opacity: 0; }
+.reveal--scale { transform: scale(0.92); opacity: 0; }
+
+.reveal--active.reveal--left, 
+.reveal--active.reveal--right { transform: translateX(0); opacity: 1; }
+.reveal--active.reveal--scale { transform: scale(1); opacity: 1; }
+
+.reveal--delay-1 { transition-delay: 0.15s; }
+.reveal--delay-2 { transition-delay: 0.3s; }
+.reveal--delay-3 { transition-delay: 0.45s; }
+.reveal--delay-4 { transition-delay: 0.6s; }
+
+/* ── STAGGERED LISTS ── */
+.stagger-reveal > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.stagger-reveal--active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Up to 12 items staggered */
+.stagger-reveal--active > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-reveal--active > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-reveal--active > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-reveal--active > *:nth-child(4) { transition-delay: 0.4s; }
+.stagger-reveal--active > *:nth-child(5) { transition-delay: 0.5s; }
+.stagger-reveal--active > *:nth-child(6) { transition-delay: 0.6s; }
+
+/* ── SKELETON WATERMARK ── */
+.skeleton-watermark {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vh; height: 100vh;
+  background-image: url('assets/images/Syria_Emblem_New_Eagle.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.015;
+  filter: brightness(2) contrast(0.5);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  NAV                                                          */
+/* ════════════════════════════════════════════════════════════ */
+
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--surface);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-bottom: 1px solid var(--line);
+  padding: 18px var(--gutter);
+  transition: padding 0.3s var(--ease-out), background 0.3s;
+}
+.nav.scrolled {
+  padding: 12px var(--gutter);
+  background: var(--bg);
+}
+.nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 14px;
+}
+.nav-brand-mark {
+  display: inline-block;
+  width: 38px; height: 38px;
+  background-image: url('assets/icons/Emblem_of_Syria_(2025–present).svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(0) saturate(100%) invert(67%) sepia(15%) saturate(880%) hue-rotate(7deg) brightness(91%) contrast(86%);
+  transition: filter 0.4s, transform 0.4s var(--ease-spring);
+}
+.nav-brand:hover .nav-brand-mark { transform: scale(1.08) rotate(-2deg); }
+.nav-brand-text {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.nav-brand-name {
+  font-family: var(--display);
+  font-weight: 500;
+  font-variation-settings: 'SOFT' 30, 'opsz' 18;
+  font-size: 19px;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  line-height: 1;
+  white-space: nowrap;
+}
+.nav-brand-ar {
+  font-family: var(--arabic-display);
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex; gap: clamp(16px, 2.5vw, 34px);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.nav-links a {
+  color: var(--text-dim);
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.3s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0; height: 1px;
+  background: var(--link-text);
+  transition: width 0.4s var(--ease-out);
+}
+.nav-links a:hover { color: var(--link-hover); }
+.nav-links a:hover::after { width: 100%; }
+.nav-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+@media (max-width: 920px) {
+  .nav-links { display: none; }
+  .nav-brand-ar { display: none; }
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  GLOBAL SECTION                                               */
+/* ════════════════════════════════════════════════════════════ */
+
+.section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(90px, 13vw, 180px) var(--gutter);
+  position: relative;
+  z-index: 1;
+}
+.section--tight { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px); }
+
+.band--deep {
+  background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg) 100%);
+}
+.band--emerald {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 50%, var(--bg) 100%);
+}
+.band--ivory {
+  background: var(--bg-deep);
+  color: var(--text);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.theme-light .band--ivory {
+  background: var(--palette-ivory-mist);
+  color: var(--bg-deep);
+  border: none;
+}
+.band--ivory::after {
+  content: '';
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0.15  0 0 0 0 0.14  0 0 0 0.03 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.band--gold {
+  background:
+    radial-gradient(ellipse at top, rgba(185,167,121,0.08), transparent 70%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+  border-top: 1px solid var(--line-gold);
+  border-bottom: 1px solid var(--line-gold);
+}
+
+/* ── EYEBROW + TITLES ── */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 28px;
+}
+.eyebrow::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent));
+}
+.band--ivory .eyebrow { color: var(--teal); }
+.band--ivory .eyebrow::before { background: linear-gradient(to right, transparent, var(--teal)); }
+
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 350;
+  font-variation-settings: 'SOFT' 30, 'opsz' 144;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--text);
+}
+.band--ivory h1, .band--ivory h2, .band--ivory h3, .band--ivory h4 { color: var(--text); }
+.theme-light .band--ivory h1, .theme-light .band--ivory h2, .theme-light .band--ivory h3, .theme-light .band--ivory h4 { color: var(--bg-deep); }
+
+h1.display {
+  font-size: clamp(60px, 12vw, 184px);
+  font-weight: 300;
+  font-variation-settings: 'SOFT' 80, 'opsz' 144, 'wght' 300;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+}
+h2.title {
+  font-size: clamp(44px, 7vw, 104px);
+  font-weight: 320;
+  font-variation-settings: 'SOFT' 60, 'opsz' 144;
+  letter-spacing: -0.035em;
+  max-width: 18ch;
+}
+h3.sub {
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.italic-accent {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 330;
+  font-variation-settings: 'SOFT' 80, 'opsz' 144;
+}
+.italic-accent--red { color: var(--palette-damask-red); }
+.italic-accent--teal { color: var(--palette-mountain-teal); }
+.band--ivory .italic-accent { color: var(--palette-mountain-teal); }
+
+.lede {
+  font-family: var(--display);
+  font-weight: 320;
+  font-style: italic;
+  font-variation-settings: 'opsz' 144;
+  font-size: clamp(20px, 2.4vw, 30px);
+  line-height: 1.4;
+  color: var(--text-soft);
+  max-width: 45ch;
+  letter-spacing: -0.01em;
+}
+.band--ivory .lede { color: var(--text-soft); }
+.theme-light .band--ivory .lede { color: var(--palette-stone); }
+
+.section-head {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: clamp(48px, 8vw, 96px);
+}
+@media (max-width: 880px) { .section-head { grid-template-columns: 1fr; gap: 24px; } }
+
+/* ════════════════════════════════════════════════════════════ */
+/*  HERO                                                         */
+/* ════════════════════════════════════════════════════════════ */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 140px var(--gutter) 60px;
+  max-width: var(--max);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-emblem-wrap {
+  position: absolute;
+  top: 100px; right: var(--gutter);
+  width: clamp(220px, 30vw, 440px);
+  aspect-ratio: 1;
+  pointer-events: none;
+  z-index: -1;
+}
+.hero-emblem {
+  width: 100%; height: 100%;
+  background-image: url('assets/icons/Emblem_of_Syria_(2025–present)_variation_outline.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(0) saturate(100%) invert(67%) sepia(15%) saturate(880%) hue-rotate(7deg) brightness(91%) contrast(86%);
+  opacity: 0.55;
+  animation: emblem-breathe 7s ease-in-out infinite;
+}
+.hero-emblem-rings {
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  animation: slow-rotate 60s linear infinite;
+}
+.hero-emblem-rings::before, .hero-emblem-rings::after {
+  content: '';
+  position: absolute; inset: 0;
+  border: 1px solid var(--line-gold);
+  border-radius: 50%;
+  opacity: 0;
+  animation: ring-emit 5s ease-out infinite;
+}
+.hero-emblem-rings::after { animation-delay: 2.5s; }
+
+@keyframes slow-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.float { animation: float 8s ease-in-out infinite; }
+@keyframes ring-emit {
+  0% { transform: scale(0.6); opacity: 0; }
+  20% { opacity: 0.5; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+@keyframes emblem-breathe {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.02); }
+}
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: clamp(60px, 10vw, 140px);
+  position: relative;
+  z-index: 2;
+}
+.hero-top .col span { display: block; line-height: 1.6; }
+.hero-top .col strong { color: var(--accent); font-weight: 500; letter-spacing: 0.16em; }
+
+.hero-title-block {
+  margin-top: auto;
+  position: relative;
+  z-index: 2;
+}
+.hero-title-block .ar-mark {
+  font-family: var(--arabic-display);
+  font-size: 0.34em;
+  color: var(--accent);
+  vertical-align: 0.55em;
+  margin-right: 0.32em;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.hero-subtitle {
+  margin-top: 36px;
+  font-family: var(--display);
+  font-weight: 320;
+  font-style: italic;
+  font-variation-settings: 'opsz' 144;
+  font-size: clamp(22px, 2.8vw, 36px);
+  color: var(--text-soft);
+  max-width: 50ch;
+  line-height: 1.32;
+  letter-spacing: -0.015em;
+}
+
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: clamp(16px, 3vw, 48px);
+  margin-top: clamp(70px, 13vw, 160px);
+  padding-top: 36px;
+  border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 2;
+}
+.hero-meta::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 0;
+  width: 80px; height: 1px;
+  background: var(--accent);
+}
+.hero-meta-block {
+  display: flex; flex-direction: column; gap: 8px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.hero-meta-block strong {
+  font-family: var(--display);
+  font-size: clamp(32px, 4vw, 52px);
+  color: var(--text);
+  font-weight: 350;
+  letter-spacing: -0.025em;
+  text-transform: none;
+  font-variation-settings: 'SOFT' 60, 'opsz' 144;
+}
+.hero-meta-block strong .unit { color: var(--accent); font-style: italic; }
+
+.scroll-cue {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.34em; color: var(--accent);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  position: absolute;
+  right: var(--gutter); bottom: 60px;
+  display: flex; align-items: center; gap: 14px;
+  z-index: 3;
+}
+.scroll-cue::after {
+  content: '';
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scroll-pulse 2.2s var(--ease-out) infinite;
+  transform-origin: top;
+}
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 0.25; transform: scaleY(0.6); }
+  50% { opacity: 1; transform: scaleY(1.4); }
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  VISION                                                       */
+/* ════════════════════════════════════════════════════════════ */
+
+.vision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: clamp(48px, 9vw, 140px);
+  align-items: start;
+}
+@media (max-width: 880px) { .vision-grid { grid-template-columns: 1fr; } }
+
+.vision-prose p {
+  font-family: var(--display);
+  font-weight: 340;
+  font-variation-settings: 'opsz' 144, 'SOFT' 50;
+  font-size: clamp(21px, 2.1vw, 28px);
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 1.2em;
+  letter-spacing: -0.012em;
+}
+.vision-prose p:first-letter {
+  font-family: var(--display);
+  font-size: 4em;
+  font-weight: 380;
+  font-style: italic;
+  float: left;
+  line-height: 0.85;
+  margin: 0.1em 0.1em 0 -0.04em;
+  color: var(--accent);
+}
+.vision-prose .pull-quote {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 350;
+}
+
+.ref-models {
+  position: sticky; top: 110px;
+  display: grid; gap: 14px;
+}
+.ref-model {
+  border: 1px solid var(--line);
+  padding: 22px 26px;
+  background: var(--surface);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 28px;
+  transition: all 0.4s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+.ref-model::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s var(--ease-out);
+}
+.ref-model:hover {
+  border-color: var(--line-gold);
+  background: var(--bg-soft);
+  transform: translateX(-6px);
+}
+.ref-model:hover::before { transform: scaleY(1); }
+
+.ref-model-flag {
+  font-family: var(--display);
+  font-size: 36px;
+  font-weight: 350;
+  color: var(--accent);
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+.ref-model-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+.ref-model-note {
+  font-size: 13.5px;
+  color: var(--text);
+  font-weight: 330;
+  line-height: 1.5;
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  BIG STATS                                                    */
+/* ════════════════════════════════════════════════════════════ */
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.stat-row::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 0;
+  width: 120px; height: 1px;
+  background: var(--accent);
+}
+.stat-cell {
+  padding: clamp(44px, 6vw, 84px) clamp(18px, 3vw, 40px);
+  border-right: 1px solid var(--line);
+  text-align: center;
+  position: relative;
+  transition: background 0.5s var(--ease-out);
+}
+.stat-cell:last-child { border-right: none; }
+.stat-cell:hover { background: var(--accent-soft); }
+
+.stat-num {
+  font-family: var(--display);
+  font-size: clamp(56px, 6.5vw, 104px);
+  font-weight: 300;
+  font-variation-settings: 'SOFT' 60, 'opsz' 144, 'wght' 300;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  color: var(--text);
+  display: block;
+}
+.stat-num .accent { color: var(--accent); font-style: italic; }
+.stat-num.small { font-size: clamp(38px, 4.2vw, 60px); }
+
+.stat-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-top: 16px;
+  display: block;
+}
+.stat-sub {
+  font-size: 12px;
+  color: var(--accent);
+  font-family: var(--mono);
+  margin-top: 8px;
+  letter-spacing: 0.04em;
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  PRINCIPLES                                                   */
+/* ════════════════════════════════════════════════════════════ */
+
+.principle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.principle {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 40px 30px 30px;
+  position: relative;
+  background: transparent;
+  transition: background 0.5s var(--ease-out);
+  overflow: hidden;
+}
+.principle::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.6s var(--ease-out);
+}
+.principle:hover {
+  background: linear-gradient(180deg, var(--accent-soft) 0%, transparent 100%);
+}
+.principle:hover::before { width: 100%; }
+
+.principle-num {
+  position: absolute;
+  top: 24px; right: 28px;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--accent);
+  opacity: 0.65;
+  letter-spacing: 0.05em;
+}
+.principle-title {
+  font-family: var(--display);
+  font-weight: 380;
+  font-variation-settings: 'opsz' 36, 'SOFT' 50;
+  font-size: 23px;
+  letter-spacing: -0.018em;
+  color: var(--text);
+  margin-bottom: 14px;
+  line-height: 1.15;
+  max-width: 28ch;
+}
+.principle-title .accent { color: var(--accent); font-style: italic; font-weight: 350; }
+.principle-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  ARCHITECTURE                                                 */
+/* ════════════════════════════════════════════════════════════ */
+
+.arch-wrap {
+  margin-top: 56px;
+  padding: clamp(28px, 5vw, 56px);
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, var(--accent-soft) 0%, transparent 30%),
+    var(--surface);
+  position: relative;
+  overflow: hidden;
+}
+.arch-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 0%, var(--accent-soft) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.arch-central {
+  position: relative;
+  border: 2px solid var(--accent);
+  padding: 32px 36px;
+  background:
+    linear-gradient(180deg, rgba(185,167,121,0.06), transparent),
+    var(--bg-deep);
+  margin: 0 auto 12px;
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+.arch-central::before {
+  content: 'CENTRAL MASTER · DAMASCUS';
+  position: absolute;
+  top: -10px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-deep);
+  padding: 0 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--accent);
+}
+.arch-central-title {
+  font-family: var(--display);
+  font-size: 24px;
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: 10px;
+  font-weight: 350;
+  letter-spacing: -0.015em;
+}
+.arch-central-items {
+  display: flex; flex-wrap: wrap;
+  justify-content: center; gap: 12px 28px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.arch-paths {
+  display: flex; justify-content: center;
+  margin: 40px 0 28px;
+  flex-wrap: wrap;
+  gap: 18px;
+  position: relative;
+  z-index: 2;
+}
+.arch-path {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  border-left: 2px solid var(--accent);
+  padding: 10px 18px;
+}
+.arch-path strong { color: var(--accent); font-weight: 500; }
+
+.arch-flow {
+  height: 60px;
+  position: relative;
+  margin-bottom: 12px;
+}
+.arch-flow svg { width: 100%; height: 100%; }
+
+.arch-replicas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+.arch-replica {
+  border: 1px dashed var(--line-strong);
+  padding: 18px 16px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  background: var(--surface-elev);
+  transition: all 0.4s var(--ease-out);
+}
+.arch-replica:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--text);
+  transform: translateY(-2px);
+}
+.arch-replica strong {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 17px;
+  font-weight: 380;
+  color: var(--text);
+  display: block;
+  margin-bottom: 4px;
+  letter-spacing: -0.005em;
+  text-transform: none;
+}
+.arch-replica em {
+  font-size: 9px;
+  color: var(--accent);
+  font-style: normal;
+  letter-spacing: 0.18em;
+}
+.arch-note {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px dashed var(--line);
+  font-size: 14.5px;
+  color: var(--text-soft);
+  line-height: 1.65;
+  font-style: italic;
+  font-family: var(--display);
+  font-weight: 320;
+  max-width: 64ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.arch-note strong {
+  color: var(--accent);
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  SYRIA MAP                                                    */
+/* ════════════════════════════════════════════════════════════ */
+
+.map-section {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 60px;
+}
+@media (max-width: 880px) { .map-section { grid-template-columns: 1fr; gap: 40px; } }
+
+.map-wrap {
+  position: relative;
+  aspect-ratio: 1.422;
+}
+.map-img {
+  width: 100%; display: block;
+}
+.map-svg {
+  width: 100%; height: 100%;
+}
+.map-svg path.country {
+  fill: var(--bg-soft);
+  stroke: var(--accent);
+  stroke-width: 1;
+}
+.map-svg circle.node {
+  fill: var(--accent);
+  transition: r 0.3s, fill 0.3s;
+}
+.map-svg circle.node.capital { fill: var(--palette-damask-red); }
+.map-svg circle.pulse {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  opacity: 0;
+  animation: map-pulse 3s ease-out infinite;
+}
+.map-svg circle.pulse.capital { stroke: var(--palette-damask-red); }
+@keyframes map-pulse {
+  0% { r: 8; opacity: 0.9; }
+  100% { r: 42; opacity: 0; }
+}
+.map-svg text {
+  font-family: var(--mono);
+  font-size: 8px;
+  fill: var(--text-soft);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.map-svg text.capital-label {
+  fill: var(--palette-damask-red);
+  font-weight: 600;
+}
+
+.map-legend h3 { margin-bottom: 16px; }
+.map-legend-list {
+  display: grid; gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-soft);
+  letter-spacing: 0.04em;
+  margin-top: 32px;
+  columns: 2;
+  column-gap: 24px;
+}
+.map-legend-list span {
+  display: block;
+  padding: 4px 0;
+  break-inside: avoid;
+}
+.map-legend-list span.cap { color: var(--palette-damask-red); font-weight: 600; }
+
+/* ════════════════════════════════════════════════════════════ */
+/*  NODES BENTO DASHBOARD                                        */
+/* ════════════════════════════════════════════════════════════ */
+
+.nodes-bento {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.node-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 24px;
+  position: relative;
+  transition: all 0.4s var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 160px;
+}
+
+.node-card:hover {
+  border-color: var(--accent);
+  background: rgba(var(--rgb-gold), 0.05);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.4);
+}
+
+.node-card--master {
+  grid-column: span 2;
+  border: 2px solid var(--palette-golden-wheat);
+  background: linear-gradient(135deg, var(--theme-container-bg), var(--bg-soft));
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+}
+
+.node-card--master .node-name {
+  color: var(--palette-ivory-mist);
+  font-size: 34px;
+  font-style: italic;
+}
+
+.node-card--master .node-status {
+  color: var(--palette-golden-wheat);
+  font-weight: 600;
+}
+
+.node-card--master .node-role,
+.node-card--master .node-stats {
+  color: rgba(237, 235, 224, 0.8);
+}
+
+/* Light Theme Master Card: The "Gold Card" Approach */
+.theme-light .node-card--master {
+  background: var(--palette-antique-sand);
+  border-color: var(--palette-golden-wheat);
+  box-shadow: 0 20px 40px -10px rgba(185, 167, 121, 0.4);
+}
+
+.theme-light .node-card--master .node-name,
+.theme-light .node-card--master .node-status,
+.theme-light .node-card--master .node-role,
+.theme-light .node-card--master .node-stats {
+  color: var(--palette-charcoal) !important;
+}
+
+.theme-light .node-card--master .node-status::before {
+  background: var(--palette-forest);
+  box-shadow: 0 0 12px var(--palette-forest);
+}
+
+.theme-light .node-card--master .node-stats {
+  border-top-color: rgba(0, 38, 35, 0.15);
+}
+
+.node-status {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.node-status::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulse-glow 2s infinite;
+}
+
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+.node-name {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 350;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+
+.node-role {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-soft);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.node-stats {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--text-dim);
+}
+
+.node-card--master .node-stats { border-top-color: var(--line-gold); }
+
+@media (max-width: 768px) {
+  .node-card--master { grid-column: span 1; }
+  .nodes-bento { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .nodes-bento { grid-template-columns: 1fr; }
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  SERVICES                                                     */
+/* ════════════════════════════════════════════════════════════ */
+
+.services-container {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+.services-group-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.services-group-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--line-gold), transparent);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.service-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  transition: all 0.4s var(--ease-out);
+  overflow: hidden;
+  min-height: 220px;
+}
+.service-card:hover {
+  border-color: var(--accent);
+  background: var(--bg-soft);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 3px; height: 0;
+  background: var(--accent);
+  transition: height 0.4s var(--ease-out);
+}
+.service-card:hover::before { height: 100%; }
+
+.service-card--featured {
+  grid-column: span 2;
+  background: linear-gradient(135deg, rgba(var(--rgb-forest), 0.4), transparent);
+  border-left: 3px solid var(--accent);
+}
+
+.service-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.service-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 8px;
+}
+.service-icon svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+
+.service-badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid var(--line-gold);
+  color: var(--accent);
+  border-radius: 4px;
+}
+.service-badge.phase-1 { color: var(--accent); border-color: var(--accent); }
+.service-badge.phase-2 { color: var(--teal); border-color: var(--teal); }
+.service-badge.phase-3 { color: var(--red); border-color: var(--red); }
+
+.service-content h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  letter-spacing: -0.015em;
+}
+.service-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-soft);
+  max-width: 32ch;
+}
+
+.service-card-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+.service-tech {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-dim);
+}
+.service-tech strong { color: var(--text); }
+
+@media (max-width: 768px) {
+  .service-card--featured { grid-column: span 1; }
+  .services-grid { grid-template-columns: 1fr; }
+}
+
+.service-name {
+  font-family: var(--display);
+  font-size: 23px;
+  font-weight: 400;
+  font-variation-settings: 'opsz' 36, 'SOFT' 40;
+  letter-spacing: -0.018em;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.1;
+  position: relative;
+  z-index: 1;
+}
+.service-name.accent { color: var(--accent); font-style: italic; font-weight: 360; }
+
+.service-desc {
+  font-size: 12.5px;
+  color: var(--text-soft);
+  line-height: 1.55;
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
+}
+.service-phase {
+  position: absolute;
+  bottom: 16px;
+  right: 18px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  opacity: 0.7;
+  z-index: 1;
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  QUOTE BREAKS                                                 */
+/* ════════════════════════════════════════════════════════════ */
+
+.divider-quote {
+  padding: clamp(80px, 13vw, 160px) var(--gutter);
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+.divider-quote::before, .divider-quote::after {
+  content: '';
+  position: absolute;
+  width: 40px; height: 1px;
+  background: var(--accent);
+  top: 50%;
+}
+.divider-quote::before { left: var(--gutter); }
+.divider-quote::after { right: var(--gutter); }
+@media (max-width: 720px) {
+  .divider-quote::before, .divider-quote::after { display: none; }
+}
+
+.divider-quote q {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 300;
+  font-variation-settings: 'opsz' 144, 'SOFT' 80;
+  font-size: clamp(34px, 4.8vw, 60px);
+  line-height: 1.18;
+  color: var(--accent);
+  letter-spacing: -0.025em;
+  quotes: '“' '”';
+}
+.divider-quote q::before, .divider-quote q::after {
+  font-size: 1.5em;
+  color: var(--accent-bright);
+  vertical-align: -0.18em;
+  font-style: normal;
+}
+.divider-quote .attr {
+  margin-top: 40px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  SECURITY LAYERS                                              */
+/* ════════════════════════════════════════════════════════════ */
+
+.sec-stack {
+  display: grid;
+  gap: 6px;
+}
+.sec-layer {
+  padding: 32px 36px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(90deg, rgba(107,31,42,0.1) 0%, transparent 60%),
+    var(--surface);
+  display: grid;
+  grid-template-columns: 64px 1fr 2fr;
+  gap: 32px;
+  align-items: center;
+  transition: all 0.5s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+.sec-layer::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--palette-damask-red);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s var(--ease-out);
+}
+.sec-layer:hover {
+  border-color: var(--palette-damask-red);
+  transform: translateX(6px);
+  background:
+    linear-gradient(90deg, rgba(107,31,42,0.18) 0%, transparent 60%),
+    var(--surface);
+}
+.sec-layer:hover::after { transform: scaleY(1); }
+
+.sec-layer-num {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 60px;
+  font-weight: 320;
+  color: var(--palette-damask-red);
+  line-height: 1;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+.sec-layer-title {
+  font-family: var(--display);
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: -0.018em;
+  color: var(--text);
+  line-height: 1.15;
+}
+.sec-layer-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--palette-damask-red);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.sec-layer-desc {
+  font-size: 13.5px;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+@media (max-width: 720px) {
+  .sec-layer { grid-template-columns: 1fr; gap: 14px; padding: 24px; }
+  .sec-layer-num { text-align: left; font-size: 40px; }
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  NFC FEATURE                                                  */
+/* ════════════════════════════════════════════════════════════ */
+
+.nfc-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 90px;
+  align-items: center;
+}
+@media (max-width: 880px) { .nfc-feature { grid-template-columns: 1fr; gap: 56px; } }
+
+.nfc-card-stage {
+  perspective: 1400px;
+  position: relative;
+}
+.nfc-card-visual {
+  position: relative;
+  aspect-ratio: 1.586;
+  background:
+    linear-gradient(135deg, var(--bg-soft) 0%, var(--bg-deep) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 16px;
+  padding: 32px;
+  overflow: hidden;
+  box-shadow:
+    0 40px 80px -20px rgba(0, 0, 0, 0.7),
+    0 1px 0 rgba(var(--rgb-sand), 0.25) inset;
+  transform: perspective(1400px) rotateY(-12deg) rotateX(4deg);
+  transition: transform 0.6s cubic-bezier(.2,.8,.2,1);
+  animation: card-float 6s ease-in-out infinite;
+}
+.nfc-card-visual:hover {
+  transform: perspective(1400px) rotateY(-2deg) rotateX(1deg) translateY(-6px);
+}
+@keyframes card-float {
+  0%, 100% { transform: perspective(1400px) rotateY(-12deg) rotateX(4deg) translateY(0); }
+  50% { transform: perspective(1400px) rotateY(-10deg) rotateX(3deg) translateY(-8px); }
+}
+.nfc-card-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top right, rgba(var(--rgb-sand), 0.2), transparent 50%),
+    radial-gradient(circle at bottom left, rgba(var(--rgb-teal), 0.1), transparent 50%);
+}
+.nfc-card-visual::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-bright), transparent);
+  opacity: 0.6;
+}
+
+.nfc-emblem-bg {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%; aspect-ratio: 1;
+  background-image: url('assets/icons/Emblem_of_Syria_(2025–present)_variation_outline.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(0) saturate(100%) invert(67%) sepia(15%) saturate(880%) hue-rotate(7deg) brightness(91%) contrast(86%);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.nfc-chip {
+  width: 56px; height: 44px;
+  background:
+    linear-gradient(135deg, var(--accent-bright) 0%, var(--accent) 50%, var(--palette-golden-wheat) 100%);
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+.nfc-chip::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(var(--rgb-forest), 0.5);
+  border-radius: 3px;
+  background-image:
+    linear-gradient(0deg, rgba(0,38,35,0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,38,35,0.3) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+.nfc-card-flag {
+  position: absolute;
+  top: 32px; right: 32px;
+  font-family: var(--arabic-display);
+  font-size: 26px;
+  color: var(--accent-bright);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.nfc-card-name {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: -0.015em;
+  position: relative;
+  z-index: 1;
+}
+.nfc-card-name-ar {
+  font-family: var(--arabic);
+  font-size: 18px;
+  color: var(--accent);
+  margin-bottom: 20px;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+}
+.nfc-card-id {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--text-soft);
+  position: relative;
+  z-index: 1;
+}
+.nfc-card-wave {
+  position: absolute;
+  bottom: 28px;
+  right: 28px;
+  width: 28px; height: 28px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+}
+.nfc-card-wave::before, .nfc-card-wave::after {
+  content: ''; position: absolute;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  animation: wave-ripple 2.5s ease-out infinite;
+}
+.nfc-card-wave::before { inset: -8px; opacity: 0.5; }
+.nfc-card-wave::after { inset: -16px; opacity: 0.25; animation-delay: 0.4s; }
+@keyframes wave-ripple {
+  0%, 100% { transform: scale(0.85); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 0.5; }
+}
+
+.nfc-details {
+  display: grid; gap: 28px;
+}
+.nfc-detail-row {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 22px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.3s;
+}
+.nfc-detail-row:last-child { border-bottom: none; padding-bottom: 0; }
+.nfc-detail-row:hover { padding-left: 8px; }
+.nfc-detail-num {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 26px;
+  color: var(--accent);
+  font-weight: 350;
+  line-height: 1;
+}
+.nfc-detail h4 {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: -0.012em;
+}
+.nfc-detail p {
+  font-size: 13.5px; color: var(--text-soft); line-height: 1.65;
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  STACK GRID (IVORY SECTION)                                   */
+/* ════════════════════════════════════════════════════════════ */
+
+.stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 48px;
+  position: relative;
+  z-index: 1;
+}
+.stack-group {
+  background: var(--bg);
+  padding: 36px 32px;
+  transition: background 0.4s;
+}
+.theme-light .stack-group {
+  background: var(--palette-ivory-mist);
+}
+.stack-group:hover { background: var(--surface-elev); }
+.theme-light .stack-group:hover { background: rgba(var(--rgb-sand), 0.08); }
+.stack-group h4 {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  color: var(--palette-mountain-teal);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.theme-light .stack-group h4 { border-bottom-color: var(--bg-deep); }
+.stack-row {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--line);
+  align-items: baseline;
+}
+.stack-row:last-child { border-bottom: none; }
+.stack-key {
+  font-family: var(--display);
+  font-size: 16.5px;
+  font-weight: 400;
+  color: var(--accent);
+  font-style: italic;
+  letter-spacing: -0.005em;
+}
+.theme-light .stack-key { color: var(--bg-deep); }
+.stack-val {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-soft);
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+.theme-light .stack-val { color: var(--palette-stone); }
+.stack-val strong { color: var(--text); font-weight: 600; }
+.theme-light .stack-val strong { color: var(--bg-deep); }
+
+/* ════════════════════════════════════════════════════════════ */
+/*  ARABIC SECTION                                               */
+/* ════════════════════════════════════════════════════════════ */
+
+.ar-feature {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 90px;
+  align-items: center;
+}
+@media (max-width: 880px) { .ar-feature { grid-template-columns: 1fr; gap: 56px; } }
+
+.ar-display {
+  font-family: var(--arabic-display);
+  font-size: clamp(90px, 16vw, 240px);
+  color: var(--accent);
+  line-height: 1.1;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: -0.025em;
+  position: relative;
+  padding: 40px 20px;
+}
+.ar-display::before {
+  content: '';
+  position: absolute;
+  inset: -10% -10%;
+  background: radial-gradient(ellipse, var(--accent-soft), transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+  animation: ar-glow 8s ease-in-out infinite;
+}
+@keyframes ar-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+.ar-display .small {
+  display: block;
+  font-size: 0.55em;
+  font-weight: 400;
+  margin-top: 0.15em;
+  color: var(--accent-bright);
+}
+
+.ar-bullets { display: grid; gap: 28px; }
+.ar-bullet {
+  display: grid; grid-template-columns: 84px 1fr;
+  gap: 26px;
+  align-items: baseline;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.3s;
+}
+.ar-bullet:last-child { border-bottom: none; padding-bottom: 0; }
+.ar-bullet:hover { padding-left: 8px; }
+.ar-bullet-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  text-transform: uppercase;
+  padding-top: 4px;
+}
+.ar-bullet-body h4 {
+  font-family: var(--display);
+  font-size: 23px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: -0.015em;
+}
+.ar-bullet-body h4 .ar {
+  font-family: var(--arabic);
+  color: var(--accent);
+  margin-left: 10px;
+  font-size: 0.9em;
+  font-weight: 700;
+}
+.ar-bullet-body p {
+  font-size: 13.5px;
+  color: var(--text-soft);
+  line-height: 1.65;
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  TIMELINE / PHASES                                            */
+/* ════════════════════════════════════════════════════════════ */
+
+.timeline {
+  position: relative;
+  margin-top: 60px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 100px; top: 32px; bottom: 32px;
+  width: 1px;
+  background: linear-gradient(to bottom,
+    var(--accent), var(--palette-mountain-teal),
+    var(--accent), var(--palette-damask-red),
+    var(--palette-mountain-teal), var(--accent));
+}
+.phase {
+  display: grid;
+  grid-template-columns: 100px 60px 1fr;
+  gap: 36px;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.phase:last-child { border-bottom: none; }
+
+.phase-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  padding-top: 10px;
+}
+.phase-dot-wrap { position: relative; }
+.phase-dot {
+  width: 16px; height: 16px;
+  border: 2px solid var(--accent);
+  background: var(--bg);
+  border-radius: 50%;
+  position: absolute;
+  left: 50%; top: 14px;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.phase-dot::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: phase-pulse 3s ease-out infinite;
+}
+@keyframes phase-pulse {
+  0% { opacity: 0.8; transform: scale(0.6); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+
+.phase:nth-child(2) .phase-dot { border-color: var(--teal); }
+.phase:nth-child(2) .phase-dot::before { border-color: var(--teal); }
+.phase:nth-child(3) .phase-dot { border-color: var(--accent); background: var(--accent); }
+.phase:nth-child(3) .phase-dot::before { border-color: var(--accent); }
+.phase:nth-child(4) .phase-dot { border-color: var(--red); }
+.phase:nth-child(4) .phase-dot::before { border-color: var(--red); }
+.phase:nth-child(5) .phase-dot { border-color: var(--teal); background: var(--teal); }
+.phase:nth-child(5) .phase-dot::before { border-color: var(--teal); }
+.phase:nth-child(6) .phase-dot { border-color: var(--accent-bright); }
+.phase:nth-child(6) .phase-dot::before { border-color: var(--accent-bright); }
+
+.phase-content h3 {
+  font-family: var(--display);
+  font-size: clamp(30px, 3.2vw, 44px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.phase:nth-child(1) .phase-content h3 .accent { color: var(--accent); }
+.phase:nth-child(2) .phase-content h3 .accent { color: var(--palette-mountain-teal); }
+.phase:nth-child(3) .phase-content h3 .accent { color: var(--accent); }
+.phase:nth-child(4) .phase-content h3 .accent { color: var(--palette-damask-red); }
+.phase:nth-child(5) .phase-content h3 .accent { color: var(--palette-mountain-teal); }
+.phase:nth-child(6) .phase-content h3 .accent { color: var(--accent-bright); }
+.phase-content h3 .accent { font-style: italic; font-weight: 350; }
+
+.phase-tagline {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 320;
+  font-size: 18px;
+  color: var(--text-soft);
+  margin-bottom: 18px;
+  max-width: 52ch;
+  line-height: 1.45;
+}
+.phase-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 8px 28px;
+  list-style: none;
+}
+.phase-items li {
+  font-size: 13.5px;
+  color: var(--text);
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.55;
+}
+.phase-items li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 10px;
+  width: 10px; height: 1px;
+  background: var(--accent);
+}
+.phase-gate {
+  margin-top: 20px;
+  padding: 11px 16px;
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bg-deep);
+  background: var(--accent);
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .phase { grid-template-columns: 1fr; gap: 12px; }
+  .phase-dot-wrap { display: none; }
+  .timeline::before { display: none; }
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  BLOCKCHAIN                                                   */
+/* ════════════════════════════════════════════════════════════ */
+
+.fabric-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 80px;
+  margin-top: 56px;
+  align-items: start;
+}
+@media (max-width: 880px) { .fabric-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+.fabric-prose h3 {
+  font-family: var(--display);
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 400;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.fabric-prose p {
+  color: var(--text-soft);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 52ch;
+  margin-bottom: 24px;
+}
+.fabric-channels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 32px 0;
+}
+.fabric-channel {
+  border: 1px solid var(--line);
+  padding: 22px;
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+.fabric-channel:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.fabric-channel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+.fabric-channel:hover::before { transform: scaleX(1); }
+.fabric-channel-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.fabric-channel-name {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.fabric-quote {
+  border-left: 3px solid var(--accent);
+  padding: 8px 0 8px 24px;
+  margin-top: 28px;
+}
+.fabric-quote p {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 320;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.45;
+  margin: 0;
+  max-width: 50ch;
+  letter-spacing: -0.012em;
+}
+
+.fabric-cert {
+  padding: 36px;
+  border: 1px solid var(--line-gold);
+  background:
+    linear-gradient(180deg, var(--accent-soft), transparent),
+    var(--surface);
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--text);
+  position: relative;
+}
+.fabric-cert-header {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 26px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line-gold);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fabric-cert-seal {
+  width: 20px; height: 20px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  position: relative;
+}
+.fabric-cert-seal::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.fabric-cert pre {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--text);
+  white-space: pre-wrap;
+  line-height: 1.85;
+  letter-spacing: 0;
+}
+.fabric-cert pre .key { color: var(--accent); }
+
+/* ════════════════════════════════════════════════════════════ */
+/*  PILLARS (IVORY)                                              */
+/* ════════════════════════════════════════════════════════════ */
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 60px;
+  border: 1px solid var(--line);
+  position: relative;
+  z-index: 1;
+}
+.pillar {
+  padding: 40px 34px;
+  border-right: 1px solid var(--line);
+  position: relative;
+  transition: background 0.4s;
+}
+.pillar:last-child { border-right: none; }
+.pillar:hover { background: var(--surface-elev); }
+.theme-light .pillar:hover { background: rgba(var(--rgb-teal), 0.06); }
+
+.pillar-icon {
+  display: inline-flex;
+  width: 32px; height: 32px;
+  margin-bottom: 24px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+.pillar-icon svg { width: 28px; height: 28px; stroke: var(--teal); fill: none; stroke-width: 1.5; }
+
+.pillar-title {
+  font-family: var(--display);
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  margin-bottom: 14px;
+  color: var(--text);
+  line-height: 1.15;
+}
+.theme-light .pillar-title { color: var(--bg-deep); }
+.pillar-title .accent {
+  color: var(--teal);
+  font-style: italic;
+  font-weight: 360;
+}
+.pillar-body {
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+.theme-light .pillar-body { color: var(--palette-stone); }
+
+/* ════════════════════════════════════════════════════════════ */
+/*  WAVES                                                        */
+/* ════════════════════════════════════════════════════════════ */
+
+.waves {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  margin-top: 56px;
+}
+.wave {
+  border: 1px solid var(--line);
+  padding: 26px 22px;
+  background:
+    linear-gradient(180deg, var(--accent-soft) 0%, transparent 80%),
+    var(--surface);
+  position: relative;
+  transition: all 0.4s var(--ease-out);
+  cursor: default;
+  overflow: hidden;
+}
+.wave::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 0;
+  background: linear-gradient(180deg, rgba(185,167,121,0.15), transparent);
+  transition: height 0.4s var(--ease-out);
+}
+.wave:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+.wave:hover::before { height: 100%; }
+
+.wave-num {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--accent);
+  font-weight: 350;
+  line-height: 1;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.wave-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+.wave-name {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  position: relative;
+  z-index: 1;
+}
+.wave.gate {
+  border-color: var(--accent);
+  background:
+    linear-gradient(180deg, var(--accent-soft) 0%, transparent 100%),
+    var(--bg-deep);
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  EXPANDABILITY                                                */
+/* ════════════════════════════════════════════════════════════ */
+
+.expand-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+  margin-top: 60px;
+}
+@media (max-width: 880px) { .expand-block { grid-template-columns: 1fr; gap: 40px; } }
+
+.expand-visual {
+  padding: 36px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+}
+.expand-visual::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 60px; height: 3px;
+  background: var(--accent);
+}
+.expand-visual-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.expand-flow {
+  display: grid; gap: 6px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.7;
+}
+.expand-flow .step {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--line);
+  transition: padding 0.3s;
+}
+.expand-flow .step:last-child { border-bottom: none; }
+.expand-flow .step:hover { padding-left: 4px; }
+.expand-flow .step strong {
+  color: var(--accent);
+  font-weight: 500;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 16px;
+}
+.expand-flow .step em {
+  color: var(--text-dim);
+  font-style: normal;
+  font-size: 11px;
+  display: block;
+  margin-top: 3px;
+  letter-spacing: 0.02em;
+}
+
+.expand-text h3 { margin-bottom: 22px; }
+.expand-text p {
+  font-family: var(--display);
+  font-weight: 320;
+  font-style: italic;
+  font-size: 21px;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 18px;
+  letter-spacing: -0.012em;
+}
+.expand-text ul {
+  list-style: none;
+  margin-top: 24px;
+  display: grid; gap: 11px;
+}
+.expand-text ul li {
+  padding-left: 22px;
+  position: relative;
+  font-size: 14px;
+  color: var(--text-soft);
+}
+.expand-text ul li::before {
+  content: '+';
+  position: absolute;
+  left: 0; top: 0;
+  color: var(--accent);
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  CLOSING                                                      */
+/* ════════════════════════════════════════════════════════════ */
+
+.closing {
+  padding: clamp(100px, 16vw, 200px) var(--gutter);
+  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.closing-mark {
+  width: 140px; height: 140px;
+  margin: 0 auto 56px;
+  background-image: url('assets/icons/Emblem_of_Syria_(2025–present).svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(0) saturate(100%) invert(67%) sepia(15%) saturate(880%) hue-rotate(7deg) brightness(91%) contrast(86%);
+  animation: closing-glow 5s ease-in-out infinite;
+  position: relative;
+}
+@keyframes closing-glow {
+  0%, 100% {
+    filter: brightness(0) saturate(100%) invert(67%) sepia(15%) saturate(880%) hue-rotate(7deg) brightness(91%) contrast(86%) drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    filter: brightness(0) saturate(100%) invert(72%) sepia(20%) saturate(900%) hue-rotate(7deg) brightness(100%) contrast(90%) drop-shadow(0 0 32px rgba(var(--rgb-sand), 0.4));
+  }
+}
+
+.closing-title {
+  font-family: var(--display);
+  font-weight: 300;
+  font-variation-settings: 'SOFT' 80, 'opsz' 144;
+  font-size: clamp(44px, 6.5vw, 88px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin-bottom: 32px;
+}
+.closing-title .accent { color: var(--accent); font-style: italic; }
+.closing-ar {
+  font-family: var(--arabic-display);
+  font-size: clamp(32px, 4.5vw, 56px);
+  color: var(--accent);
+  margin: 24px 0;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.closing-note {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 56px;
+  padding-top: 36px;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+.closing-note::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 50%;
+  transform: translateX(-50%);
+  width: 60px; height: 1px;
+  background: var(--accent);
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  FOOTER                                                       */
+/* ════════════════════════════════════════════════════════════ */
+
+.footer {
+  padding: 64px var(--gutter) 44px;
+  border-top: 1px solid var(--line);
+  max-width: var(--max);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.footer-credit {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--line);
+}
+.footer-credit-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.footer-credit-name {
+  font-family: var(--display);
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-weight: 320;
+  font-variation-settings: 'SOFT' 60, 'opsz' 144;
+  letter-spacing: -0.022em;
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+.footer-credit-name .accent {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 350;
+}
+.footer-credit-company {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border: 1px solid var(--line-strong);
+  transition: all 0.4s var(--ease-out);
+}
+.footer-credit-company:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.footer-credit-company::after {
+  content: '↗';
+  font-family: var(--display);
+  font-size: 16px;
+  letter-spacing: 0;
+  transition: transform 0.3s var(--ease-out);
+}
+.footer-credit-company:hover::after { transform: translate(3px, -3px); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  ANIMATIONS                                                   */
+/* ════════════════════════════════════════════════════════════ */
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-up { animation: fade-up 1.2s var(--ease-out) both; }
+.fade-in { animation: fade-in 1.2s var(--ease-out) both; }
+
+.d1 { animation-delay: 0.1s; }
+.d2 { animation-delay: 0.2s; }
+.d3 { animation-delay: 0.3s; }
+.d4 { animation-delay: 0.4s; }
+.d5 { animation-delay: 0.5s; }
+
+/* ── VIEWPORT REVEALS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out);
+  will-change: opacity, transform;
+}
+.reveal--active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal--left { transform: translateX(-32px); }
+.reveal--right { transform: translateX(32px); }
+.reveal--scale { transform: scale(0.96); }
+
+.reveal--active.reveal--left, 
+.reveal--active.reveal--right { transform: translateX(0); }
+.reveal--active.reveal--scale { transform: scale(1); }
+
+/* ── STAGGERED REVEAL ── */
+.stagger-reveal > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.stagger-reveal--active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stagger-reveal--active > *:nth-child(1) { transition-delay: 0.05s; }
+.stagger-reveal--active > *:nth-child(2) { transition-delay: 0.15s; }
+.stagger-reveal--active > *:nth-child(3) { transition-delay: 0.25s; }
+.stagger-reveal--active > *:nth-child(4) { transition-delay: 0.35s; }
+.stagger-reveal--active > *:nth-child(5) { transition-delay: 0.45s; }
+.stagger-reveal--active > *:nth-child(6) { transition-delay: 0.55s; }
+
+/* ── INTERACTIVE HOVERS ── */
+.principle, .stat-cell, .ref-model, .arch-central {
+  transition: transform 0.45s var(--ease-out), background 0.45s var(--ease-out), box-shadow 0.45s var(--ease-out);
+}
+.principle:hover, .stat-cell:hover, .ref-model:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+.arch-central:hover {
+  transform: scale(1.015);
+  box-shadow: 0 0 50px var(--accent-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  FOCUS STATES (WCAG)                                          */
+/* ════════════════════════════════════════════════════════════ */
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  LANGUAGE SWITCHER                                            */
+/* ════════════════════════════════════════════════════════════ */
+
+/* Language styles removed - using ctrl-select instead */
+
+/* ════════════════════════════════════════════════════════════ */
+/*  RTL / ARABIC MODE                                           */
+/* ════════════════════════════════════════════════════════════ */
+
+html[lang="ar"] { direction: rtl; }
+html[lang="ar"] body { font-family: var(--arabic); font-size: 17px; }
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4 {
+  font-family: var(--arabic-display);
+  font-weight: 600; letter-spacing: 0; line-height: 1.3; font-style: normal;
+}
+html[lang="ar"] h1.display { font-size: clamp(52px, 9vw, 128px); line-height: 1.2; }
+html[lang="ar"] h2.title { max-width: 26ch; font-size: clamp(36px, 5.5vw, 80px); }
+html[lang="ar"] .italic-accent { font-style: normal; }
+html[lang="ar"] .lede {
+  font-family: var(--arabic); font-style: normal;
+  font-size: clamp(18px, 2vw, 26px); text-align: right; max-width: 45ch;
+}
+html[lang="ar"] .eyebrow { flex-direction: row-reverse; }
+html[lang="ar"] .eyebrow::before { background: linear-gradient(to left, transparent, var(--accent)); }
+html[lang="ar"] .band--ivory .eyebrow::before { background: linear-gradient(to left, transparent, var(--palette-mountain-teal)); }
+html[lang="ar"] .nav-inner { flex-direction: row-reverse; }
+html[lang="ar"] .nav-links { flex-direction: row-reverse; }
+html[lang="ar"] .nav-links a::after { left: auto; right: 0; }
+html[lang="ar"] .ctrl-group { margin-left: 0; margin-right: 0; }
+html[lang="ar"] .section-head > div { text-align: right; }
+html[lang="ar"] .hero-top { direction: ltr; }
+html[lang="ar"] .hero-title-block { text-align: right; direction: rtl; }
+html[lang="ar"] .hero-title-block .ar-mark { display: none; }
+html[lang="ar"] .hero-subtitle { font-family: var(--arabic); font-style: normal; max-width: 48ch; }
+html[lang="ar"] .vision-grid { direction: rtl; }
+html[lang="ar"] .vision-prose { text-align: right; direction: rtl; }
+html[lang="ar"] .vision-prose p::first-letter { float: right; margin: 0.1em -0.04em 0 0.1em; }
+html[lang="ar"] .ref-models { direction: rtl; }
+html[lang="ar"] .ref-model { direction: rtl; }
+html[lang="ar"] .ref-model > div { text-align: right; }
+html[lang="ar"] .ref-model::before { left: auto; right: 0; }
+html[lang="ar"] .ref-model:hover { transform: translateX(6px); }
+html[lang="ar"] .stat-cell { direction: rtl; text-align: center; }
+html[lang="ar"] .principle { text-align: right; direction: rtl; }
+html[lang="ar"] .principle-num { left: 28px; right: auto; }
+html[lang="ar"] .arch-central { text-align: center; direction: rtl; }
+html[lang="ar"] .arch-central::before { content: 'المركز الرئيسي · دمشق'; font-family: var(--arabic-display); letter-spacing: 0.05em; }
+html[lang="ar"] .arch-paths { direction: rtl; }
+html[lang="ar"] .arch-path { border-left: none; border-right: 2px solid var(--accent); padding-left: 8px; padding-right: 16px; direction: rtl; }
+html[lang="ar"] .arch-note { text-align: center; font-family: var(--arabic); font-style: normal; }
+html[lang="ar"] .map-section { direction: rtl; }
+html[lang="ar"] .map-legend { text-align: right; }
+html[lang="ar"] .map-legend-list { direction: rtl; text-align: right; }
+html[lang="ar"] .service { text-align: right; direction: rtl; }
+html[lang="ar"] .service-meta { flex-direction: row-reverse; }
+html[lang="ar"] .service-phase { right: auto; left: 18px; }
+html[lang="ar"] .sec-layer { direction: rtl; }
+html[lang="ar"] .sec-layer::after { right: auto; left: 0; }
+html[lang="ar"] .sec-layer:hover { transform: translateX(-6px); }
+html[lang="ar"] .sec-layer-desc { text-align: right; font-family: var(--arabic); }
+html[lang="ar"] .nfc-feature { direction: rtl; }
+html[lang="ar"] .nfc-detail-row {
+  /* RTL grid flows right→left: 28px lands on right (num), 1fr extends left (text) */
+  grid-template-columns: 28px 1fr;
+  direction: rtl;
+}
+html[lang="ar"] .nfc-detail-row:hover { padding-left: 0; padding-right: 8px; }
+html[lang="ar"] .nfc-detail { text-align: right; }
+html[lang="ar"] .nfc-detail h4 { font-family: var(--arabic-display); }
+html[lang="ar"] .nfc-detail p { font-family: var(--arabic); }
+html[lang="ar"] .nfc-detail-num { font-style: normal; font-family: var(--mono); font-size: 14px; letter-spacing: 0.05em; padding-top: 4px; }
+/* Card is on the right side in RTL — mirror tilt so the near edge faces left */
+html[lang="ar"] .nfc-card-visual {
+  transform: perspective(1400px) rotateY(12deg) rotateX(4deg);
+  animation: card-float-rtl 6s ease-in-out infinite;
+}
+html[lang="ar"] .nfc-card-visual:hover {
+  transform: perspective(1400px) rotateY(2deg) rotateX(1deg) translateY(-6px);
+}
+@keyframes card-float-rtl {
+  0%, 100% { transform: perspective(1400px) rotateY(12deg) rotateX(4deg) translateY(0); }
+  50%       { transform: perspective(1400px) rotateY(10deg) rotateX(3deg) translateY(-8px); }
+}
+html[lang="ar"] .stack-group { text-align: right; direction: rtl; }
+html[lang="ar"] .stack-row { direction: rtl; }
+html[lang="ar"] .stack-key { font-family: var(--arabic); font-style: normal; }
+html[lang="ar"] .ar-bullets { direction: rtl; }
+html[lang="ar"] .ar-bullet { direction: rtl; }
+html[lang="ar"] .ar-bullet:hover { padding-left: 0; padding-right: 8px; }
+html[lang="ar"] .ar-bullet-body { text-align: right; }
+html[lang="ar"] .fabric-grid { direction: rtl; }
+html[lang="ar"] .fabric-prose { text-align: right; }
+html[lang="ar"] .fabric-prose p { font-family: var(--arabic); }
+html[lang="ar"] .fabric-channels { flex-direction: row-reverse; }
+html[lang="ar"] .fabric-channel { direction: rtl; text-align: right; }
+html[lang="ar"] .fabric-channel::before { transform-origin: right; }
+html[lang="ar"] .fabric-quote { border-left: none; border-right: 3px solid var(--accent); padding-left: 0; padding-right: 24px; direction: rtl; }
+html[lang="ar"] .fabric-quote p { font-family: var(--arabic); font-style: normal; }
+html[lang="ar"] .timeline { direction: rtl; }
+html[lang="ar"] .timeline::before { left: auto; right: 100px; }
+html[lang="ar"] .phase { direction: rtl; }
+html[lang="ar"] .phase-content { text-align: right; }
+html[lang="ar"] .phase-content h3 { font-family: var(--arabic-display); }
+html[lang="ar"] .phase-tagline { font-family: var(--arabic); font-style: normal; }
+html[lang="ar"] .phase-items li { padding-left: 0; padding-right: 20px; }
+html[lang="ar"] .phase-items li::before { left: auto; right: 0; }
+html[lang="ar"] .expand-block { direction: rtl; }
+html[lang="ar"] .expand-visual::before { left: auto; right: 0; }
+html[lang="ar"] .expand-flow { direction: rtl; }
+html[lang="ar"] .expand-flow .step { direction: rtl; }
+html[lang="ar"] .expand-flow .step:hover { padding-left: 0; padding-right: 4px; }
+html[lang="ar"] .expand-text { text-align: right; direction: rtl; }
+html[lang="ar"] .expand-text ul li { padding-left: 0; padding-right: 22px; }
+html[lang="ar"] .expand-text ul li::before { left: auto; right: 0; }
+html[lang="ar"] .waves { direction: rtl; }
+html[lang="ar"] .wave { direction: rtl; text-align: right; }
+html[lang="ar"] .pillars { direction: rtl; }
+html[lang="ar"] .pillar { text-align: right; direction: rtl; }
+html[lang="ar"] .divider-quote { direction: rtl; }
+html[lang="ar"] .divider-quote q { font-family: var(--arabic); font-style: normal; }
+html[lang="ar"] .closing { direction: rtl; text-align: center; }
+html[lang="ar"] .closing-title { font-family: var(--arabic-display); letter-spacing: 0; }
+html[lang="ar"] .footer { direction: rtl; }
+html[lang="ar"] .footer-credit { text-align: center; }
+html[lang="ar"] .footer-credit-name { font-family: var(--arabic-display); letter-spacing: 0; }
+html[lang="ar"] .footer-credit-label { font-family: var(--arabic); letter-spacing: 0; text-transform: none; }
+html[lang="ar"] .footer-bottom { direction: rtl; }
+html[lang="ar"] .footer-credit-company::after { content: '↖'; }
+
+/* ════════════════════════════════════════════════════════════ */
+/*  FONT SIZE CONTROLS                                           */
+/* ════════════════════════════════════════════════════════════ */
+
+.ctrl-group {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-left: 0;
+}
+.ctrl-select {
+  background: var(--bg-soft);
+  color: var(--text-soft);
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M2 3l3 3 3-3' fill='none' stroke='%23B9A779' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 32px;
+}
+.ctrl-select:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  background-color: var(--surface-elev);
+}
+.ctrl-select option {
+  background: var(--bg-deep);
+  color: var(--text);
+}
+
+@media (max-width: 1150px) {
+  .ctrl-group { display: none; }
+}
+
+/* zoom scales all px-based text proportionally */
+html.fs-sm { zoom: 0.84; }
+html.fs-lg { zoom: 1.18; }
+
+/* ── Theme Overrides ── */
+html.font-pair-1 {
+  --display: 'Open Sans', sans-serif;
+  --body: 'Open Sans', sans-serif;
+  --arabic: 'Cairo', sans-serif;
+  --arabic-display: 'Cairo', sans-serif;
+}
+html.font-pair-2 {
+  --display: 'Roboto', sans-serif;
+  --body: 'Roboto', sans-serif;
+  --arabic: 'Tajawal', sans-serif;
+  --arabic-display: 'Tajawal', sans-serif;
+}
+html.font-pair-3 {
+  --display: Georgia, serif;
+  --body: Georgia, serif;
+  --arabic: 'Noto Naskh Arabic', serif;
+  --arabic-display: 'Noto Naskh Arabic', serif;
+}
+
+@media (max-width: 1100px) {
+  .font-ctrl { display: none; }
+}
+
+/* ════════════════════════════════════════════════════════════ */
+/*  SCROLL PROGRESS BAR                                          */
+/* ════════════════════════════════════════════════════════════ */
+
+#scroll-progress {
+  position: fixed; top: 0; left: 0; width: 0%; height: 3px; z-index: 300;
+  background: linear-gradient(90deg, var(--palette-mountain-teal) 0%, var(--palette-golden-wheat) 55%, var(--antique-sand) 100%);
+  box-shadow: 0 0 10px rgba(185,167,121,0.45);
+  pointer-events: none;
+  transform-origin: left;
+  transition: width 80ms linear;
+}
+html[lang="ar"] #scroll-progress { left: auto; right: 0; transform-origin: right; }
+
+/* ════════════════════════════════════════════════════════════ */
+/*  BACK TO TOP                                                  */
+/* ════════════════════════════════════════════════════════════ */
+
+#back-top {
+  position: fixed; bottom: 36px; right: 36px; z-index: 200;
+  width: 46px; height: 46px;
+  background: rgba(var(--rgb-emerald), 0.85); border: 1px solid var(--palette-golden-wheat);
+  border-radius: 50%; color: var(--palette-golden-wheat);
+  font-size: 20px; font-family: var(--mono);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: translateY(14px) scale(0.92);
+  transition: opacity 0.35s, transform 0.35s, background 0.25s;
+  pointer-events: none; backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4), 0 0 0 0 rgba(185,167,121,0);
+}
+#back-top.visible {
+  opacity: 1; transform: translateY(0) scale(1); pointer-events: auto;
+}
+#back-top:hover {
+  background: var(--accent-soft);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 0 4px rgba(185,167,121,0.15);
+}
+html[lang="ar"] #back-top { right: auto; left: 36px; }
+</style>
+</head>
+
+<body>
+
+<div id="scroll-progress" aria-hidden="true"></div>
+<div class="skeleton-watermark" aria-hidden="true"></div>
+
+<!-- ════════════════════ NAV ════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">
+      <span class="nav-brand-mark" aria-hidden="true"></span>
+      <span class="nav-brand-text">
+        <span class="nav-brand-name">Syria Digital</span>
+        <span class="nav-brand-ar">سوريا الرقمية</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#vision">Vision</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#services">Services</a>
+      <a href="#security">Security</a>
+      <a href="#identity">Identity</a>
+      <a href="#roadmap">Roadmap</a>
+    </div>
+    <div class="ctrl-group">
+      <select class="ctrl-select" id="langSelect" onchange="applyLang(this.value)" title="Language">
+        <option value="en">English (EN)</option>
+        <option value="ar">العربية (AR)</option>
+      </select>
+      <select class="ctrl-select" id="fsSelect" onchange="setFS(this.value)" title="Font Size">
+        <option value="sm">Small Size</option>
+        <option value="md" selected>Medium Size</option>
+        <option value="lg">Large Size</option>
+      </select>
+      <select class="ctrl-select" id="fontSelect" onchange="setFontPair(this.value)" title="Typography Style">
+        <option value="default">Heritage Identity</option>
+        <option value="1">Modern & Corporate</option>
+        <option value="2">Clean & Technology</option>
+        <option value="3">Editorial & News</option>
+      </select>
+      <select class="ctrl-select" id="themeSelect" onchange="applyTheme(this.value)" title="Visual Theme">
+        <option value="dark">Premium Dark</option>
+        <option value="light">Sophisticated Light</option>
+      </select>
+    </div>
+    <div class="nav-meta">Edition 2.0 · 16 · 05 · 2026</div>
+  </div>
+</nav>
+
+<!-- ════════════════════ HERO ════════════════════ -->
+<section class="hero" id="top">
+  <div class="hero-emblem-wrap">
+    <div class="hero-emblem-rings"></div>
+    <div class="hero-emblem"></div>
+  </div>
+
+  <div class="hero-top">
+    <div class="col fade-up"><span><strong>Classified</strong></span><span>National Digital Transformation</span></div>
+    <div class="col fade-up d1" style="text-align:center"><span>Design Document</span><span><strong>Edition 2.0 · 16 · 05 · 2026</strong></span></div>
+    <div class="col fade-up d2" style="text-align:right"><span>Sovereign Architecture</span><span><strong>For 30M+ Citizens</strong></span></div>
+  </div>
+
+  <div class="hero-title-block fade-up d3">
+    <h1 class="display">
+      <span style="display:block"><span class="ar-mark">سوريا</span>Syria,</span>
+      <span style="display:block">Built <em class="italic-accent">Digital</em>.</span>
+    </h1>
+    <p class="hero-subtitle">A sovereign digital infrastructure designed like a central bank, governed like a public good, and built entirely on Syrian soil.</p>
+  </div>
+
+  <div class="hero-meta fade-up d4">
+    <div class="hero-meta-block"><strong>30M<span class="unit">+</span></strong><span>Citizens Served</span></div>
+    <div class="hero-meta-block"><strong>14</strong><span>Governorates</span></div>
+    <div class="hero-meta-block"><strong>18</strong><span>Microservices</span></div>
+    <div class="hero-meta-block"><strong>6</strong><span>Phased Delivery</span></div>
+    <div class="hero-meta-block"><strong>99.99<span class="unit">%</span></strong><span>Uptime Target</span></div>
+  </div>
+
+  <div class="scroll-cue">Begin</div>
+</section>
+
+<!-- ════════════════════ VISION ════════════════════ -->
+<section class="section band--emerald" id="vision">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">1 · The Vision</span>
+      <h2 class="title">A nation, written into <em class="italic-accent">code</em>.</h2>
+    </div>
+    <p class="lede">Post-conflict. Pre-future. The hinge moment for sovereign digital infrastructure.</p>
+  </div>
+
+  <div class="vision-grid">
+    <div class="ref-models reveal reveal--left">
+      <div class="ref-model">
+        <div class="ref-model-flag">SG</div>
+        <div>
+          <div class="ref-model-name">Singapore</div>
+          <div class="ref-model-note">National Digital Identity — NFC + biometric authentication standard.</div>
+        </div>
+      </div>
+      <div class="ref-model">
+        <div class="ref-model-flag">EE</div>
+        <div>
+          <div class="ref-model-name">Estonia</div>
+          <div class="ref-model-note">X-Road interoperability — independent ministry microservices.</div>
+        </div>
+      </div>
+      <div class="ref-model">
+        <div class="ref-model-flag">AE</div>
+        <div>
+          <div class="ref-model-name">United Arab Emirates</div>
+          <div class="ref-model-note">Smart Dubai — citizen-centric service delivery, regional benchmark.</div>
+        </div>
+      </div>
+      <div class="ref-model">
+        <div class="ref-model-flag">SA</div>
+        <div>
+          <div class="ref-model-name">Saudi Arabia</div>
+          <div class="ref-model-note">Absher — Arabic-first government services at population scale.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vision-prose reveal reveal--right">
+      <p>For 30+ million Syrians, daily life depends on records — birth certificates, property deeds, driver licenses, medical history, tax filings. These records have lived in paper ledgers, fragmented systems, and offices that could only be visited in person.</p>
+      <p>This proposal is to build, on Syrian soil, a single coherent digital infrastructure that holds those records with the integrity of a central bank, the resilience of a national grid, and the accessibility of a mobile app. <span class="pull-quote">No foreign cloud. No outsourced sovereignty.</span> Every byte under Syrian control.</p>
+      <p>We have studied the systems that work — Singapore, Estonia, the Gulf — and synthesized their best decisions with the constraints of our context: post-conflict, multi-governorate, Arabic-first, designed to last fifty years.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ STATS ════════════════════ -->
+<section class="section section--tight">
+  <span class="eyebrow reveal">2 · By the Numbers</span>
+  <div class="stat-row stagger-reveal" style="margin-top:32px">
+    <div class="stat-cell"><span class="stat-num">30<span class="accent">M</span></span><span class="stat-label">Citizens</span><span class="stat-sub">Designed to scale to 50M+</span></div>
+    <div class="stat-cell"><span class="stat-num">14</span><span class="stat-label">Governorates</span><span class="stat-sub">Each with read replica + cache</span></div>
+    <div class="stat-cell"><span class="stat-num">18</span><span class="stat-label">Microservices</span><span class="stat-sub">Expandable to any future ministry</span></div>
+    <div class="stat-cell"><span class="stat-num">3</span><span class="stat-label">Network Paths</span><span class="stat-sub">Auto-failover &lt; 30 seconds</span></div>
+    <div class="stat-cell"><span class="stat-num small">99.99<span class="accent">%</span></span><span class="stat-label">Uptime Target</span><span class="stat-sub">Per service, publicly tracked</span></div>
+    <div class="stat-cell"><span class="stat-num">0</span><span class="stat-label">Data Loss</span><span class="stat-sub">RPO: 0 · RTO: &lt; 1 hour</span></div>
+  </div>
+</section>
+
+<!-- ════════════════════ PRINCIPLES ════════════════════ -->
+<section class="section">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">3 · The Principles</span>
+      <h2 class="title">Nine <em class="italic-accent">non-negotiables</em>.</h2>
+    </div>
+    <p class="lede">Every architectural decision is checked against these. If it violates one, it is flagged and discussed before it ships.</p>
+  </div>
+
+  <div class="principle-grid stagger-reveal">
+    <div class="principle"><div class="principle-num">i</div><div class="principle-title">Bank-Grade <span class="accent">Security</span></div><p class="principle-desc">Every transaction treated like an international wire transfer. Full encryption, immutable audit trails, zero data loss tolerance.</p></div>
+    <div class="principle"><div class="principle-num">ii</div><div class="principle-title">Full <span class="accent">Sovereignty</span></div><p class="principle-desc">All infrastructure on Syrian soil, on Syrian-controlled servers. No AWS, Azure, or Google Cloud. No data crosses the border.</p></div>
+    <div class="principle"><div class="principle-num">iii</div><div class="principle-title">Bank-Model <span class="accent">Resilience</span></div><p class="principle-desc">Three independent network paths per governorate. Auto-failover under 30 seconds. All writes to central. Same model as a bank branch.</p></div>
+    <div class="principle"><div class="principle-num">iv</div><div class="principle-title">Microservices, <span class="accent">unbounded</span></div><p class="principle-desc">Each domain is independent. New ministries plug in via a scaffolding tool. Zero changes to existing code, ever.</p></div>
+    <div class="principle"><div class="principle-num">v</div><div class="principle-title">Zero <span class="accent">Downtime</span></div><p class="principle-desc">Blue-green deployments only. Auto-rollback at 1% error rate. Citizens never see a maintenance window.</p></div>
+    <div class="principle"><div class="principle-num">vi</div><div class="principle-title">Offline for the <span class="accent">Citizen</span></div><p class="principle-desc">ATM model. Citizens can view their own records without internet. Government offices always require central connectivity for writes.</p></div>
+    <div class="principle"><div class="principle-num">vii</div><div class="principle-title">Immediate <span class="accent">Consistency</span></div><p class="principle-desc">All writes go to central first. One writer, no conflicts. Citizen sells property — every service knows instantly.</p></div>
+    <div class="principle"><div class="principle-num">viii</div><div class="principle-title">Unlimited <span class="accent">Scale</span></div><p class="principle-desc">Citus sharding by citizen ID hash. 30M today, 50M+ tomorrow. Horizontal scaling, no artificial limits.</p></div>
+    <div class="principle"><div class="principle-num">ix</div><div class="principle-title">Agile, <span class="accent">phase-gated</span></div><p class="principle-desc">Six phases with hard gates between each. Build, test, deploy, gather feedback, advance. Never skip a gate.</p></div>
+  </div>
+</section>
+
+<!-- ════════════════════ QUOTE ════════════════════ -->
+<section class="band--gold">
+  <div class="divider-quote">
+    <q>Built like a bank. Governed like a public good. Hosted on Syrian soil.</q>
+    <div class="attr">— The Architectural Commitment</div>
+  </div>
+</section>
+
+<!-- ════════════════════ ARCHITECTURE ════════════════════ -->
+<section class="section band--emerald" id="architecture">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">4 · The Architecture</span>
+      <h2 class="title">A central <em class="italic-accent">heart</em>, fourteen calm replicas.</h2>
+    </div>
+    <p class="lede">The bank model: immediate consistency through a single writer, practical availability through three redundant network paths per governorate.</p>
+  </div>
+
+  <div class="arch-wrap reveal">
+    <div class="arch-central">
+      <div class="arch-central-title">Damascus — Single Source of Truth</div>
+      <div class="arch-central-items">
+        <span>PostgreSQL + Citus</span><span>·</span>
+        <span>MongoDB (sharded)</span><span>·</span>
+        <span>HashiCorp Vault</span><span>·</span>
+        <span>IAM</span><span>·</span>
+        <span>Audit (read-only)</span>
+      </div>
+    </div>
+    <div class="arch-paths">
+      <div class="arch-path"><strong>1</strong> Primary Fiber</div>
+      <div class="arch-path"><strong>2</strong> Secondary Fiber (alt route)</div>
+      <div class="arch-path"><strong>3</strong> Satellite / 4G failover</div>
+    </div>
+    <div class="arch-flow">
+      <svg viewBox="0 0 800 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="flowGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#B9A779" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#B9A779" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g stroke="#B9A779" stroke-width="0.5" fill="none" opacity="0.5">
+          <path d="M 400 0 Q 400 30 60 60"/>
+          <path d="M 400 0 Q 400 30 120 60"/>
+          <path d="M 400 0 Q 400 30 200 60"/>
+          <path d="M 400 0 L 280 60"/>
+          <path d="M 400 0 L 360 60"/>
+          <path d="M 400 0 L 440 60"/>
+          <path d="M 400 0 L 520 60"/>
+          <path d="M 400 0 Q 400 30 600 60"/>
+          <path d="M 400 0 Q 400 30 680 60"/>
+          <path d="M 400 0 Q 400 30 740 60"/>
+        </g>
+      </svg>
+    </div>
+    <div class="arch-replicas">
+      <div class="arch-replica"><strong>Aleppo</strong><em>Replica · Cache</em></div>
+      <div class="arch-replica"><strong>Homs</strong><em>Replica · Cache</em></div>
+      <div class="arch-replica"><strong>Hama</strong><em>Replica · Cache</em></div>
+      <div class="arch-replica"><strong>Latakia</strong><em>Replica · Cache</em></div>
+      <div class="arch-replica"><strong>Tartus</strong><em>Replica · Cache</em></div>
+      <div class="arch-replica"><strong>Deir ez-Zor</strong><em>Replica · Cache</em></div>
+      <div class="arch-replica"><strong>Raqqa</strong><em>Replica · Cache</em></div>
+      <div class="arch-replica"><strong>Idlib</strong><em>Replica · Cache</em></div>
+      <div class="arch-replica"><strong>Daraa</strong><em>Replica · Cache</em></div>
+      <div class="arch-replica"><strong>Al-Suwayda</strong><em>Replica · Cache</em></div>
+      <div class="arch-replica"><strong>Quneitra</strong><em>Replica · Cache</em></div>
+      <div class="arch-replica"><strong>Hasakah</strong><em>Replica · Cache</em></div>
+      <div class="arch-replica"><strong>Rural Damascus</strong><em>Replica · Cache</em></div>
+    </div>
+    <p class="arch-note"><strong>Bank Model.</strong> All writes flow to Damascus. Each governorate holds a read-only streaming replica with a per-service Redis cache. Citizens are served from the nearest replica for reads — every write travels to the single source of truth.</p>
+  </div>
+
+  <div class="nodes-redesign reveal">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Nodes</span>
+        <h2 class="title">Fourteen <em class="italic-accent">read replicas</em>.</h2>
+      </div>
+      <p class="lede">Every governorate is a node. Data sovereignty at the local level with central integrity.</p>
+    </div>
+
+    <div class="nodes-bento stagger-reveal">
+      <!-- CENTRAL MASTER -->
+      <div class="node-card node-card--master">
+        <div class="node-status">CENTRAL MASTER · ACTIVE</div>
+        <div>
+          <h4 class="node-name">Damascus ★</h4>
+          <span class="node-role">Single Source of Truth</span>
+        </div>
+        <div class="node-stats">
+          <span>LATENCY: 0ms</span>
+          <span>WRITES: GLOBAL</span>
+        </div>
+      </div>
+
+      <!-- READ REPLICAS -->
+      <div class="node-card">
+        <div class="node-status">REPLICA · ONLINE</div>
+        <div>
+          <h4 class="node-name">Aleppo</h4>
+          <span class="node-role">Regional Node</span>
+        </div>
+        <div class="node-stats">
+          <span>SYNC: 12ms</span>
+          <span>TYPE: READ</span>
+        </div>
+      </div>
+
+      <div class="node-card">
+        <div class="node-status">REPLICA · ONLINE</div>
+        <div>
+          <h4 class="node-name">Homs</h4>
+          <span class="node-role">Regional Node</span>
+        </div>
+        <div class="node-stats">
+          <span>SYNC: 18ms</span>
+          <span>TYPE: READ</span>
+        </div>
+      </div>
+
+      <div class="node-card">
+        <div class="node-status">REPLICA · ONLINE</div>
+        <div>
+          <h4 class="node-name">Hama</h4>
+          <span class="node-role">Regional Node</span>
+        </div>
+        <div class="node-stats">
+          <span>SYNC: 22ms</span>
+          <span>TYPE: READ</span>
+        </div>
+      </div>
+
+      <div class="node-card">
+        <div class="node-status">REPLICA · ONLINE</div>
+        <div>
+          <h4 class="node-name">Latakia</h4>
+          <span class="node-role">Regional Node</span>
+        </div>
+        <div class="node-stats">
+          <span>SYNC: 28ms</span>
+          <span>TYPE: READ</span>
+        </div>
+      </div>
+
+      <div class="node-card">
+        <div class="node-status">REPLICA · ONLINE</div>
+        <div>
+          <h4 class="node-name">Tartus</h4>
+          <span class="node-role">Regional Node</span>
+        </div>
+        <div class="node-stats">
+          <span>SYNC: 24ms</span>
+          <span>TYPE: READ</span>
+        </div>
+      </div>
+
+      <div class="node-card">
+        <div class="node-status">REPLICA · ONLINE</div>
+        <div>
+          <h4 class="node-name">Deir ez-Zor</h4>
+          <span class="node-role">Regional Node</span>
+        </div>
+        <div class="node-stats">
+          <span>SYNC: 45ms</span>
+          <span>TYPE: READ</span>
+        </div>
+      </div>
+
+      <div class="node-card">
+        <div class="node-status">REPLICA · ONLINE</div>
+        <div>
+          <h4 class="node-name">Raqqa</h4>
+          <span class="node-role">Regional Node</span>
+        </div>
+        <div class="node-stats">
+          <span>SYNC: 38ms</span>
+          <span>TYPE: READ</span>
+        </div>
+      </div>
+
+      <div class="node-card">
+        <div class="node-status">REPLICA · ONLINE</div>
+        <div>
+          <h4 class="node-name">Idlib</h4>
+          <span class="node-role">Regional Node</span>
+        </div>
+        <div class="node-stats">
+          <span>SYNC: 32ms</span>
+          <span>TYPE: READ</span>
+        </div>
+      </div>
+
+      <div class="node-card">
+        <div class="node-status">REPLICA · ONLINE</div>
+        <div>
+          <h4 class="node-name">Daraa</h4>
+          <span class="node-role">Regional Node</span>
+        </div>
+        <div class="node-stats">
+          <span>SYNC: 14ms</span>
+          <span>TYPE: READ</span>
+        </div>
+      </div>
+
+      <div class="node-card">
+        <div class="node-status">REPLICA · ONLINE</div>
+        <div>
+          <h4 class="node-name">Al-Suwayda</h4>
+          <span class="node-role">Regional Node</span>
+        </div>
+        <div class="node-stats">
+          <span>SYNC: 19ms</span>
+          <span>TYPE: READ</span>
+        </div>
+      </div>
+
+      <div class="node-card">
+        <div class="node-status">REPLICA · ONLINE</div>
+        <div>
+          <h4 class="node-name">Quneitra</h4>
+          <span class="node-role">Regional Node</span>
+        </div>
+        <div class="node-stats">
+          <span>SYNC: 8ms</span>
+          <span>TYPE: READ</span>
+        </div>
+      </div>
+
+      <div class="node-card">
+        <div class="node-status">REPLICA · ONLINE</div>
+        <div>
+          <h4 class="node-name">Hasakah</h4>
+          <span class="node-role">Regional Node</span>
+        </div>
+        <div class="node-stats">
+          <span>SYNC: 52ms</span>
+          <span>TYPE: READ</span>
+        </div>
+      </div>
+
+      <div class="node-card">
+        <div class="node-status">REPLICA · ONLINE</div>
+        <div>
+          <h4 class="node-name">Rif Dimashq</h4>
+          <span class="node-role">Regional Node</span>
+        </div>
+        <div class="node-stats">
+          <span>SYNC: 4ms</span>
+          <span>TYPE: READ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ SERVICES ════════════════════ -->
+<section class="section band--deep" id="services" style="position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background-image:url('assets/images/Syria_Design_Patterns.webp'); background-size:800px; opacity:0.04; pointer-events:none; mix-blend-mode:plus-lighter;"></div>
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">5 · The Eighteen Services</span>
+      <h2 class="title">Each ministry, its own <em class="italic-accent">domain</em>.</h2>
+    </div>
+    <p class="lede">Independent. Deployable. Replaceable. Designed so the system has no ceiling.</p>
+  </div>
+
+  <div class="services-container stagger-reveal">
+    <!-- GROUP 1: FOUNDATIONAL -->
+    <div class="services-group">
+      <h3 class="services-group-title">Foundational Infrastructure · Phase 1</h3>
+      <div class="services-grid">
+        <div class="service-card service-card--featured">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="3"/></svg></div>
+            <span class="service-badge phase-1">Phase 1</span>
+          </div>
+          <div class="service-content">
+            <h3 class="service-name accent">IAM (Identity & Access Management)</h3>
+            <p class="service-desc">The gatekeeper of the entire system. Centralized authority for roles, permissions, and service identities.</p>
+          </div>
+          <div class="service-card-footer">
+            <span class="service-tech">Core Engine: <strong>Go / gRPC</strong></span>
+            <span class="service-tech">DB: <strong>PostgreSQL</strong></span>
+          </div>
+        </div>
+        <div class="service-card service-card--featured">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+            <span class="service-badge phase-1">Phase 1</span>
+          </div>
+          <div class="service-content">
+            <h3 class="service-name accent">Audit Registry</h3>
+            <p class="service-desc">Immutable, append-only ledger for transparency. Every system interaction is cryptographically signed and logged.</p>
+          </div>
+          <div class="service-card-footer">
+            <span class="service-tech">Engine: <strong>Go / Kafka</strong></span>
+            <span class="service-tech">Storage: <strong>Cassandra</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GROUP 2: CITIZEN SERVICES -->
+    <div class="services-group">
+      <h3 class="services-group-title">National Citizen Registry · Phase 2</h3>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <span class="service-badge phase-2">Phase 2</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Digital Identity</h3><p class="service-desc">National ID, citizen profile, and biometric verification foundation.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Go</strong> / gRPC</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+            <span class="service-badge phase-2">Phase 2</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Passports</h3><p class="service-desc">Secure issuance, biometric-linked renewals, and travel documents.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Java</strong> / Spring</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polyline points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+            <span class="service-badge phase-2">Phase 2</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Vehicles</h3><p class="service-desc">Centralized registration, licenses, and traffic violation tracking.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Java</strong> / Spring</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <span class="service-badge phase-2">Phase 2</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Real Estate</h3><p class="service-desc">Sovereign property deeds and ownership via Hyperledger Fabric.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Java</strong> / Fabric</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <span class="service-badge phase-2">Phase 2</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Taxation</h3><p class="service-desc">Unified tax filing, records, and secure payment processing.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Java</strong> / Spring</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <span class="service-badge phase-2">Phase 2</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Health</h3><p class="service-desc">National health monitoring and secure patient record exchange.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Java</strong> / Spring</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
+            <span class="service-badge phase-2">Phase 2</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Education</h3><p class="service-desc">Unified student records, enrollment, and academic certifications.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Java</strong> / Spring</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+            <span class="service-badge phase-2">Phase 2</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Business</h3><p class="service-desc">Company registration, commercial permits, and trade licenses.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Java</strong> / Spring</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <span class="service-badge phase-2">Phase 2</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Social Services</h3><p class="service-desc">National aid distribution, housing apps, and social benefits.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Java</strong> / Spring</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <span class="service-badge phase-2">Phase 2</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Agriculture</h3><p class="service-desc">Land use management, crop records, and irrigation permits.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Java</strong> / Spring</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <span class="service-badge phase-2">Phase 2</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Justice</h3><p class="service-desc">Secure court records and criminal background tracking.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Java</strong> / Fabric</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <span class="service-badge phase-2">Phase 2</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Partner Gateway</h3><p class="service-desc">B2B API for banks, insurance, and international partners.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Go</strong> / GraphQL</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <span class="service-badge phase-2">Phase 2</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Notifications</h3><p class="service-desc">Omni-channel push/SMS/email with sovereign Arabic templates.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Go</strong> / RabbitMQ</span></div>
+        </div>
+        <div class="service-card service-card--featured" style="background:rgba(var(--rgb-gold), 0.05); border-style:dashed;">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            <span class="service-badge">Expansion</span>
+          </div>
+          <div class="service-content">
+            <h3 class="service-name">Infinite Scalability</h3>
+            <p class="service-desc">The microservice architecture allows any new ministry or department to be onboarded without downtime or central reconfiguration.</p>
+          </div>
+          <div class="service-card-footer">
+            <span class="service-tech">Orchestration: <strong>Kubernetes</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GROUP 3: ADVANCED CAPABILITY -->
+    <div class="services-group">
+      <h3 class="services-group-title">Intelligence & Public Safety · Phase 3-4</h3>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+            <span class="service-badge phase-3">Phase 3</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Analytics</h3><p class="service-desc">Population insights with guaranteed differential privacy.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Python</strong> / Spark</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <span class="service-badge phase-3">Phase 4</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Event Detection</h3><p class="service-desc">Real-time AI scanning for environmental and security anomalies.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>PyTorch</strong> / NVIDIA</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M10.5 2h3l2 3h5.5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5.5l2-3z"/><circle cx="12" cy="13" r="3"/></svg></div>
+            <span class="service-badge phase-3">Phase 4</span>
+          </div>
+          <div class="service-content"><h3 class="service-name">Emergency Response</h3><p class="service-desc">Automated alerting and agency routing for national crises.</p></div>
+          <div class="service-card-footer"><span class="service-tech"><strong>Go</strong> / Real-time</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ SECURITY ════════════════════ -->
+<section class="section" id="security">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">6 · The Security Architecture</span>
+      <h2 class="title">Defense, <em class="italic-accent italic-accent--red">in depth</em>.</h2>
+    </div>
+    <p class="lede">A system that holds 30 million citizens' records must be wrong about nothing. Every layer assumes the previous one fails.</p>
+  </div>
+
+  <div class="sec-stack stagger-reveal">
+    <div class="sec-layer">
+      <div class="sec-layer-num">i</div>
+      <div><span class="sec-layer-title"><small>Network</small>Four-Tier Segmentation</span></div>
+      <div class="sec-layer-desc">DMZ → API Gateway → Service tier → Data tier. Default-deny firewalls between every tier. The data tier has no internet, no remote admin, no public IPs. Admin access requires physical presence and multi-person authorization. Banking-grade network isolation.</div>
+    </div>
+    <div class="sec-layer">
+      <div class="sec-layer-num">ii</div>
+      <div><span class="sec-layer-title"><small>Identity</small>Mutual TLS via Istio</span></div>
+      <div class="sec-layer-desc">Every microservice has its own certificate. Istio enforces mTLS on every service-to-service call automatically. Zero plaintext between services. Service identity verified at the mesh level before any code runs.</div>
+    </div>
+    <div class="sec-layer">
+      <div class="sec-layer-num">iii</div>
+      <div><span class="sec-layer-title"><small>Secrets</small>Vault · HSM · Shamir's Sharing</span></div>
+      <div class="sec-layer-desc">Three-node Vault cluster auto-unseals from a PKCS#11 HSM (FIPS 140-2 Level 3+). The HSM master key itself is split into five Shamir shares — any three reconstruct it. Held by senior officials on FIPS YubiKeys in physical safes. No single person holds the keys to the kingdom.</div>
+    </div>
+    <div class="sec-layer">
+      <div class="sec-layer-num">iv</div>
+      <div><span class="sec-layer-title"><small>Storage</small>Three Layers of Encryption</span></div>
+      <div class="sec-layer-desc">Layer 1: LUKS AES-256-XTS on every disk. Layer 2: database files protected underneath. Layer 3: application-level AES-256-GCM for biometric templates, medical records, criminal records, document scans. Each layer uses different keys derived from Vault. Backups encrypted with separate keys in a separate Vault path.</div>
+    </div>
+    <div class="sec-layer">
+      <div class="sec-layer-num">v</div>
+      <div><span class="sec-layer-title"><small>Audit</small>Immutable Logs, Physically Apart</span></div>
+      <div class="sec-layer-desc">Every access, every query, every modification logged to a separate read-only system. Append-only storage that cannot be deleted by any operator. Citizens can view their own access log in the mobile app. Auditors can query any record across departments.</div>
+    </div>
+    <div class="sec-layer">
+      <div class="sec-layer-num">vi</div>
+      <div><span class="sec-layer-title"><small>Privacy</small>Differential Privacy on Analytics</span></div>
+      <div class="sec-layer-desc">Every analytics output uses differential privacy techniques. Government gets population-level insight. Individual records remain mathematically unidentifiable. No raw citizen data ever appears in a report.</div>
+    </div>
+    <div class="sec-layer">
+      <div class="sec-layer-num">vii</div>
+      <div><span class="sec-layer-title"><small>Pipeline</small>Hard Gates Before Production</span></div>
+      <div class="sec-layer-desc">Trivy CVE scan + GitLab SAST + secret detection + Buf proto check + k6 load regression — all block deployment on failure. Two senior engineer approvals required for every production deploy. Auto-rollback at 1% error rate. No code reaches citizens without passing every gate.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ IDENTITY / NFC ════════════════════ -->
+<section class="section band--deep" id="identity" style="position:relative; overflow:hidden;">
+  <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:120%; height:120%; background-image:url('assets/images/Syria_Emblem_New_Eagle.png'); background-size:contain; background-repeat:no-repeat; background-position:center; opacity:0.02; pointer-events:none;"></div>
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">7 · Citizen Identity</span>
+      <h2 class="title">One <em class="italic-accent">tap</em>. A nation's services.</h2>
+    </div>
+    <p class="lede">A national NFC smart card with a tamper-resistant Secure Element. The citizen's private key never leaves the chip.</p>
+  </div>
+
+  <div class="nfc-feature">
+    <div class="nfc-card-stage reveal reveal--scale">
+      <div class="nfc-card-visual">
+        <div class="nfc-emblem-bg"></div>
+        <div class="nfc-chip"></div>
+        <div class="nfc-card-name">Mohamad Katramez</div>
+        <div class="nfc-card-name-ar">محمد قطرميز</div>
+        <div class="nfc-card-id">SYR · 1985 · A7823</div>
+        <div class="nfc-card-wave"></div>
+      </div>
+    </div>
+
+    <div class="nfc-details stagger-reveal">
+      <div class="nfc-detail-row">
+        <div class="nfc-detail-num">i</div>
+        <div class="nfc-detail"><h4>Java Card · EAL5+</h4><p>Tamper-resistant Secure Element. Cryptographic operations happen on the chip itself — the citizen's private key is never exposed to the phone, the network, or the operating system.</p></div>
+      </div>
+      <div class="nfc-detail-row">
+        <div class="nfc-detail-num">ii</div>
+        <div class="nfc-detail"><h4>On-Card Biometric Verification</h4><p>Fingerprint or facial template is encrypted on the card. The chip verifies the match itself. The phone is only a relay — it never holds the template or the key.</p></div>
+      </div>
+      <div class="nfc-detail-row">
+        <div class="nfc-detail-num">iii</div>
+        <div class="nfc-detail"><h4>Government PKI · ECDSA P-256</h4><p>Offline Root CA signs an online Issuing CA. Issuing CA signs a 5-year citizen certificate. Compromise of an Issuing CA can be recovered without touching the Root.</p></div>
+      </div>
+      <div class="nfc-detail-row">
+        <div class="nfc-detail-num">iv</div>
+        <div class="nfc-detail"><h4>Hourly CRL · Real-Time OCSP</h4><p>Lost or stolen card is revoked within minutes. OCSP responder denies in real time. Cached CRL on mobile apps ensures old cards become unusable even offline within 24 hours.</p></div>
+      </div>
+      <div class="nfc-detail-row">
+        <div class="nfc-detail-num">v</div>
+        <div class="nfc-detail"><h4>Accessibility, by design</h4><p>Iris and voice biometrics for citizens with worn fingerprints. PIN and guardian authorization paths. In-person verification at any governorate office. Nobody is locked out.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ QUOTE ════════════════════ -->
+<section class="band--gold">
+  <div class="divider-quote">
+    <q>Like an ATM, the card knows you. Like a vault, the system protects you.</q>
+    <div class="attr">— The Identity Commitment</div>
+  </div>
+</section>
+
+<!-- ════════════════════ TECH STACK ════════════════════ -->
+<section class="section band--ivory">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">8 · The Technology</span>
+      <h2 class="title">Open. Proven. <em class="italic-accent italic-accent--teal">Sovereign.</em></h2>
+    </div>
+    <p class="lede">Every tool is self-hosted on Syrian servers. Every choice is justified in the docs. No black boxes, no vendor lock-in.</p>
+  </div>
+
+  <div class="stack stagger-reveal">
+    <div class="stack-group reveal">
+      <h4>Languages</h4>
+      <div class="stack-row"><span class="stack-key">Core services</span><span class="stack-val"><strong>Go</strong> · gRPC-native, &lt;1s startup, ~50MB RAM</span></div>
+      <div class="stack-row"><span class="stack-key">Ministry services</span><span class="stack-val"><strong>Java · Spring Boot</strong> · 15 services, large talent pool</span></div>
+      <div class="stack-row"><span class="stack-key">Mobile</span><span class="stack-val"><strong>React Native / Flutter</strong></span></div>
+      <div class="stack-row"><span class="stack-key">Web portals</span><span class="stack-val"><strong>TypeScript · React · Next.js</strong></span></div>
+    </div>
+    <div class="stack-group reveal">
+      <h4>Data Layer</h4>
+      <div class="stack-row"><span class="stack-key">Structured</span><span class="stack-val"><strong>PostgreSQL + Citus</strong> · sharded by citizen ID hash</span></div>
+      <div class="stack-row"><span class="stack-key">Documents</span><span class="stack-val"><strong>MongoDB</strong> · native sharding</span></div>
+      <div class="stack-row"><span class="stack-key">Connection pool</span><span class="stack-val"><strong>PgBouncer + HikariCP</strong></span></div>
+      <div class="stack-row"><span class="stack-key">Cache</span><span class="stack-val"><strong>Redis Cluster</strong> · per service, TLS, Vault auth</span></div>
+      <div class="stack-row"><span class="stack-key">Analytics</span><span class="stack-val"><strong>TimescaleDB / ClickHouse</strong> · separate cluster</span></div>
+    </div>
+    <div class="stack-group reveal">
+      <h4>Communication</h4>
+      <div class="stack-row"><span class="stack-key">Internal</span><span class="stack-val"><strong>gRPC</strong> · mTLS via Istio</span></div>
+      <div class="stack-row"><span class="stack-key">Public API</span><span class="stack-val"><strong>REST v1/v2/v3</strong> · versioned</span></div>
+      <div class="stack-row"><span class="stack-key">Partner API</span><span class="stack-val"><strong>REST · scoped tokens</strong></span></div>
+      <div class="stack-row"><span class="stack-key">Async</span><span class="stack-val"><strong>Kafka · RabbitMQ</strong></span></div>
+      <div class="stack-row"><span class="stack-key">Service mesh</span><span class="stack-val"><strong>Istio</strong> · auto mTLS, traffic shifting</span></div>
+    </div>
+    <div class="stack-group reveal">
+      <h4>Security</h4>
+      <div class="stack-row"><span class="stack-key">Secrets</span><span class="stack-val"><strong>HashiCorp Vault + HSM</strong> · Shamir 5/3</span></div>
+      <div class="stack-row"><span class="stack-key">Encryption</span><span class="stack-val"><strong>LUKS + AES-256-GCM</strong> · three layers</span></div>
+      <div class="stack-row"><span class="stack-key">Identity</span><span class="stack-val"><strong>Java Card EAL5+</strong> · ECDSA P-256</span></div>
+      <div class="stack-row"><span class="stack-key">Access control</span><span class="stack-val"><strong>IAM (Go)</strong> · double-layer enforcement</span></div>
+      <div class="stack-row"><span class="stack-key">Audit</span><span class="stack-val"><strong>Append-only</strong> · physically separate</span></div>
+    </div>
+    <div class="stack-group reveal">
+      <h4>Platform · CI/CD</h4>
+      <div class="stack-row"><span class="stack-key">Orchestration</span><span class="stack-val"><strong>Kubernetes · Docker</strong></span></div>
+      <div class="stack-row"><span class="stack-key">CI/CD</span><span class="stack-val"><strong>GitLab · ArgoCD</strong> · self-hosted</span></div>
+      <div class="stack-row"><span class="stack-key">Security gates</span><span class="stack-val"><strong>Trivy · Buf · k6 · SAST</strong></span></div>
+      <div class="stack-row"><span class="stack-key">Deployment</span><span class="stack-val"><strong>Blue-green</strong> · auto-rollback &lt;30s</span></div>
+      <div class="stack-row"><span class="stack-key">Repo</span><span class="stack-val"><strong>Monorepo</strong> · Uber-style, path triggers</span></div>
+    </div>
+    <div class="stack-group reveal">
+      <h4>Observability</h4>
+      <div class="stack-row"><span class="stack-key">Metrics</span><span class="stack-val"><strong>Prometheus · Grafana</strong></span></div>
+      <div class="stack-row"><span class="stack-key">Logs</span><span class="stack-val"><strong>Elasticsearch · Logstash · Kibana</strong></span></div>
+      <div class="stack-row"><span class="stack-key">Tracing</span><span class="stack-val"><strong>Jaeger · OpenTelemetry</strong></span></div>
+      <div class="stack-row"><span class="stack-key">Architecture</span><span class="stack-val"><strong>Centralized in Damascus</strong></span></div>
+    </div>
+    <div class="stack-group reveal">
+      <h4>Specialized</h4>
+      <div class="stack-row"><span class="stack-key">Blockchain</span><span class="stack-val"><strong>Hyperledger Fabric</strong> · property + legal</span></div>
+      <div class="stack-row"><span class="stack-key">Chaincode</span><span class="stack-val"><strong>Go</strong></span></div>
+      <div class="stack-row"><span class="stack-key">Endorsing peers</span><span class="stack-val">Justice, Finance, Real Estate, Central</span></div>
+    </div>
+    <div class="stack-group reveal">
+      <h4>Testing</h4>
+      <div class="stack-row"><span class="stack-key">Unit</span><span class="stack-val"><strong>testify · JUnit 5</strong> · 80% target</span></div>
+      <div class="stack-row"><span class="stack-key">Contract</span><span class="stack-val"><strong>Buf · Pact</strong></span></div>
+      <div class="stack-row"><span class="stack-key">Integration</span><span class="stack-val"><strong>Testcontainers</strong> · real infrastructure</span></div>
+      <div class="stack-row"><span class="stack-key">Performance</span><span class="stack-val"><strong>k6</strong> · 500K concurrent users</span></div>
+      <div class="stack-row"><span class="stack-key">E2E</span><span class="stack-val"><strong>Playwright</strong> · 7 citizen journeys</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ ARABIC ════════════════════ -->
+<section class="section">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">9 · Arabic, First-Class</span>
+      <h2 class="title">The primary language. Not an <em class="italic-accent">afterthought</em>.</h2>
+    </div>
+    <p class="lede">Built for Syrian citizens, in Syrian script. Arabic is the primary language across every interface, document, and notification.</p>
+  </div>
+
+  <div class="ar-feature">
+    <div class="ar-display reveal">Syria<br><span class="small">Digital</span></div>
+    <div class="ar-bullets reveal">
+      <div class="ar-bullet">
+        <div class="ar-bullet-tag">1 · UI</div>
+        <div class="ar-bullet-body"><h4>RTL · Right to Left</h4><p>Every interface tested in both Arabic RTL and English LTR. CSS logical properties on web. React Native I18nManager + Flutter Directionality on mobile.</p></div>
+      </div>
+      <div class="ar-bullet">
+        <div class="ar-bullet-tag">2 · Names</div>
+        <div class="ar-bullet-body"><h4>Bilingual storage <span class="ar">اسماء</span></h4><p>Arabic + Latin transliteration (ALA-LC standard). Citizens set their own preferred Latin spelling. Both forms searchable, both forms official.</p></div>
+      </div>
+      <div class="ar-bullet">
+        <div class="ar-bullet-tag">3 · Search</div>
+        <div class="ar-bullet-body"><h4>Arabic-aware indexing</h4><p>Elasticsearch Arabic analyzer handles Hamza, Alef, Ta marbuta variations + stemming. Search for "محمد" finds "مُحَمَّد" — diacritics, articles, and roots all normalized.</p></div>
+      </div>
+      <div class="ar-bullet">
+        <div class="ar-bullet-tag">4 · Calendar</div>
+        <div class="ar-bullet-body"><h4>Hijri <span class="ar">هجري</span> · Gregorian</h4><p>Hijri for Arabic UI when preferred (umalqura library). Gregorian everywhere internally. Citizens see dates in their preferred calendar without compromise.</p></div>
+      </div>
+      <div class="ar-bullet">
+        <div class="ar-bullet-tag">5 · Documents</div>
+        <div class="ar-bullet-body"><h4>Bilingual official records</h4><p>Every certificate, deed, and notification generated bilingually. WeasyPrint and iText 7 with Noto Naskh Arabic + Noto Sans fonts. Bidirectional text rendering, Unicode-correct.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ BLOCKCHAIN ════════════════════ -->
+<section class="section band--emerald">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">10 · Hyperledger Fabric</span>
+      <h2 class="title">For deeds, for justice, for <em class="italic-accent">posterity</em>.</h2>
+    </div>
+    <p class="lede">Blockchain is not a buzzword here. It's used precisely where independent verification by foreign courts, diaspora citizens, or international institutions actually matters.</p>
+  </div>
+
+  <div class="fabric-grid">
+    <div class="fabric-prose reveal">
+      <h3>Four endorsing peers. Three channels. Single ledger of truth.</h3>
+      <p>Ministry of Justice, Ministry of Finance, Real Estate Registry, and the central node at Damascus. All four must reach consensus before any property transfer or legal record is committed.</p>
+      <div class="fabric-channels">
+        <div class="fabric-channel"><div class="fabric-channel-tag">Property</div><div class="fabric-channel-name">Deeds &amp; Transfers</div></div>
+        <div class="fabric-channel"><div class="fabric-channel-tag">Justice</div><div class="fabric-channel-name">Court Records</div></div>
+        <div class="fabric-channel"><div class="fabric-channel-tag">Registry</div><div class="fabric-channel-name">Certificates</div></div>
+      </div>
+      <div class="fabric-quote">
+        <p>Diaspora Syrians, foreign courts, and international institutions can verify Syrian property ownership offline — using only the government's public key. Even if every central server were destroyed, the ledger survives.</p>
+      </div>
+    </div>
+
+    <div class="fabric-cert reveal">
+      <div class="fabric-cert-header">
+        <span>Ownership Certificate · sample</span>
+        <span class="fabric-cert-seal"></span>
+      </div>
+<pre><span class="key">{</span>
+  <span class="key">"property_id"</span>:  <span>"SYR-PROP-2024-00123456"</span>,
+  <span class="key">"owner"</span>:        <span>"Mohamad Katramez"</span>,
+  <span class="key">"owner_id"</span>:     <span>"SYR-ID-1985-A7823"</span>,
+  <span class="key">"address"</span>:      <span>"Damascus, Al-Mazzeh, 44B"</span>,
+  <span class="key">"transfer"</span>:     <span>"2024-03-15T10:23:44Z"</span>,
+  <span class="key">"tx_hash"</span>:      <span>"a3f9b2c1..."</span>,
+  <span class="key">"block"</span>:        <span>14823</span>,
+  <span class="key">"signature"</span>:    <span>"3045022100..."</span>,
+  <span class="key">"verify_at"</span>:    <span>"verify.gov.sy/..."</span>
+<span class="key">}</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ ROADMAP ════════════════════ -->
+<section class="section" id="roadmap">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">11 · The Six-Phase Roadmap</span>
+      <h2 class="title">Build slow. Build <em class="italic-accent">right</em>.</h2>
+    </div>
+    <p class="lede">Each phase ends with a hard gate. Security audit. Disaster recovery drill. User testing. We do not move to the next phase until the previous one is proven.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="phase reveal">
+      <div class="phase-label">PHASE 1</div>
+      <div class="phase-dot-wrap"><div class="phase-dot"></div></div>
+      <div class="phase-content">
+        <h3>The <span class="accent">Foundation</span></h3>
+        <p class="phase-tagline">Build the unbreakable substrate. No services until infrastructure is solid.</p>
+        <ul class="phase-items">
+          <li class="phase-item">14 governorate sites + central Damascus</li>
+          <li class="phase-item">3 redundant network paths per governorate</li>
+          <li class="phase-item">Citus PostgreSQL + MongoDB sharded by citizen ID</li>
+          <li class="phase-item">PgBouncer · Redis Clusters · Kafka · Istio</li>
+          <li class="phase-item">Vault · HSM · Shamir's ceremony · Root CA</li>
+          <li class="phase-item">3-layer encryption at rest</li>
+          <li class="phase-item">IAM · Audit · API Gateway (Go)</li>
+          <li class="phase-item">GitLab · ArgoCD · Trivy · k6 · Buf</li>
+          <li class="phase-item">Prometheus · Grafana · ELK · Jaeger</li>
+          <li class="phase-item">Hyperledger Fabric network</li>
+          <li class="phase-item">RTL Arabic UI library</li>
+          <li class="phase-item">Backup + DR runbooks + first drill</li>
+        </ul>
+        <span class="phase-gate">Gate · Security Audit + DR Drill</span>
+      </div>
+    </div>
+
+    <div class="phase reveal">
+      <div class="phase-label">PHASE 2</div>
+      <div class="phase-dot-wrap"><div class="phase-dot"></div></div>
+      <div class="phase-content">
+        <h3>Core Services &amp; <span class="accent">Citizen Experience</span></h3>
+        <p class="phase-tagline">Launch services in priority order. Get citizens using the system.</p>
+        <ul class="phase-items">
+          <li class="phase-item">Digital Identity → Passports → Vehicles → Real Estate → Taxation</li>
+          <li class="phase-item">NFC smart card issuance program</li>
+          <li class="phase-item">Citizen mobile apps (iOS + Android)</li>
+          <li class="phase-item">Government internal portal</li>
+          <li class="phase-item">Partner API gateway</li>
+          <li class="phase-item">Real Estate + Justice connect to Fabric</li>
+          <li class="phase-item">Phase A legacy data migration begins</li>
+        </ul>
+        <span class="phase-gate">Gate · Security + UX + Performance</span>
+      </div>
+    </div>
+
+    <div class="phase reveal">
+      <div class="phase-label">PHASE 3</div>
+      <div class="phase-dot-wrap"><div class="phase-dot"></div></div>
+      <div class="phase-content">
+        <h3>Artificial Intelligence &amp; <span class="accent">Analytics</span></h3>
+        <p class="phase-tagline">Add intelligence on top of the working system. Never replace judgment — augment it.</p>
+        <ul class="phase-items">
+          <li class="phase-item">Fraud detection AI</li>
+          <li class="phase-item">Automated document processing (OCR)</li>
+          <li class="phase-item">Predictive analytics for citizen needs</li>
+          <li class="phase-item">Separate analytics data warehouse</li>
+          <li class="phase-item">Explainable AI framework</li>
+        </ul>
+        <span class="phase-gate">Gate · AI Accuracy + Ethics Review</span>
+      </div>
+    </div>
+
+    <div class="phase reveal">
+      <div class="phase-label">PHASE 4</div>
+      <div class="phase-dot-wrap"><div class="phase-dot"></div></div>
+      <div class="phase-content">
+        <h3>Real-Time Event Detection &amp; <span class="accent">Response</span></h3>
+        <p class="phase-tagline">Move from reactive to proactive. The system anticipates.</p>
+        <ul class="phase-items">
+          <li class="phase-item">AI agents scanning environmental + health streams</li>
+          <li class="phase-item">Disaster detection: fires, earthquakes, floods</li>
+          <li class="phase-item">Crime alerts to nearest police station</li>
+          <li class="phase-item">Disease outbreak detection → health ministry</li>
+          <li class="phase-item">Intelligent alert routing</li>
+        </ul>
+        <span class="phase-gate">Gate · Simulation + Response Time Benchmarks</span>
+      </div>
+    </div>
+
+    <div class="phase reveal">
+      <div class="phase-label">PHASE 5</div>
+      <div class="phase-dot-wrap"><div class="phase-dot"></div></div>
+      <div class="phase-content">
+        <h3>Strategic <span class="accent">Intelligence</span></h3>
+        <p class="phase-tagline">Transform data into strategic national insight.</p>
+        <ul class="phase-items">
+          <li class="phase-item">Long-term government planning tools</li>
+          <li class="phase-item">Population + economic forecasting</li>
+          <li class="phase-item">Citizen satisfaction analysis</li>
+          <li class="phase-item">Cross-governorate benchmarking</li>
+          <li class="phase-item">Strategic dashboards for ministers</li>
+        </ul>
+        <span class="phase-gate">Gate · Data Accuracy + Leadership Review</span>
+      </div>
+    </div>
+
+    <div class="phase reveal">
+      <div class="phase-label">PHASE 6</div>
+      <div class="phase-dot-wrap"><div class="phase-dot"></div></div>
+      <div class="phase-content">
+        <h3>International <span class="accent">Integration</span></h3>
+        <p class="phase-tagline">Open the system, on Syria's terms.</p>
+        <ul class="phase-items">
+          <li class="phase-item">Secure integration with neighbors for trade</li>
+          <li class="phase-item">Cross-border travel + identity verification</li>
+          <li class="phase-item">International business + trade facilitation</li>
+          <li class="phase-item">Refugee + diaspora services</li>
+          <li class="phase-item">Interoperability with international standards</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ EXPANDABILITY ════════════════════ -->
+<section class="section band--deep">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">12 · Expandability</span>
+      <h2 class="title">Eighteen today. <em class="italic-accent">Fifty</em> tomorrow.</h2>
+    </div>
+    <p class="lede">A new ministry should be a Tuesday afternoon — not a re-architecture project.</p>
+  </div>
+
+  <div class="expand-block">
+    <div class="expand-visual reveal">
+      <div class="expand-visual-title">$ ./scripts/new-service.sh</div>
+      <div class="expand-flow">
+        <div class="step"><strong>i</strong><span class="step-text">Define gRPC contract <em>proto/tourism/v1/tourism.proto</em></span></div>
+        <div class="step"><strong>ii</strong><span class="step-text">Generate scaffold <em>auth, audit, vault, tracing wired</em></span></div>
+        <div class="step"><strong>iii</strong><span class="step-text">Register in IAM <em>roles via config — no code change</em></span></div>
+        <div class="step"><strong>iv</strong><span class="step-text">Provision infrastructure <em>Citus table, Redis cluster, Kafka topics</em></span></div>
+        <div class="step"><strong>v</strong><span class="step-text">Implement business logic <em>only the domain code</em></span></div>
+        <div class="step"><strong>vi</strong><span class="step-text">Add to pipeline <em>path-based trigger, monorepo</em></span></div>
+        <div class="step"><strong>vii</strong><span class="step-text">Connect to API Gateway <em>routing config update</em></span></div>
+        <div class="step"><strong>viii</strong><span class="step-text">Deploy <em>blue-green, two-engineer approval</em></span></div>
+      </div>
+    </div>
+
+    <div class="expand-text reveal">
+      <h3 class="sub">No existing service is touched.</h3>
+      <p>The Phase 1 scaffolding tool generates a production-ready service skeleton with all infrastructure concerns already wired: authentication, audit logging, secret retrieval, distributed tracing, metrics, health probes, automatic mTLS.</p>
+      <p style="font-style:normal;font-size:14px;color:var(--text-dim);font-family:var(--body);font-weight:400">Architectures usually rot. This one is designed to grow.</p>
+      <ul class="expand-items">
+        <li class="expand-item">Ministry of Tourism — tourist registration, heritage sites</li>
+        <li class="expand-item">Ministry of Telecommunications — SIM cards, spectrum</li>
+        <li class="expand-item">Ministry of Energy — utility connections, grid permits</li>
+        <li class="expand-item">Ministry of Culture — cultural events, artist licensing</li>
+        <li class="expand-item">Ministry of Foreign Affairs — visas, diplomatic credentials</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ EXECUTION WAVES ════════════════════ -->
+<section class="section">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">13 · Phase 1 Execution</span>
+      <h2 class="title">Thirteen <em class="italic-accent">waves</em>.</h2>
+    </div>
+    <p class="lede">Each wave a gate. Each gate non-negotiable. Architecture is settled — what remains is execution.</p>
+  </div>
+
+  <div class="waves">
+    <div class="wave reveal"><div class="wave-num">00</div><div class="wave-label">Wave</div><div class="wave-name">Preparation</div></div>
+    <div class="wave reveal"><div class="wave-num">01</div><div class="wave-label">Wave</div><div class="wave-name">Physical &amp; Network</div></div>
+    <div class="wave reveal"><div class="wave-num">02</div><div class="wave-label">Wave</div><div class="wave-name">Base Platform</div></div>
+    <div class="wave reveal"><div class="wave-num">03</div><div class="wave-label">Wave</div><div class="wave-name">Security Foundation</div></div>
+    <div class="wave reveal"><div class="wave-num">04</div><div class="wave-label">Wave</div><div class="wave-name">Data Layer</div></div>
+    <div class="wave reveal"><div class="wave-num">05</div><div class="wave-label">Wave</div><div class="wave-name">Messaging · Mesh · Observability</div></div>
+    <div class="wave reveal"><div class="wave-num">06</div><div class="wave-label">Wave</div><div class="wave-name">CI/CD Platform</div></div>
+    <div class="wave reveal"><div class="wave-num">07</div><div class="wave-label">Wave</div><div class="wave-name">Standards &amp; Tooling</div></div>
+    <div class="wave reveal"><div class="wave-num">08</div><div class="wave-label">Wave</div><div class="wave-name">Foundation Services</div></div>
+    <div class="wave reveal"><div class="wave-num">09</div><div class="wave-label">Wave</div><div class="wave-name">Hyperledger Fabric</div></div>
+    <div class="wave reveal"><div class="wave-num">10</div><div class="wave-label">Wave</div><div class="wave-name">Frontend Foundation</div></div>
+    <div class="wave reveal"><div class="wave-num">11</div><div class="wave-label">Wave</div><div class="wave-name">Backup &amp; DR</div></div>
+    <div class="wave gate reveal"><div class="wave-num">12</div><div class="wave-label">Final</div><div class="wave-name">Phase 1 Gate</div></div>
+  </div>
+</section>
+
+<!-- ════════════════════ QUALITY PILLARS ════════════════════ -->
+<section class="section band--ivory">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">14 · Quality Pillars</span>
+      <h2 class="title">How we <em class="italic-accent italic-accent--teal">prove</em> it works.</h2>
+    </div>
+    <p class="lede">A system this large cannot rely on "we hope it works." It must be tested, observed, and recoverable at every layer.</p>
+  </div>
+
+  <div class="pillars">
+    <div class="pillar reveal">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </div>
+      <h3 class="pillar-title">Five-Layer <span class="accent">Testing</span></h3>
+      <p class="pillar-body">Unit tests for business logic (80% coverage). Contract tests for service-to-service APIs. Integration tests with real infrastructure via Testcontainers. Performance tests at 500K concurrent users. End-to-end tests on staging for seven critical citizen journeys.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h3 class="pillar-title">Layer-by-Layer <span class="accent">Observability</span></h3>
+      <p class="pillar-body">Every metric, log, and trace from 14 governorates and 18 services flows to Damascus. Prometheus scrapes every 15 seconds. Elasticsearch indexes logs in milliseconds. Every citizen request carries a Trace ID — support staff can find any failure in seconds.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <h3 class="pillar-title">Continuous <span class="accent">Delivery</span></h3>
+      <p class="pillar-body">GitLab CI runs a seven-stage pipeline. ArgoCD deploys blue-green via traffic shifting. Prometheus monitors at every percentage step. Auto-rollback in 30 seconds if error rate breaches 1%. Two senior engineer approvals required for every production deployment.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <h3 class="pillar-title">Provable <span class="accent">Recovery</span></h3>
+      <p class="pillar-body">Continuous replication with hourly snapshots. RPO of 0, RTO under one hour. Backups stored in three Syrian locations, encrypted with separate keys. Monthly disaster recovery drills are mandatory — full restore from backup, documented results.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ CLOSING ════════════════════ -->
+<section class="closing band--deep">
+  <div class="closing-mark reveal"></div>
+  <h2 class="closing-title reveal">A digital republic, built to <em class="accent">last</em>.</h2>
+  <div class="closing-ar reveal">سوريا الرقمية · مبنية لتبقى</div>
+  <p class="lede reveal" style="margin: 32px auto 0; max-width: 42ch">Sovereign. Resilient. Arabic-first. Ready for thirty million citizens today, fifty million tomorrow.</p>
+  <div class="closing-note">Edition 2.0 · 16 · 05 · 2026 · Syria</div>
+</section>
+
+<!-- ════════════════════ FOOTER ════════════════════ -->
+<footer class="footer">
+  <div class="footer-credit">
+    <div class="footer-credit-label">Architected &amp; Designed by</div>
+    <div class="footer-credit-name">Mohamad <span class="accent">Katramez</span></div>
+    <a class="footer-credit-company" href="https://www.silicortex.de/" target="_blank" rel="noopener">
+      <span>Silicortex</span>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <div>Syria Digital — Design Document</div>
+    <div>Edition 2.0 · 16 · 05 · 2026</div>
+    <div>Classified — National Digital Transformation</div>
+  </div>
+</footer>
+
+<script>
+// ── Smooth scroll ──────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+// ── Nav scroll state ───────────────────────────────────────────
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ── Reveal on scroll ───────────────────────────────────────────
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+document.querySelectorAll('.principle-grid, .services, .stat-row, .waves, .stack, .sec-stack, .pillars').forEach(grid => {
+  Array.from(grid.children).forEach((child, i) => { child.style.transitionDelay = (i * 40) + 'ms'; });
+});
+
+// ── Arabic translations ────────────────────────────────────────
+// Each entry: { s: cssSelector, i?: index, h: arabicHTML }
+// English is saved on first switch and restored on toggle back.
+
+const AR = [
+  // NAV
+  { s: 'a[href="#vision"]',       h: 'الرؤية' },
+  { s: 'a[href="#architecture"]', h: 'البنية' },
+  { s: 'a[href="#services"]',     h: 'الخدمات' },
+  { s: 'a[href="#security"]',     h: 'الأمن' },
+  { s: 'a[href="#identity"]',     h: 'الهوية' },
+  { s: 'a[href="#roadmap"]',      h: 'خارطة الطريق' },
+  { s: '.nav-meta',               h: 'الإصدار 2.0 · ١٦ · ٠٥ · ٢٠٢٦' },
+
+  // HERO top row
+  { s: '.hero-top .col:nth-child(1) span:first-child', h: '<strong>سري</strong>' },
+  { s: '.hero-top .col:nth-child(1) span:last-child',  h: 'التحول الرقمي الوطني' },
+  { s: '.hero-top .col:nth-child(2) span:first-child', h: 'وثيقة التصميم' },
+  { s: '.hero-top .col:nth-child(3) span:first-child', h: 'البنية السيادية' },
+  { s: '.hero-top .col:nth-child(3) span:last-child',  h: '<strong>لأكثر من 30 مليون مواطن</strong>' },
+
+  // HERO title + subtitle
+  { s: '.display', h: '<span style="display:block">سوريا،</span><span style="display:block">مبنيّة <em class="italic-accent">رقمياً</em>.</span>' },
+  { s: '.hero-subtitle', h: 'بنية تحتية رقمية سيادية، مُصمَّمة على غرار البنك المركزي، تُدار كمصلحة عامة، ومبنية كلياً على الأرض السورية.' },
+
+  // HERO stat labels
+  { s: '.hero-meta-block:nth-child(1) > strong', h: '٣٠ مليون<span class="unit">+</span>' },
+  { s: '.hero-meta-block:nth-child(2) > strong', h: '١٤' },
+  { s: '.hero-meta-block:nth-child(3) > strong', h: '١٨' },
+  { s: '.hero-meta-block:nth-child(4) > strong', h: '٦' },
+  { s: '.hero-meta-block:nth-child(5) > strong', h: '٩٩.٩٩<span class="unit">%</span>' },
+  { s: '.hero-meta-block:nth-child(1) > span', h: 'مواطن في الخدمة' },
+  { s: '.hero-meta-block:nth-child(2) > span', h: 'محافظة' },
+  { s: '.hero-meta-block:nth-child(3) > span', h: 'خدمة مصغّرة' },
+  { s: '.hero-meta-block:nth-child(4) > span', h: 'مرحلة تسليم' },
+  { s: '.hero-meta-block:nth-child(5) > span', h: 'هدف الاستمرارية' },
+  { s: '.scroll-cue', h: 'ابدأ' },
+
+  // EYEBROWS
+  { s: '.eyebrow', i:  0, h: '١ · الرؤية' },
+  { s: '.eyebrow', i:  1, h: '٢ · بالأرقام' },
+  { s: '.eyebrow', i:  2, h: '٣ · المبادئ' },
+  { s: '.eyebrow', i:  3, h: '٤ · البنية المعمارية' },
+  { s: '.eyebrow', i:  4, h: 'العقد' },
+  { s: '.eyebrow', i:  5, h: '٥ · الخدمات الثمانية عشر' },
+  { s: '.eyebrow', i:  6, h: '٦ · البنية الأمنية' },
+  { s: '.eyebrow', i:  7, h: '٧ · هوية المواطن' },
+  { s: '.eyebrow', i:  8, h: '٨ · التقنية' },
+  { s: '.eyebrow', i:  9, h: '٩ · العربية أولاً' },
+  { s: '.eyebrow', i: 10, h: '١٠ · هايبرليدجر فابريك' },
+  { s: '.eyebrow', i: 11, h: '١١ · خارطة الطريق بست مراحل' },
+  { s: '.eyebrow', i: 12, h: '١٢ · القابلية للتوسع' },
+  { s: '.eyebrow', i: 13, h: '١٣ · تنفيذ المرحلة الأولى' },
+  { s: '.eyebrow', i: 14, h: '١٤ · ركائز الجودة' },
+
+  // SECTION TITLES
+  { s: 'h2.title', i:  0, h: 'أمّة، مكتوبة في <em class="italic-accent">الكود</em>.' },
+  { s: 'h2.title', i:  1, h: 'تسعة <em class="italic-accent">مبادئ لا تُفاوَض</em> عليها.' },
+  { s: 'h2.title', i:  2, h: 'قلب <em class="italic-accent">مركزي</em>، وأربعة عشر نسخة.' },
+  { s: 'h2.title', i:  3, h: 'أربعة عشر <em class="italic-accent">نسخة قراءة</em> إقليمية.' },
+  { s: 'h2.title', i:  4, h: 'لكل وزارة <em class="italic-accent">نطاقها</em> الخاص.' },
+  { s: 'h2.title', i:  5, h: 'الدفاع، <em class="italic-accent italic-accent--red">بالعمق</em>.' },
+  { s: 'h2.title', i:  6, h: '<em class="italic-accent">لمسة</em> واحدة. خدمات أمة.' },
+  { s: 'h2.title', i:  7, h: 'مفتوح. مُجرَّب. <em class="italic-accent italic-accent--teal">سيادي.</em>' },
+  { s: 'h2.title', i:  8, h: 'اللغة الأساسية. لا <em class="italic-accent">إضافة لاحقة</em>.' },
+  { s: 'h2.title', i:  9, h: 'للصكوك، والعدالة، <em class="italic-accent">والأجيال</em>.' },
+  { s: 'h2.title', i: 10, h: 'ابنِ ببطء. ابنِ <em class="italic-accent">بصواب</em>.' },
+  { s: 'h2.title', i: 11, h: 'ثمانية عشر اليوم. <em class="italic-accent">خمسون</em> غداً.' },
+  { s: 'h2.title', i: 12, h: 'ثلاثة عشر <em class="italic-accent">موجة</em>.' },
+  { s: 'h2.title', i: 13, h: 'كيف <em class="italic-accent italic-accent--teal">نُثبت</em> أنه يعمل.' },
+
+  // LEDE paragraphs
+  { s: '.lede', i:  0, h: 'ما بعد النزاع. قبيل المستقبل. اللحظة المحورية للبنية التحتية الرقمية السيادية.' },
+  { s: '.lede', i:  1, h: 'كل قرار معماري يُفحَص بهذه المبادئ. إن انتهك أحدها، يُوقَف ويُناقَش قبل الشحن.' },
+  { s: '.lede', i:  2, h: 'نموذج البنك: تناسق فوري عبر كاتب وحيد، وتوافر عملي عبر ثلاثة مسارات شبكية متكررة لكل محافظة.' },
+  { s: '.lede', i:  3, h: 'كل محافظة هي عقدة. سيادة البيانات على المستوى المحلي مع النزاهة المركزية.' },
+  { s: '.lede', i:  4, h: 'مستقلة. قابلة للنشر. قابلة للاستبدال. مُصمَّمة لتكون بلا سقف.' },
+  { s: '.lede', i:  5, h: 'النظام الذي يحمل سجلات 30 مليون مواطن لا يحتمل أي خطأ. كل طبقة تفترض فشل ما سبقها.' },
+  { s: '.lede', i:  6, h: 'بطاقة ذكية NFC وطنية مع عنصر أمان مقاوم للتلاعب. المفتاح الخاص للمواطن لا يغادر الشريحة أبداً.' },
+  { s: '.lede', i:  7, h: 'كل أداة مستضافة على السيرفرات السورية. كل خيار مبرّر في الوثائق. لا صناديق سوداء، ولا قيود على الموردين.' },
+  { s: '.lede', i:  8, h: 'مبني للمواطن السوري، بالخط السوري. العربية هي اللغة الأساسية في كل واجهة، وثيقة، وإشعار.' },
+  { s: '.ar-display', h: 'سوريا<br><span class="small">الرقمية</span>' },
+  { s: '.lede', i:  9, h: 'البلوكشين هنا ليس مجرد كلمة رنانة. يُستخدَم بدقة حيث التحقق المستقل من قِبل محاكم أجنبية أو مؤسسات دولية مهم فعلاً.' },
+  { s: '.lede', i: 10, h: 'كل مرحلة تنتهي ببوابة صارمة. تدقيق أمني. تدريب على الكوارث. اختبار مستخدم. لا ننتقل حتى تُثبَت السابقة.' },
+  { s: '.lede', i: 11, h: 'وزارة جديدة يجب أن تكون مهمة يوم ثلاثاء — لا مشروع إعادة هيكلة.' },
+  { s: '.lede', i: 12, h: 'كل موجة بوابة. كل بوابة غير قابلة للتفاوض. البنية مستقرة — ما تبقى هو التنفيذ.' },
+  { s: '.lede', i: 13, h: 'نظام بهذا الحجم لا يمكن أن يعتمد على "نتمنى أن يعمل". يجب اختباره ومراقبته في كل طبقة.' },
+  { s: '.lede', i: 14, h: 'سيادية. مرنة. عربية أولاً. جاهزة لثلاثين مليون مواطن اليوم، وخمسين مليون غداً.' },
+
+  // VISION ref models
+  { s: '.ref-model-note', i: 0, h: 'الهوية الرقمية الوطنية — معيار المصادقة بـ NFC والبيومترية.' },
+  { s: '.ref-model-note', i: 1, h: 'التشغيل البيني X-Road — خدمات الوزارات المصغّرة المستقلة.' },
+  { s: '.ref-model-note', i: 2, h: 'دبي الذكية — تقديم خدمات تتمحور حول المواطن، المعيار الإقليمي.' },
+  { s: '.ref-model-note', i: 3, h: 'أبشر — خدمات حكومية عربية أولاً على مستوى المواطنين.' },
+
+  // VISION prose
+  { s: '.vision-prose p', i: 0, h: 'لأكثر من 30 مليون سوري، تعتمد الحياة اليومية على السجلات — شهادات الميلاد، وصكوك الملكية، ورخص القيادة، والتاريخ الطبي، والإقرارات الضريبية. هذه السجلات عاشت في سجلات ورقية، وأنظمة مجزأة، ومكاتب لا يمكن زيارتها إلا شخصياً.' },
+  { s: '.vision-prose p', i: 1, h: 'هذا المقترح هو بناء، على الأرض السورية، بنية تحتية رقمية واحدة ومتماسكة تحمل تلك السجلات بنزاهة البنك المركزي، ومرونة الشبكة الوطنية، وإمكانية وصول تطبيق الجوال. <span class="pull-quote">لا سحابة أجنبية. لا سيادة مُستعارة.</span> كل بايت تحت السيطرة السورية.' },
+  { s: '.vision-prose p', i: 2, h: 'درسنا الأنظمة الناجحة — سنغافورة، إستونيا، الخليج — وصنّعنا أفضل قراراتها مع متطلبات سياقنا: ما بعد النزاع، متعدد المحافظات، عربي أولاً، مُصمَّم ليدوم خمسين عاماً.' },
+
+  // STATS
+  { s: '.stat-label', i: 0, h: 'مواطن' },
+  { s: '.stat-label', i: 1, h: 'محافظة' },
+  { s: '.stat-label', i: 2, h: 'خدمة مصغّرة' },
+  { s: '.stat-label', i: 3, h: 'مسار شبكة' },
+  { s: '.stat-label', i: 4, h: 'هدف الاستمرارية' },
+  { s: '.stat-label', i: 5, h: 'فقدان بيانات' },
+  { s: '.stat-sub', i: 0, h: 'مُصمَّم للتوسع إلى 50 مليون+' },
+  { s: '.stat-sub', i: 1, h: 'كل منها مع نسخة قراءة وذاكرة تخزين' },
+  { s: '.stat-sub', i: 2, h: 'قابل للتوسع لأي وزارة مستقبلية' },
+  { s: '.stat-sub', i: 3, h: 'تحويل تلقائي < 30 ثانية' },
+  { s: '.stat-sub', i: 4, h: 'لكل خدمة، متتبّع علناً' },
+  { s: '.stat-sub', i: 5, h: 'RPO: 0 · RTO: أقل من ساعة' },
+
+  // PRINCIPLES titles
+  { s: '.principle-title', i: 0, h: 'أمان <span class="accent">على مستوى البنوك</span>' },
+  { s: '.principle-title', i: 1, h: 'سيادة <span class="accent">كاملة</span>' },
+  { s: '.principle-title', i: 2, h: 'مرونة <span class="accent">نموذج البنك</span>' },
+  { s: '.principle-title', i: 3, h: 'خدمات مصغّرة <span class="accent">بلا حدود</span>' },
+  { s: '.principle-title', i: 4, h: 'صفر <span class="accent">توقف</span>' },
+  { s: '.principle-title', i: 5, h: 'لا اتصال <span class="accent">للمواطن</span>' },
+  { s: '.principle-title', i: 6, h: 'تناسق <span class="accent">فوري</span>' },
+  { s: '.principle-title', i: 7, h: 'توسع <span class="accent">بلا حدود</span>' },
+  { s: '.principle-title', i: 8, h: 'رشيد <span class="accent">ومرحلي</span>' },
+
+  // PRINCIPLES descs
+  { s: '.principle-desc', i: 0, h: 'كل معاملة تُعامَل كتحويل مصرفي دولي. تشفير كامل، سجلات تدقيق ثابتة، تسامح صفري مع فقدان البيانات.' },
+  { s: '.principle-desc', i: 1, h: 'جميع البنية التحتية على الأرض السورية وسيرفرات تحت السيطرة السورية. لا AWS ولا Azure ولا Google Cloud. لا يتجاوز أي بيانات الحدود.' },
+  { s: '.principle-desc', i: 2, h: 'ثلاثة مسارات شبكية مستقلة لكل محافظة. تحويل تلقائي خلال أقل من 30 ثانية. جميع عمليات الكتابة إلى المركز. نفس نموذج فرع البنك.' },
+  { s: '.principle-desc', i: 3, h: 'كل نطاق مستقل. الوزارات الجديدة تتصل عبر أداة سقالة. لا تغييرات على الكود الحالي أبداً.' },
+  { s: '.principle-desc', i: 4, h: 'نشر أزرق-أخضر فقط. رجوع تلقائي عند معدل خطأ 1%. المواطنون لا يرون نافذة صيانة أبداً.' },
+  { s: '.principle-desc', i: 5, h: 'نموذج الصراف الآلي. يمكن للمواطنين عرض سجلاتهم بدون إنترنت. المكاتب الحكومية تتطلب دائماً الاتصال المركزي للكتابة.' },
+  { s: '.principle-desc', i: 6, h: 'جميع عمليات الكتابة تذهب إلى المركز أولاً. كاتب واحد، لا تعارضات. مواطن يبيع عقاراً — كل خدمة تعلم فوراً.' },
+  { s: '.principle-desc', i: 7, h: 'Citus sharding by citizen ID hash. 30 مليون اليوم، 50 مليون+ غداً. توسع أفقي، لا حدود اصطناعية.' },
+  { s: '.principle-desc', i: 8, h: 'ست مراحل مع بوابات صارمة بينها. ابنِ، اختبر، انشر، اجمع التغذية الراجعة، تقدّم. لا تتجاوز بوابة أبداً.' },
+
+  // ARCHITECTURE
+  { s: '.arch-central-title', h: 'دمشق — المصدر الوحيد للحقيقة' },
+  { s: '.arch-path', i: 0, h: '<strong>١</strong> ألياف ضوئية أساسية' },
+  { s: '.arch-path', i: 1, h: '<strong>٢</strong> ألياف ضوئية ثانوية (مسار بديل)' },
+  { s: '.arch-path', i: 2, h: '<strong>٣</strong> تحويل احتياطي عبر الأقمار الصناعية / 4G' },
+  { s: '.arch-note', h: '<strong>نموذج البنك.</strong> جميع عمليات الكتابة تتجه إلى دمشق. كل محافظة تحمل نسخة قراءة متدفقة مع ذاكرة تخزين Redis لكل خدمة. يُخدَم المواطنون من أقرب نسخة للقراءات — كل كتابة تصل إلى المصدر الوحيد للحقيقة.' },
+
+  // NODES REDESIGN
+  { s: '.nodes-redesign .title', h: 'أربعة عشر <em class="italic-accent">نسخة قراءة</em>.' },
+  { s: '.nodes-redesign .lede', h: 'كل محافظة هي عقدة. سيادة البيانات على المستوى المحلي مع النزاهة المركزية.' },
+  { s: '.node-status', i: 0, h: 'المركز الرئيسي · نشط' },
+  { s: '.node-status', i: 1, h: 'نسخة قراءة · متصل', allowMultiple: true },
+  { s: '.node-name', i: 0, h: 'دمشق ★' },
+  { s: '.node-name', i: 1, h: 'حلب' },
+  { s: '.node-name', i: 2, h: 'حمص' },
+  { s: '.node-name', i: 3, h: 'حماة' },
+  { s: '.node-name', i: 4, h: 'اللاذقية' },
+  { s: '.node-name', i: 5, h: 'طرطوس' },
+  { s: '.node-name', i: 6, h: 'دير الزور' },
+  { s: '.node-name', i: 7, h: 'الرقة' },
+  { s: '.node-name', i: 8, h: 'إدلب' },
+  { s: '.node-name', i: 9, h: 'درعا' },
+  { s: '.node-name', i: 10, h: 'السويداء' },
+  { s: '.node-name', i: 11, h: 'القنيطرة' },
+  { s: '.node-name', i: 12, h: 'الحسكة' },
+  { s: '.node-name', i: 13, h: 'ريف دمشق' },
+  { s: '.node-role', i: 0, h: 'المصدر الوحيد للحقيقة' },
+  { s: '.node-role', i: 1, h: 'عقدة إقليمية', allowMultiple: true },
+
+  // SERVICES names
+  { s: '.service-name', i:  0, h: 'إدارة الهوية والوصول (IAM)' },
+  { s: '.service-name', i:  1, h: 'سجل التدقيق' },
+  { s: '.service-name', i:  2, h: 'الهوية الرقمية' },
+  { s: '.service-name', i:  3, h: 'الجوازات' },
+  { s: '.service-name', i:  4, h: 'المركبات' },
+  { s: '.service-name', i:  5, h: 'العقارات' },
+  { s: '.service-name', i:  6, h: 'الضرائب' },
+  { s: '.service-name', i:  7, h: 'الصحة' },
+  { s: '.service-name', i:  8, h: 'التعليم' },
+  { s: '.service-name', i:  9, h: 'الأعمال' },
+  { s: '.service-name', i: 10, h: 'الخدمات الاجتماعية' },
+  { s: '.service-name', i: 11, h: 'الزراعة' },
+  { s: '.service-name', i: 12, h: 'العدل' },
+  { s: '.service-name', i: 13, h: 'بوابة الشركاء' },
+  { s: '.service-name', i: 14, h: 'الإشعارات' },
+  { s: '.service-name', i: 15, h: 'توسع لا نهائي' },
+  { s: '.service-name', i: 16, h: 'التحليلات' },
+  { s: '.service-name', i: 17, h: 'رصد الأحداث' },
+  { s: '.service-name', i: 18, h: 'الاستجابة للطوارئ' },
+
+  // SERVICES descriptions
+  { s: '.service-desc', i:  0, h: 'حارس النظام بالكامل. سلطة مركزية للأدوار والأذونات وهويات الخدمات.' },
+  { s: '.service-desc', i:  1, h: 'دفتر حسابات ثابت للإضافة فقط لضمان الشفافية. كل تفاعل مشفر ومسجل.' },
+  { s: '.service-desc', i:  2, h: 'الهوية الوطنية، ملف المواطن، وأساس التحقق البيومتري.' },
+  { s: '.service-desc', i:  3, h: 'إصدار آمن، تجديدات مرتبطة بالبيومترية، ووثائق السفر.' },
+  { s: '.service-desc', i:  4, h: 'تسجيل مركزي، رخص، وتتبع المخالفات المرورية.' },
+  { s: '.service-desc', i:  5, h: 'صكوك ملكية سيادية ونقل ملكية عبر Hyperledger Fabric.' },
+  { s: '.service-desc', i:  6, h: 'تقديم ضريبي موحد، سجلات، ومعالجة دفع آمنة.' },
+  { s: '.service-desc', i:  7, h: 'مراقبة صحية وطنية وتبادل آمن لسجلات المرضى.' },
+  { s: '.service-desc', i:  8, h: 'سجلات طلاب موحدة، تسجيل، وشهادات أكاديمية.' },
+  { s: '.service-desc', i:  9, h: 'تسجيل الشركات، التصاريح التجارية، ورخص التجارة.' },
+  { s: '.service-desc', i: 10, h: 'توزيع المساعدات الوطنية، تطبيقات الإسكان، والمنافع الاجتماعية.' },
+  { s: '.service-desc', i: 11, h: 'إدارة استخدام الأراضي، سجلات المحاصيل، وتصاريح الري.' },
+  { s: '.service-desc', i: 12, h: 'سجلات محاكم آمنة وتتبع السجل الجنائي.' },
+  { s: '.service-desc', i: 13, h: 'بوابة API للأعمال (B2B) للبنوك والتأمين والشركاء الدوليين.' },
+  { s: '.service-desc', i: 14, h: 'إشعارات عبر قنوات متعددة (Push/SMS/Email) بقوالب عربية سيادية.' },
+  { s: '.service-desc', i: 15, h: 'تسمح بنية الخدمات المصغرة بانضمام أي وزارة أو قسم جديد دون توقف.' },
+  { s: '.service-desc', i: 16, h: 'رؤى سكانية مع ضمان الخصوصية التفاضلية.' },
+  { s: '.service-desc', i: 17, h: 'مسح ذكاء اصطناعي في الوقت الفعلي للشذوذ البيئي والأمني.' },
+  { s: '.service-desc', i: 18, h: 'تنبيه مؤتمت وتوجيه للوكالات المختصة في الأزمات الوطنية.' },
+
+  // SERVICE TECH
+  { s: '.service-tech', i: 0, h: 'المحرك الأساسي: <strong>Go / gRPC</strong>' },
+  { s: '.service-tech', i: 1, h: 'قاعدة البيانات: <strong>PostgreSQL</strong>' },
+  { s: '.service-tech', i: 2, h: 'المحرك: <strong>Go / Kafka</strong>' },
+  { s: '.service-tech', i: 3, h: 'التخزين: <strong>Cassandra</strong>' },
+  { s: '.service-tech', i: 15, h: 'التنظيم: <strong>Kubernetes</strong>' },
+
+  // SECURITY layers
+  { s: '.sec-layer-title', i: 0, h: '<small>الشبكة</small>تقسيم أربع طبقات' },
+  { s: '.sec-layer-title', i: 1, h: '<small>الهوية</small>TLS متبادل عبر Istio' },
+  { s: '.sec-layer-title', i: 2, h: '<small>الأسرار</small>Vault · HSM · مشاركة شامير' },
+  { s: '.sec-layer-title', i: 3, h: '<small>التخزين</small>ثلاث طبقات تشفير' },
+  { s: '.sec-layer-title', i: 4, h: '<small>التدقيق</small>سجلات ثابتة، معزولة فيزيائياً' },
+  { s: '.sec-layer-title', i: 5, h: '<small>الخصوصية</small>الخصوصية التفاضلية في التحليلات' },
+  { s: '.sec-layer-title', i: 6, h: '<small>خط الأنابيب</small>بوابات صارمة قبل الإنتاج' },
+  { s: '.sec-layer-desc', i: 0, h: 'DMZ → API Gateway → طبقة الخدمات → طبقة البيانات. جدران حماية ترفض-بالافتراضي بين كل طبقة. طبقة البيانات ليس لديها إنترنت، ولا إدارة عن بُعد، ولا IPs عامة. وصول المشرفين يتطلب الحضور الجسدي والتفويض متعدد الأشخاص. عزل شبكي على مستوى البنوك.' },
+  { s: '.sec-layer-desc', i: 1, h: 'كل خدمة مصغّرة لديها شهادتها الخاصة. Istio يفرض mTLS على كل استدعاء بين الخدمات تلقائياً. لا نص عادي بين الخدمات. هوية الخدمة تُتحقق منها على مستوى الشبكة قبل تشغيل أي كود.' },
+  { s: '.sec-layer-desc', i: 2, h: 'مجموعة Vault من ثلاثة عقد تُفتح تلقائياً من HSM بـ PKCS#11 (FIPS 140-2 Level 3+). مفتاح HSM الرئيسي نفسه مقسّم إلى خمسة أسهم شامير — أي ثلاثة تُعيد تركيبه. بحيازة كبار المسؤولين على YubiKeys FIPS في خزائن مادية. لا شخص واحد يملك مفاتيح المملكة.' },
+  { s: '.sec-layer-desc', i: 3, h: 'الطبقة 1: LUKS AES-256-XTS على كل قرص. الطبقة 2: ملفات قاعدة البيانات محمية من تحتها. الطبقة 3: AES-256-GCM على مستوى التطبيق للبصمات الحيوية والسجلات الطبية والسجلات الجنائية ومسح المستندات. كل طبقة تستخدم مفاتيح مختلفة مشتقة من Vault.' },
+  { s: '.sec-layer-desc', i: 4, h: 'كل وصول، كل استعلام، كل تعديل يُسجَّل في نظام منفصل للقراءة فقط. تخزين يُضاف إليه فقط ولا يمكن حذفه. يمكن للمواطنين عرض سجل وصولهم الخاص في تطبيق الجوال. يمكن للمدققين الاستعلام عن أي سجل عبر الأقسام.' },
+  { s: '.sec-layer-desc', i: 5, h: 'كل مخرجات تحليلية تستخدم تقنيات الخصوصية التفاضلية. تحصل الحكومة على رؤى على مستوى السكان. تبقى السجلات الفردية غير قابلة للتعريف رياضياً. لا تظهر بيانات مواطن خام أبداً في تقرير.' },
+  { s: '.sec-layer-desc', i: 6, h: 'Trivy CVE scan + GitLab SAST + كشف الأسرار + فحص Buf proto + k6 load regression — جميعها تمنع النشر عند الفشل. موافقة مهندسَين أقدمَين مطلوبة لكل نشر إنتاجي. رجوع تلقائي عند معدل خطأ 1%.' },
+
+  // NFC
+  { s: '.nfc-detail h4', i: 0, h: 'Java Card · EAL5+' },
+  { s: '.nfc-detail h4', i: 1, h: 'التحقق البيومتري على البطاقة' },
+  { s: '.nfc-detail h4', i: 2, h: 'PKI حكومي · ECDSA P-256' },
+  { s: '.nfc-detail h4', i: 3, h: 'CRL ساعية · OCSP في الوقت الفعلي' },
+  { s: '.nfc-detail h4', i: 4, h: 'إمكانية الوصول، بالتصميم' },
+  { s: '.nfc-detail p', i: 0, h: 'عنصر أمان مقاوم للتلاعب. العمليات التشفيرية تحدث على الشريحة ذاتها — المفتاح الخاص للمواطن لا يتعرض للهاتف أو الشبكة أو نظام التشغيل أبداً.' },
+  { s: '.nfc-detail p', i: 1, h: 'بصمة الإصبع أو القالب الوجهي مشفّران على البطاقة. الشريحة تُحقق من المطابقة بنفسها. الهاتف مجرد وسيط — لا يحمل القالب أو المفتاح أبداً.' },
+  { s: '.nfc-detail p', i: 2, h: 'CA جذر غير متصل يوقّع CA إصدار متصل. CA الإصدار يوقّع شهادة مواطن لمدة 5 سنوات. اختراق CA الإصدار يمكن استرداده دون المساس بالجذر.' },
+  { s: '.nfc-detail p', i: 3, h: 'البطاقة المفقودة أو المسروقة تُلغى خلال دقائق. مستجيب OCSP يرفض في الوقت الفعلي. CRL المخزّن مؤقتاً في تطبيقات الجوال يضمن أن البطاقات القديمة تصبح غير صالحة حتى بدون إنترنت خلال 24 ساعة.' },
+  { s: '.nfc-detail p', i: 4, h: 'بصمة القزحية والصوت للمواطنين ذوي البصمات الباهتة. مسارات PIN والتفويض الوصائي. التحقق الشخصي في أي مكتب محافظة. لا أحد يُحجب.' },
+
+  // TECH STACK headers
+  { s: '.stack-group h4', i: 0, h: 'اللغات' },
+  { s: '.stack-group h4', i: 1, h: 'طبقة البيانات' },
+  { s: '.stack-group h4', i: 2, h: 'التواصل' },
+  { s: '.stack-group h4', i: 3, h: 'الأمن' },
+  { s: '.stack-group h4', i: 4, h: 'المنصة · CI/CD' },
+  { s: '.stack-group h4', i: 5, h: 'المراقبة' },
+  { s: '.stack-group h4', i: 6, h: 'متخصص' },
+  { s: '.stack-group h4', i: 7, h: 'الاختبار' },
+
+  // TECH STACK keys
+  { s: '.stack-key', i: 0, h: 'الخدمات الأساسية' },
+  { s: '.stack-key', i: 1, h: 'خدمات الوزارات' },
+  { s: '.stack-key', i: 2, h: 'الجوال' },
+  { s: '.stack-key', i: 3, h: 'بوابات الويب' },
+  { s: '.stack-key', i: 4, h: 'البيانات المنظمة' },
+  { s: '.stack-key', i: 5, h: 'المستندات' },
+  { s: '.stack-key', i: 6, h: 'تجميع الاتصالات' },
+  { s: '.stack-key', i: 7, h: 'التخزين المؤقت' },
+  { s: '.stack-key', i: 8, h: 'التحليلات' },
+  { s: '.stack-key', i: 9, h: 'داخلي' },
+  { s: '.stack-key', i: 10, h: 'API عام' },
+  { s: '.stack-key', i: 11, h: 'API الشركاء' },
+  { s: '.stack-key', i: 12, h: 'غير متزامن' },
+  { s: '.stack-key', i: 13, h: 'شبكة الخدمات' },
+  { s: '.stack-key', i: 14, h: 'الأسرار' },
+  { s: '.stack-key', i: 15, h: 'التشفير' },
+  { s: '.stack-key', i: 16, h: 'الهوية' },
+  { s: '.stack-key', i: 17, h: 'التحكم بالوصول' },
+  { s: '.stack-key', i: 18, h: 'التدقيق' },
+  { s: '.stack-key', i: 19, h: 'التنظيم' },
+  { s: '.stack-key', i: 20, h: 'CI/CD' },
+  { s: '.stack-key', i: 21, h: 'بوابات الأمن' },
+  { s: '.stack-key', i: 22, h: 'النشر' },
+  { s: '.stack-key', i: 23, h: 'المستودع' },
+  { s: '.stack-key', i: 24, h: 'المقاييس' },
+  { s: '.stack-key', i: 25, h: 'السجلات' },
+  { s: '.stack-key', i: 26, h: 'التتبع' },
+  { s: '.stack-key', i: 27, h: 'المعمارية' },
+  { s: '.stack-key', i: 28, h: 'بلوكشين' },
+  { s: '.stack-key', i: 29, h: 'كود السلسلة' },
+  { s: '.stack-key', i: 30, h: 'أقران المصادقة' },
+  { s: '.stack-key', i: 31, h: 'الوحدة' },
+  { s: '.stack-key', i: 32, h: 'العقد' },
+  { s: '.stack-key', i: 33, h: 'التكامل' },
+  { s: '.stack-key', i: 34, h: 'الأداء' },
+  { s: '.stack-key', i: 35, h: 'E2E' },
+
+  // ARABIC section bullets
+  { s: '.ar-bullet-body h4', i: 0, h: 'RTL · من اليمين إلى اليسار' },
+  { s: '.ar-bullet-body h4', i: 1, h: 'تخزين ثنائي اللغة <span class="ar">اسماء</span>' },
+  { s: '.ar-bullet-body h4', i: 2, h: 'فهرسة واعية باللغة العربية' },
+  { s: '.ar-bullet-body h4', i: 3, h: 'هجري <span class="ar">هجري</span> · ميلادي' },
+  { s: '.ar-bullet-body h4', i: 4, h: 'سجلات رسمية ثنائية اللغة' },
+  { s: '.ar-bullet-body p',  i: 0, h: 'كل واجهة مختبرة باللغة العربية RTL والإنجليزية LTR. خصائص CSS المنطقية على الويب. React Native I18nManager + Flutter Directionality على الجوال.' },
+  { s: '.ar-bullet-body p',  i: 1, h: 'عربي + لاتيني ترجمة صوتية (معيار ALA-LC). المواطنون يختارون تهجئتهم اللاتينية المفضلة. كلا الشكلين قابلان للبحث، وكلاهما رسمي.' },
+  { s: '.ar-bullet-body p',  i: 2, h: 'محلل Elasticsearch العربي يتعامل مع الهمزة، الألف، التاء المربوطة + التجذيع. البحث عن "محمد" يجد "مُحَمَّد" — التشكيل، المقالات، والجذور كلها معيارية.' },
+  { s: '.ar-bullet-body p',  i: 3, h: 'هجري لواجهة المستخدم العربية عند التفضيل (مكتبة umalqura). ميلادي في كل مكان داخلياً. يرى المواطنون التواريخ بالتقويم المفضل لديهم دون تنازل.' },
+  { s: '.ar-bullet-body p',  i: 4, h: 'كل شهادة وصك وإشعار يُولَّد بلغتين. WeasyPrint وiText 7 مع خطوط Noto Naskh Arabic. عرض نص ثنائي الاتجاه، صحيح يونيكود.' },
+
+  // QUOTES
+  { s: '.divider-quote q',    i: 0, h: 'مبني كالبنك. يُدار كمصلحة عامة. مستضاف على الأرض السورية.' },
+  { s: '.divider-quote .attr', i: 0, h: '— الالتزام المعماري' },
+  { s: '.divider-quote q',    i: 1, h: 'كالصراف الآلي، البطاقة تعرفك. كالخزنة، النظام يحميك.' },
+  { s: '.divider-quote .attr', i: 1, h: '— التزام الهوية' },
+
+  // BLOCKCHAIN
+  { s: '.fabric-cert-header span:first-child', h: 'شهادة ملكية · نموذج' },
+  { s: '.fabric-prose h3',  h: 'أربعة أقران مصادقة. ثلاثة قنوات. سجل وحيد للحقيقة.' },
+  { s: '.fabric-prose > p', h: 'وزارة العدل، وزارة المالية، سجل العقارات، والعقدة المركزية في دمشق. يجب أن يتوافق جميع الأربعة قبل الالتزام بأي نقل عقاري أو سجل قانوني.' },
+  { s: '.fabric-channel-tag',  i: 0, h: 'العقارات' },
+  { s: '.fabric-channel-name', i: 0, h: 'الصكوك والنقل' },
+  { s: '.fabric-channel-tag',  i: 1, h: 'العدالة' },
+  { s: '.fabric-channel-name', i: 1, h: 'سجلات المحاكم' },
+  { s: '.fabric-channel-tag',  i: 2, h: 'السجل' },
+  { s: '.fabric-channel-name', i: 2, h: 'الشهادات' },
+  { s: '.fabric-quote p', h: 'السوريون في الخارج، والمحاكم الأجنبية، والمؤسسات الدولية يمكنها التحقق من ملكية العقارات السورية بدون اتصال — باستخدام المفتاح العام للحكومة فقط. حتى لو دُمِّر كل سيرفر مركزي، يبقى السجل.' },
+
+  // ROADMAP phases
+  { s: '.phase-content h3', i: 0, h: '<span class="accent">الأساس</span>' },
+  { s: '.phase-content h3', i: 1, h: 'الخدمات الأساسية وتجربة <span class="accent">المواطن</span>' },
+  { s: '.phase-content h3', i: 2, h: 'الذكاء الاصطناعي <span class="accent">والتحليلات</span>' },
+  { s: '.phase-content h3', i: 3, h: 'رصد الأحداث في الوقت الفعلي <span class="accent">والاستجابة</span>' },
+  { s: '.phase-content h3', i: 4, h: 'الذكاء <span class="accent">الاستراتيجي</span>' },
+  { s: '.phase-content h3', i: 5, h: 'التكامل <span class="accent">الدولي</span>' },
+  { s: '.phase-tagline', i: 0, h: 'بناء البنية التحتية غير القابلة للكسر. لا خدمات حتى تكون البنية صلبة.' },
+  { s: '.phase-tagline', i: 1, h: 'إطلاق الخدمات بترتيب الأولوية. تشغيل المواطنين على النظام.' },
+  { s: '.phase-tagline', i: 2, h: 'إضافة الذكاء على النظام العامل. لا استبدال للحكم — تعزيزه.' },
+  { s: '.phase-tagline', i: 3, h: 'الانتقال من ردة الفعل إلى الاستباق. النظام يتوقع.' },
+  { s: '.phase-tagline', i: 4, h: 'تحويل البيانات إلى رؤية وطنية استراتيجية.' },
+  { s: '.phase-tagline', i: 5, h: 'فتح النظام، بشروط سوريا.' },
+  { s: '.phase-gate', i: 0, h: 'بوابة · تدقيق أمني + تدريب DR' },
+  { s: '.phase-gate', i: 1, h: 'بوابة · الأمن + تجربة المستخدم + الأداء' },
+  { s: '.phase-gate', i: 2, h: 'بوابة · دقة الذكاء الاصطناعي + مراجعة أخلاقية' },
+  { s: '.phase-gate', i: 3, h: 'بوابة · محاكاة + معايير وقت الاستجابة' },
+  { s: '.phase-gate', i: 4, h: 'بوابة · دقة البيانات + مراجعة القيادة' },
+
+  // ROADMAP items
+  { s: '.phase-item', i:  0, h: '١٤ موقع محافظة + مركز دمشق' },
+  { s: '.phase-item', i:  1, h: '٣ مسارات شبكة متكررة لكل محافظة' },
+  { s: '.phase-item', i:  2, h: 'Citus PostgreSQL + MongoDB مقسمة بهوية المواطن' },
+  { s: '.phase-item', i:  3, h: 'PgBouncer · Redis Clusters · Kafka · Istio' },
+  { s: '.phase-item', i:  4, h: 'Vault · HSM · مراسم شامير · Root CA' },
+  { s: '.phase-item', i:  5, h: 'تشفير بـ ٣ طبقات للبيانات الساكنة' },
+  { s: '.phase-item', i:  6, h: 'إدارة الهوية · التدقيق · بوابة API (Go)' },
+  { s: '.phase-item', i:  7, h: 'GitLab · ArgoCD · Trivy · k6 · Buf' },
+  { s: '.phase-item', i:  8, h: 'Prometheus · Grafana · ELK · Jaeger' },
+  { s: '.phase-item', i:  9, h: 'شبكة هايبرليدجر فابريك' },
+  { s: '.phase-item', i: 10, h: 'مكتبة واجهة المستخدم العربية RTL' },
+  { s: '.phase-item', i: 11, h: 'أدلة النسخ الاحتياطي وDR + أول تدريب' },
+  { s: '.phase-item', i: 12, h: 'الهوية الرقمية ← الجوازات ← المركبات ← العقارات ← الضرائب' },
+  { s: '.phase-item', i: 13, h: 'برنامج إصدار بطاقة NFC الذكية' },
+  { s: '.phase-item', i: 14, h: 'تطبيقات المواطن الجوالة (iOS + Android)' },
+  { s: '.phase-item', i: 15, h: 'البوابة الحكومية الداخلية' },
+  { s: '.phase-item', i: 16, h: 'بوابة API للشركاء' },
+  { s: '.phase-item', i: 17, h: 'ربط العقارات والعدل بشبكة فابريك' },
+  { s: '.phase-item', i: 18, h: 'بدء هجرة بيانات المرحلة أ القديمة' },
+  { s: '.phase-item', i: 19, h: 'ذكاء اصطناعي لكشف الاحتيال' },
+  { s: '.phase-item', i: 20, h: 'معالجة المستندات المؤتمتة (OCR)' },
+  { s: '.phase-item', i: 21, h: 'تحليلات تنبؤية لاحتياجات المواطنين' },
+  { s: '.phase-item', i: 22, h: 'مستودع بيانات تحليلي منفصل' },
+  { s: '.phase-item', i: 23, h: 'إطار عمل الذكاء الاصطناعي القابل للتفسير' },
+  { s: '.phase-item', i: 24, h: 'وكلاء ذكاء اصطناعي لمسح تدفقات البيئة والصحة' },
+  { s: '.phase-item', i: 25, h: 'رصد الكوارث: حرائق، زلازل، فيضانات' },
+  { s: '.phase-item', i: 26, h: 'تنبيهات الجريمة لأقرب مخفر شرطة' },
+  { s: '.phase-item', i: 27, h: 'رصد تفشي الأمراض ← وزارة الصحة' },
+  { s: '.phase-item', i: 28, h: 'توجيه ذكي للتنبيهات' },
+  { s: '.phase-item', i: 29, h: 'أدوات التخطيط الحكومي بعيد المدى' },
+  { s: '.phase-item', i: 30, h: 'توقعات سكانية واقتصادية' },
+  { s: '.phase-item', i: 31, h: 'تحليل رضا المواطنين' },
+  { s: '.phase-item', i: 32, h: 'مقارنة معيارية بين المحافظات' },
+  { s: '.phase-item', i: 33, h: 'لوحات بيانات استراتيجية للوزراء' },
+  { s: '.phase-item', i: 34, h: 'تكامل آمن مع الجوار للتجارة' },
+  { s: '.phase-item', i: 35, h: 'السفر عبر الحدود + التحقق من الهوية' },
+  { s: '.phase-item', i: 36, h: 'تسهيل الأعمال والتجارة الدولية' },
+  { s: '.phase-item', i: 37, h: 'خدمات اللاجئين والمغتربين' },
+  { s: '.phase-item', i: 38, h: 'التوافق مع المعايير الدولية' },
+
+  // EXPANDABILITY
+  { s: '.expand-text h3.sub', h: 'لا تُمَس أي خدمة قائمة.' },
+  { s: '.expand-text > p:first-of-type', h: 'أداة السقالة في المرحلة 1 تولّد هيكل خدمة جاهز للإنتاج مع جميع مخاوف البنية التحتية مُوصَّلة مسبقاً: المصادقة، سجل التدقيق، استرداد الأسرار، التتبع الموزع، المقاييس، مسبارات الصحة، mTLS تلقائي.' },
+  { s: '.step-text', i: 0, h: 'تعريف عقد gRPC في <em>proto/tourism/v1/tourism.proto</em>' },
+  { s: '.step-text', i: 1, h: 'توليد الهيكل الأساسي <em>مع ربط الهوية والتدقيق وVault</em>' },
+  { s: '.step-text', i: 2, h: 'التسجيل في IAM <em>عبر الإعدادات — لا تغيير في الكود</em>' },
+  { s: '.step-text', i: 3, h: 'تجهيز البنية التحتية <em>جداول Citus، ومجموعات Redis</em>' },
+  { s: '.step-text', i: 4, h: 'تنفيذ منطق العمل <em>كود النطاق فقط</em>' },
+  { s: '.step-text', i: 5, h: 'الإضافة لخط الأنابيب <em>محفز مسار، monorepo</em>' },
+  { s: '.step-text', i: 6, h: 'الربط ببوابة API <em>تحديث إعدادات التوجيه</em>' },
+  { s: '.step-text', i: 7, h: 'النشر <em>أزرق-أخضر، موافقة مهندسَين</em>' },
+  { s: '.expand-item', i: 0, h: 'وزارة السياحة — تسجيل السياح، المواقع التراثية' },
+  { s: '.expand-item', i: 1, h: 'وزارة الاتصالات — شرائح SIM، الطيف الترددي' },
+  { s: '.expand-item', i: 2, h: 'وزارة الطاقة — توصيلات الخدمات، تصاريح الشبكة' },
+  { s: '.expand-item', i: 3, h: 'وزارة الثقافة — الفعاليات الثقافية، ترخيص الفنانين' },
+  { s: '.expand-item', i: 4, h: 'وزارة الخارجية — التأشيرات، الاعتمادات الدبلوماسية' },
+
+  // WAVES
+  { s: '.wave-name', i:  0, h: 'الإعداد' },
+  { s: '.wave-name', i:  1, h: 'المادي والشبكي' },
+  { s: '.wave-name', i:  2, h: 'المنصة الأساسية' },
+  { s: '.wave-name', i:  3, h: 'الأساس الأمني' },
+  { s: '.wave-name', i:  4, h: 'طبقة البيانات' },
+  { s: '.wave-name', i:  5, h: 'الرسائل · الشبكة · المراقبة' },
+  { s: '.wave-name', i:  6, h: 'منصة CI/CD' },
+  { s: '.wave-name', i:  7, h: 'المعايير والأدوات' },
+  { s: '.wave-name', i:  8, h: 'الخدمات الأساسية' },
+  { s: '.wave-name', i:  9, h: 'Hyperledger Fabric' },
+  { s: '.wave-name', i: 10, h: 'أساس الواجهة الأمامية' },
+  { s: '.wave-name', i: 11, h: 'النسخ الاحتياطي والتعافي' },
+  { s: '.wave-name', i: 12, h: 'بوابة المرحلة الأولى' },
+  { s: '.wave-label', i: 12, h: 'نهائي' },
+
+  // QUALITY PILLARS
+  { s: '.pillar-title', i: 0, h: 'اختبار <span class="accent">خمس طبقات</span>' },
+  { s: '.pillar-title', i: 1, h: 'مراقبة <span class="accent">طبقة بطبقة</span>' },
+  { s: '.pillar-title', i: 2, h: 'تسليم <span class="accent">مستمر</span>' },
+  { s: '.pillar-title', i: 3, h: 'تعافٍ <span class="accent">مُثبَت</span>' },
+  { s: '.pillar-body', i: 0, h: 'اختبارات وحدة لمنطق الأعمال (تغطية 80%). اختبارات عقد لـ API الخدمات. اختبارات تكامل مع بنية تحتية حقيقية عبر Testcontainers. اختبارات أداء عند 500 ألف مستخدم متزامن. اختبارات E2E على البيئة التجريبية لسبع رحلات مواطن حرجة.' },
+  { s: '.pillar-body', i: 1, h: 'كل مقياس، سجل، وتتبع من 14 محافظة و18 خدمة يتدفق إلى دمشق. Prometheus يستطلع كل 15 ثانية. Elasticsearch يفهرس السجلات في ميلي ثانية. كل طلب مواطن يحمل Trace ID — يمكن لموظفي الدعم إيجاد أي فشل في ثوانٍ.' },
+  { s: '.pillar-body', i: 2, h: 'GitLab CI يشغّل خط أنابيب من سبع مراحل. ArgoCD ينشر أزرق-أخضر عبر تحويل الحركة. Prometheus يراقب عند كل نسبة مئوية. رجوع تلقائي في 30 ثانية إذا تجاوز معدل الخطأ 1%. موافقة مهندسَين أقدمَين مطلوبة لكل نشر إنتاجي.' },
+  { s: '.pillar-body', i: 3, h: 'نسخ مستمر مع لقطات ساعية. RPO صفر، RTO أقل من ساعة. نسخ احتياطية مخزّنة في ثلاثة مواقع سورية، مشفّرة بمفاتيح منفصلة. تدريبات التعافي من الكوارث الشهرية إلزامية — استعادة كاملة من النسخة الاحتياطية، نتائج موثّقة.' },
+
+  // CLOSING
+  { s: '.closing-title', h: 'جمهورية رقمية، مبنيّة <em class="accent">لتبقى</em>.' },
+  { s: '.closing-note',  h: 'الإصدار 2.0 · ١٦ · ٠٥ · ٢٠٢٦ · سوريا' },
+
+  // FOOTER
+  { s: '.footer-credit-label',      h: 'المهندس المعماري والمصمم' },
+  { s: '.footer-bottom div:nth-child(1)', h: 'سوريا الرقمية — وثيقة التصميم' },
+  { s: '.footer-bottom div:nth-child(3)', h: 'سري — التحول الرقمي الوطني' },
+
+  // EXPANSION CARD
+  { s: '.service--expand .service-name', h: 'توسع لا نهائي' },
+  { s: '.service--expand .service-desc', h: 'تسمح المعمارية بنمو غير محدود. يمكن إضافة أي وزارة أو قسم جديد كخدمة مصغّرة سيادية دون التأثير على الأنظمة القائمة.' },
+  { s: '.service--expand .service-phase', h: 'عابر للمراحل' },
+  { s: '.service--expand .service-num', h: '+' },
+  { s: '.service--expand .service-lang', h: 'توسع' }
+];
+
+// ── Translation engine ─────────────────────────────────────────
+const savedEn = new Map();
+
+function applyLang(lang) {
+  AR.forEach(({ s, i, h, allowMultiple }) => {
+    const els = document.querySelectorAll(s);
+    if (allowMultiple) {
+      els.forEach((el, idx) => {
+        if (i !== undefined && idx < i) return; 
+        const key = s + idx;
+        if (lang === 'ar') {
+          if (!savedEn.has(key)) savedEn.set(key, el.innerHTML);
+          el.innerHTML = h;
+        } else {
+          const orig = savedEn.get(key);
+          if (orig !== undefined) el.innerHTML = orig;
+        }
+      });
+    } else {
+      const key = s + (i ?? '');
+      const el  = (i !== undefined) ? els[i] : els[0];
+      if (!el) return;
+      if (lang === 'ar') {
+        if (!savedEn.has(key)) savedEn.set(key, el.innerHTML);
+        el.innerHTML = h;
+      } else {
+        const orig = savedEn.get(key);
+        if (orig !== undefined) el.innerHTML = orig;
+      }
+    }
+  });
+  document.documentElement.lang = lang;
+  document.documentElement.dir  = lang === 'ar' ? 'rtl' : 'ltr';
+  const sel = document.getElementById('langSelect');
+  if (sel) sel.value = lang;
+  try { localStorage.setItem('lang', lang); } catch (_) {}
+}
+
+function toggleLang() {
+  applyLang(document.documentElement.lang === 'ar' ? 'en' : 'ar');
+}
+
+// Restore saved language preference
+try {
+  const saved = localStorage.getItem('lang');
+  if (saved === 'ar') applyLang('ar');
+} catch (_) {}
+
+// ── Font size control ──────────────────────────────────────────
+function setFS(size) {
+  document.documentElement.classList.remove('fs-sm', 'fs-lg');
+  if (size !== 'md') document.documentElement.classList.add('fs-' + size);
+  const sel = document.getElementById('fsSelect');
+  if (sel) sel.value = size;
+  try { localStorage.setItem('fs', size); } catch (_) {}
+}
+
+(function initFS() {
+  let size = 'md';
+  try { size = localStorage.getItem('fs') || 'md'; } catch (_) {}
+  setFS(size);
+})();
+
+// ── Scroll progress bar & back-to-top ─────────────────────────
+const _sp = document.getElementById('scroll-progress');
+const _bt = document.getElementById('back-top');
+
+window.addEventListener('scroll', function() {
+  const scrolled = window.scrollY;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  if (_sp) _sp.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+  if (_bt) _bt.classList.toggle('visible', scrolled > 400);
+}, { passive: true });
+
+// ── Font pair control ──────────────────────────────────────────
+function setFontPair(pair) {
+  document.documentElement.classList.remove('font-pair-1', 'font-pair-2', 'font-pair-3');
+  if (pair !== 'default') {
+    document.documentElement.classList.add('font-pair-' + pair);
+  }
+  const sel = document.getElementById('fontSelect');
+  if (sel) sel.value = pair;
+  try { localStorage.setItem('font-pair', pair); } catch (_) {}
+}
+
+(function initFont() {
+  let pair = 'default';
+  try { pair = localStorage.getItem('font-pair') || 'default'; } catch (_) {}
+  setFontPair(pair);
+})();
+
+// ── Intersection Observer for reveals ──────────────────────────
+const revealCallback = (entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('reveal--active');
+      entry.target.classList.add('stagger-reveal--active');
+      observer.unobserve(entry.target);
+    }
+  });
+};
+
+const revealObserver = new IntersectionObserver(revealCallback, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+});
+
+document.querySelectorAll('.reveal, .stagger-reveal').forEach(el => {
+  revealObserver.observe(el);
+});
+
+// ── Theme control ──────────────────────────────────────────────
+function applyTheme(theme) {
+  document.documentElement.classList.remove('theme-light');
+  if (theme === 'light') document.documentElement.classList.add('theme-light');
+  const sel = document.getElementById('themeSelect');
+  if (sel) sel.value = theme;
+  try { localStorage.setItem('theme', theme); } catch (_) {}
+}
+
+(function initTheme() {
+  let theme = 'dark';
+  try { theme = localStorage.getItem('theme') || 'dark'; } catch (_) {}
+  applyTheme(theme);
+})();
+</script>
+
+<button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</body>
+</html>
