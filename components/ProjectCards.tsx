@@ -71,7 +71,7 @@ function SpotlightCard({ project, className = "" }: SpotlightCardProps) {
             </h4>
 
             {/* Project Description */}
-            <p className="mt-3 text-zinc-300 text-sm sm:text-base font-normal leading-relaxed">
+            <p className="mt-3 text-zinc-300 text-sm sm:text-base font-[var(--font-lora)] italic leading-relaxed">
               {project.description}
             </p>
           </div>
@@ -132,7 +132,7 @@ export default function ProjectCards() {
           <h2 className="font-[var(--font-playfair)] font-black text-white text-4xl sm:text-5xl tracking-tight">
             Selected Projects
           </h2>
-          <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
+          <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-[var(--font-lora)] italic leading-relaxed tracking-wide">
             Exploring scalable cloud-native architectures, time-series machine learning models, and complex data pipeline engineering.
           </p>
         </div>

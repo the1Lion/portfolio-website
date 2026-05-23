@@ -36,7 +36,7 @@ export default function ExperienceTimeline() {
           <h2 className="font-[var(--font-playfair)] font-black text-white text-4xl sm:text-5xl tracking-tight">
             Experience Timeline
           </h2>
-          <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
+          <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-[var(--font-lora)] italic leading-relaxed tracking-wide">
             Scroll to see my professional evolution and academic progression.
           </p>
         </div>
@@ -101,7 +101,7 @@ export default function ExperienceTimeline() {
                     </span>
 
                     {/* Description */}
-                    <p className="mt-3 text-zinc-300 text-sm sm:text-base font-normal leading-relaxed max-w-2xl">
+                    <p className="mt-3 text-zinc-300 text-sm sm:text-base font-[var(--font-lora)] italic leading-relaxed max-w-2xl">
                       {role.description}
                     </p>
 
@@ -163,7 +163,7 @@ export default function ExperienceTimeline() {
                     </h4>
 
                     {/* Description */}
-                    <p className="mt-3 text-zinc-300 text-sm sm:text-base font-normal leading-relaxed max-w-2xl">
+                    <p className="mt-3 text-zinc-300 text-sm sm:text-base font-[var(--font-lora)] italic leading-relaxed max-w-2xl">
                       {edu.details}
                     </p>
 
@@ -172,7 +172,7 @@ export default function ExperienceTimeline() {
                         <span className="text-[10px] sm:text-xs uppercase font-mono tracking-wider text-violet-400 block mb-1.5 font-extrabold">
                           Bachelor Thesis
                         </span>
-                        <p className="text-sm sm:text-base font-bold text-white leading-normal">
+                        <p className="font-[var(--font-playfair)] font-bold text-white text-sm sm:text-base leading-normal">
                           {edu.thesis.title}
                         </p>
                         <div className="flex flex-wrap gap-2 mt-3">

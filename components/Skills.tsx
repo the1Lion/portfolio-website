@@ -69,7 +69,7 @@ export default function Skills() {
           <h2 className="font-[var(--font-playfair)] font-black text-white text-4xl sm:text-5xl tracking-tight">
             Skills Bento Box
           </h2>
-          <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
+          <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-[var(--font-lora)] italic leading-relaxed tracking-wide">
             A comprehensive overview of my technological stacks, frameworks, and database preferences.
           </p>
         </div>
@@ -119,7 +119,7 @@ export default function Skills() {
                         key={skill.name}
                         className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900 border border-white/10 transition-all duration-300 hover:bg-neutral-800 hover:border-white/20 select-none"
                       >
-                        <span className="text-sm font-semibold text-white font-[var(--font-inter)]">
+                        <span className="text-sm font-semibold text-white font-[var(--font-jetbrains)]">
                           {skill.name}
                         </span>
                         {skill.level && (
