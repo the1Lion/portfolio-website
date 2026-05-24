@@ -377,9 +377,180 @@ body::after {
   color: var(--accent);
   text-transform: uppercase;
 }
+/* Mobile Menu Button */
+.nav-toggle {
+  display: none;
+}
+
 @media (max-width: 920px) {
-  .nav-links { display: none; }
   .nav-brand-ar { display: none; }
+
+  /* Show hamburger on mobile */
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 110;
+    position: relative;
+  }
+  .nav-toggle-bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+    transition: transform 0.3s var(--ease-out), opacity 0.3s var(--ease-out), background-color 0.3s;
+  }
+  
+  /* Animate bars to X when open */
+  .nav--open .nav-toggle-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .nav--open .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .nav--open .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Mobile Nav Layout */
+  .nav {
+    overflow: hidden;
+    transition: background 0.4s var(--ease-out);
+  }
+  
+  .nav--open {
+    height: 100vh !important;
+    overflow-y: auto;
+    background: var(--bg) !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .nav-inner {
+    transition: all 0.4s var(--ease-out);
+  }
+
+  .nav--open .nav-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto 1fr auto auto;
+    grid-template-areas:
+      "brand toggle"
+      "links links"
+      "ctrl ctrl"
+      "meta meta";
+    gap: 32px;
+    height: auto;
+    align-items: start;
+    padding-bottom: 40px;
+  }
+
+  .nav-brand {
+    grid-area: brand;
+    align-self: center;
+  }
+  
+  .nav-toggle {
+    grid-area: toggle;
+    align-self: center;
+  }
+
+  /* Overwrite display none on mobile when open */
+  .nav-links {
+    grid-area: links;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .nav--open .nav-links {
+    display: flex;
+  }
+
+  .nav-links a {
+    font-family: var(--display);
+    font-size: clamp(24px, 5vw, 32px);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--text);
+    width: 100%;
+    border-bottom: 1px solid rgba(var(--rgb-stone), 0.2);
+    padding-bottom: 10px;
+    transition: transform 0.3s var(--ease-out), color 0.3s;
+  }
+  .nav-links a::after {
+    display: none; /* remove hover line */
+  }
+  .nav-links a:hover {
+    color: var(--accent);
+    transform: translateX(6px);
+  }
+  html[lang="ar"] .nav-links a:hover {
+    transform: translateX(-6px);
+  }
+
+  /* Stagger entry animations for links */
+  .nav--open .nav-links a {
+    animation: slideInUp 0.4s var(--ease-out) both;
+  }
+  .nav--open .nav-links a:nth-child(1) { animation-delay: 0.05s; }
+  .nav--open .nav-links a:nth-child(2) { animation-delay: 0.1s; }
+  .nav--open .nav-links a:nth-child(3) { animation-delay: 0.15s; }
+  .nav--open .nav-links a:nth-child(4) { animation-delay: 0.2s; }
+  .nav--open .nav-links a:nth-child(5) { animation-delay: 0.25s; }
+  .nav--open .nav-links a:nth-child(6) { animation-delay: 0.3s; }
+
+  /* Controls group on mobile */
+  .ctrl-group {
+    grid-area: ctrl;
+    display: none !important; /* Overwritten when open */
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+  .nav--open .ctrl-group {
+    display: flex !important;
+  }
+  .nav--open .ctrl-select {
+    width: 100%;
+    font-size: 11px;
+    padding: 12px 16px;
+    background-position: right 16px center;
+  }
+
+  /* Meta in mobile nav */
+  .nav-meta {
+    grid-area: meta;
+    display: none;
+    text-align: center;
+    margin-top: 10px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+  }
+  .nav--open .nav-meta {
+    display: block;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ════════════════════════════════════════════════════════════ */
@@ -689,7 +860,75 @@ h3.sub {
   gap: clamp(48px, 9vw, 140px);
   align-items: start;
 }
-@media (max-width: 880px) { .vision-grid { grid-template-columns: 1fr; } }
+@media (max-width: 880px) {
+  .vision-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .vision-prose {
+    order: 1;
+    margin-bottom: 32px;
+  }
+  .ref-models {
+    order: 2;
+    position: static;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding: 12px var(--gutter) 24px;
+    margin-left: calc(-1 * var(--gutter));
+    margin-right: calc(-1 * var(--gutter));
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .ref-models::-webkit-scrollbar {
+    display: none;
+  }
+  .ref-model {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+    padding: 20px 24px;
+    gap: 20px;
+    transform: none !important;
+    transition: transform 0.2s var(--ease-out);
+  }
+  .ref-model:active {
+    transform: scale(0.98) !important;
+  }
+  
+  /* Stagger animations on mobile slide horizontally */
+  .ref-models .reveal--active.reveal--left {
+    animation: slideInRightMobile 0.5s var(--ease-out) both;
+  }
+  
+  html[lang="ar"] .ref-models .reveal--active.reveal--left {
+    animation: slideInLeftMobile 0.5s var(--ease-out) both;
+  }
+}
+
+@keyframes slideInRightMobile {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeftMobile {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
 .vision-prose p {
   font-family: var(--display);
@@ -2888,6 +3127,11 @@ html[lang="ar"] #back-top { right: auto; left: 36px; }
         <span class="nav-brand-ar">سوريا الرقمية</span>
       </span>
     </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation" aria-expanded="false">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
     <div class="nav-links">
       <a href="#vision">Vision</a>
       <a href="#architecture">Architecture</a>
@@ -2964,29 +3208,29 @@ html[lang="ar"] #back-top { right: auto; left: 36px; }
   </div>
 
   <div class="vision-grid">
-    <div class="ref-models reveal reveal--left">
-      <div class="ref-model">
+    <div class="ref-models">
+      <div class="ref-model reveal reveal--left">
         <div class="ref-model-flag">SG</div>
         <div>
           <div class="ref-model-name">Singapore</div>
           <div class="ref-model-note">National Digital Identity — NFC + biometric authentication standard.</div>
         </div>
       </div>
-      <div class="ref-model">
+      <div class="ref-model reveal reveal--left">
         <div class="ref-model-flag">EE</div>
         <div>
           <div class="ref-model-name">Estonia</div>
           <div class="ref-model-note">X-Road interoperability — independent ministry microservices.</div>
         </div>
       </div>
-      <div class="ref-model">
+      <div class="ref-model reveal reveal--left">
         <div class="ref-model-flag">AE</div>
         <div>
           <div class="ref-model-name">United Arab Emirates</div>
           <div class="ref-model-note">Smart Dubai — citizen-centric service delivery, regional benchmark.</div>
         </div>
       </div>
-      <div class="ref-model">
+      <div class="ref-model reveal reveal--left">
         <div class="ref-model-flag">SA</div>
         <div>
           <div class="ref-model-name">Saudi Arabia</div>
@@ -4032,6 +4276,25 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
+// ── Mobile Menu Toggle ──────────────────────────────────────────
+const navToggle = document.getElementById('navToggle');
+if (navToggle) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav--open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+    document.body.classList.toggle('nav-open-active', isOpen);
+  });
+}
+
+// Close menu when a link is clicked
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    nav.classList.remove('nav--open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-open-active');
+  });
+});
+
 // ── Reveal on scroll ───────────────────────────────────────────
 const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -4040,7 +4303,7 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-document.querySelectorAll('.principle-grid, .services, .stat-row, .waves, .stack, .sec-stack, .pillars').forEach(grid => {
+document.querySelectorAll('.principle-grid, .services, .stat-row, .waves, .stack, .sec-stack, .pillars, .ref-models').forEach(grid => {
   Array.from(grid.children).forEach((child, i) => { child.style.transitionDelay = (i * 40) + 'ms'; });
 });
 
