@@ -95,4 +95,22 @@ export const visionProjects: VisionProject[] = [
         "Use Yjs CRDTs over WebRTC for peer-to-peer sync, embed Monaco Editor, and hook into an LLM API for inline suggestions.",
     },
   },
+  {
+    num: "03",
+    category: "Booking Platform",
+    title: "Playground 360 — Find · Book · Play",
+    body: "A multi-tenant booking platform for playgrounds, sports fields & recreational areas. Discover spots on a live map, then reserve via time-slots, period rentals, or custom offers — real-time and AI-ready, built for the German market.",
+    tags: ["NestJS", "Next.js", "Stripe", "Real-time", "Multi-tenant"],
+    accentFrom: "from-lime-400",
+    accentTo: "to-teal-400",
+    glowColor: "rgba(201,242,75,0.15)",
+    htmlPath: "/vision/project-03/doc.html",
+    details: {
+      status: "idea",
+      problem:
+        "Booking a playground, sports field, or recreational area still means phone calls and guesswork — there's no unified, real-time way to discover availability and reserve a spot.",
+      approach:
+        "An API-first NestJS core feeding web, mobile, and an AI chatbot, with concurrency-safe booking (row-level locks), Stripe Connect payments, live WebSocket capacity, and Europe/Berlin-correct, GDPR-ready localization.",
+    },
+  },
 ];
