@@ -1,5 +1,35 @@
 @import "tailwindcss";
 
+/* ── Entrance animations (CSS, not JS) ──────────────────────────────────────
+   The hero's above-the-fold text uses these instead of framer-motion
+   initial/animate so it fades in at first paint rather than waiting for the
+   JS bundle to download and hydrate (≈2–3s on a phone over 4G). `both` keeps
+   elements hidden until their animation-delay has elapsed.
+────────────────────────────────────────────────────────────────────────── */
+@theme {
+  --animate-fade-up: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-left: fade-left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  --animate-fade-in: fade-in 0.8s ease-out both;
+  --animate-grow-x: grow-x 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(32px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade-left {
+    from { opacity: 0; transform: translateX(-16px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes grow-x {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+}
+
 /* ── Design tokens ──────────────────────────────────────────────────────────
    Fonts are loaded via React 19 <link rel="stylesheet"> in layout.tsx.
    We set the font-family directly on body and reference family names by

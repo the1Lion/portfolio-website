@@ -39,14 +39,12 @@ function GrainOverlay() {
 
 function EyebrowLabel({ label }: { label: string }) {
   return (
-    <motion.p
-      initial={{ opacity: 0, x: -16 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="font-[var(--font-jetbrains)] text-xs tracking-[0.25em] text-neutral-500 uppercase mb-4 select-none"
+    <p
+      className="font-[var(--font-jetbrains)] text-xs tracking-[0.25em] text-neutral-500 uppercase mb-4 select-none animate-fade-left motion-reduce:animate-none"
+      style={{ animationDelay: "0.4s" }}
     >
       {label}
-    </motion.p>
+    </p>
   );
 }
 
@@ -195,8 +193,8 @@ export default function HeroSection() {
             {/* Initial reveal animations for text children */}
             <EyebrowLabel label="01 About" />
 
-            {/* Main headline */}
-            <motion.h1
+            {/* Main headline — CSS entrance animation so it paints before JS hydrates */}
+            <h1
               className="
                 font-[var(--font-playfair)] font-black text-white leading-[1.05]
                 text-4xl
@@ -205,14 +203,9 @@ export default function HeroSection() {
                 lg:text-[4.5rem]
                 xl:text-[5.5rem]
                 tracking-tight
+                animate-fade-up motion-reduce:animate-none
               "
-              initial={{ opacity: 0, y: 32 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.9,
-                delay: 0.15,
-                ease: [0.22, 1, 0.36, 1],
-              }}
+              style={{ animationDelay: "0.15s" }}
             >
               {/* Split for gradient accent on "Full Stack" */}
               <span className="block">I&apos;m a</span>
@@ -224,49 +217,35 @@ export default function HeroSection() {
                     Full Stack
                   </span>
                   {/* Subtle underline accent */}
-                  <motion.span
+                  <span
                     aria-hidden
-                    className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 rounded-full"
-                    initial={{ scaleX: 0, originX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ width: "100%" }}
+                    className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 rounded-full origin-left animate-grow-x motion-reduce:animate-none"
+                    style={{ width: "100%", animationDelay: "0.9s" }}
                   />
                 </span>
               </span>
               <span className="block text-neutral-300">Developer</span>
-            </motion.h1>
+            </h1>
 
             {/* Sub-text descriptor */}
-            <motion.p
+            <p
               className="
                 mt-6 text-base sm:text-lg text-neutral-400 leading-relaxed
                 max-w-sm font-[var(--font-lora)] font-normal italic tracking-wide
+                animate-fade-up motion-reduce:animate-none
               "
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.55,
-                ease: [0.22, 1, 0.36, 1],
-              }}
+              style={{ animationDelay: "0.55s", animationDuration: "0.8s" }}
             >
               Building elegant systems at the intersection of
               <span className="text-neutral-200"> science </span>
               and
               <span className="text-neutral-200"> craft</span>.
-            </motion.p>
+            </p>
 
             {/* CTA strip */}
-            <motion.div
-              className="mt-8 flex items-center gap-4 flex-wrap"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.7,
-                delay: 0.75,
-                ease: [0.22, 1, 0.36, 1],
-              }}
+            <div
+              className="mt-8 flex items-center gap-4 flex-wrap animate-fade-up motion-reduce:animate-none"
+              style={{ animationDelay: "0.75s", animationDuration: "0.7s" }}
             >
               <a
                 href="#projects"
@@ -342,35 +321,41 @@ export default function HeroSection() {
                 </svg>
                 Vision
               </Link>
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* ── Scroll indicator ───────────────────────────────────────────── */}
           <motion.div
             aria-label="Scroll to explore"
-            className="absolute right-6 bottom-10 z-20 flex flex-col items-center gap-2 select-none"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 0.8 }}
+            className="absolute right-6 bottom-10 z-20 select-none"
             style={{
               opacity: useTransform(scrollYProgress, [0, 0.15], [1, 0]),
               willChange: "opacity",
             }}
           >
-            <span className="font-[var(--font-jetbrains)] text-[10px] tracking-[0.2em] text-neutral-600 uppercase rotate-90 origin-center mb-3">
-              Scroll
-            </span>
-            {/* Animated mouse icon */}
-            <div className="w-5 h-8 rounded-full border border-neutral-700 flex items-start justify-center pt-1.5">
-              <motion.div
-                className="w-0.5 h-1.5 bg-white/60 rounded-full"
-                animate={{ y: [0, 8, 0] }}
-                transition={{
-                  duration: 1.6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
+            {/*
+             * Entrance fade lives on an inner wrapper: a CSS animation on the
+             * motion.div itself would override framer's scroll-linked opacity.
+             */}
+            <div
+              className="flex flex-col items-center gap-2 animate-fade-in motion-reduce:animate-none"
+              style={{ animationDelay: "1.4s" }}
+            >
+              <span className="font-[var(--font-jetbrains)] text-[10px] tracking-[0.2em] text-neutral-600 uppercase rotate-90 origin-center mb-3">
+                Scroll
+              </span>
+              {/* Animated mouse icon */}
+              <div className="w-5 h-8 rounded-full border border-neutral-700 flex items-start justify-center pt-1.5">
+                <motion.div
+                  className="w-0.5 h-1.5 bg-white/60 rounded-full"
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{
+                    duration: 1.6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              </div>
             </div>
           </motion.div>
 
