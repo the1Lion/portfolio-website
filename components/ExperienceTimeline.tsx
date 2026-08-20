@@ -50,7 +50,7 @@ export default function ExperienceTimeline() {
           {/* Active Glowing Scroll Line */}
           <motion.div
             className="absolute left-[7px] sm:left-[15px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-indigo-500 via-violet-500 to-fuchsia-500 origin-top shadow-[0_0_12px_rgba(139,92,246,0.6)]"
-            style={{ scaleY }}
+            style={{ scaleY, willChange: "transform" }}
           />
 
           {/* Chronological Entries */}

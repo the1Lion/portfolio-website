@@ -62,7 +62,7 @@ export default function ContactSection() {
       <motion.div
         aria-hidden
         className="absolute inset-0 z-0 flex items-center justify-center select-none pointer-events-none"
-        style={{ scale: bgScale, y: bgY }}
+        style={{ scale: bgScale, y: bgY, willChange: "transform" }}
       >
         <span
           className="
@@ -87,7 +87,6 @@ export default function ContactSection() {
             src="/portrait-writing.png"
             alt="Mohamad writing/working"
             fill
-            priority
             sizes="100vw"
             className="object-cover object-center lg:object-contain lg:object-right-bottom opacity-15 sm:opacity-20 transition-opacity duration-300"
             draggable={false}
@@ -101,7 +100,7 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto w-full px-6 sm:px-12 md:px-16 lg:px-24 relative z-20 flex items-center justify-center">
         <motion.div
           className="w-full max-w-2xl flex flex-col items-center text-center space-y-8"
-          style={{ y: contentY }}
+          style={{ y: contentY, willChange: "transform" }}
         >
           <div className="space-y-4 flex flex-col items-center">
             <p className="font-[var(--font-jetbrains)] text-xs tracking-[0.25em] text-neutral-500 uppercase select-none">

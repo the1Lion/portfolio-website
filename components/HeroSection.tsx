@@ -115,7 +115,7 @@ export default function HeroSection() {
           <motion.div
             aria-hidden
             className="absolute inset-0 z-0 flex items-center justify-center select-none pointer-events-none"
-            style={{ opacity: bgOpacity, scale: bgScale }}
+            style={{ opacity: bgOpacity, scale: bgScale, willChange: "transform, opacity" }}
           >
             <span
               className="
@@ -138,7 +138,7 @@ export default function HeroSection() {
           <motion.div
             aria-hidden
             className="absolute inset-0 z-[5] pointer-events-none"
-            style={{ opacity: useTransform(scrollYProgress, [0, 0.8], [1, 0]) }}
+            style={{ opacity: useTransform(scrollYProgress, [0, 0.8], [1, 0]), willChange: "opacity" }}
           >
             {/* Bottom-left accent */}
             <div className="absolute bottom-0 left-0 w-[40vw] h-[40vh] rounded-full bg-gradient-radial from-violet-900/10 via-transparent to-transparent blur-3xl" />
@@ -154,11 +154,11 @@ export default function HeroSection() {
               sm:justify-end
               pointer-events-none
             "
-            style={{ y: portraitY, opacity: portraitOpacity }}
+            style={{ y: portraitY, opacity: portraitOpacity, willChange: "transform, opacity" }}
           >
             <motion.div
               className="relative h-full flex items-center justify-center sm:justify-end"
-              style={{ scale: portraitScale }}
+              style={{ scale: portraitScale, willChange: "transform" }}
             >
               {/*
                * Use a fixed-height wrapper that preserves the portrait's
@@ -190,7 +190,7 @@ export default function HeroSection() {
               lg:bottom-28 lg:left-20
               max-w-[90vw] sm:max-w-[55vw] md:max-w-[50vw] lg:max-w-[46vw]
             "
-            style={{ y: textY, opacity: textOpacity }}
+            style={{ y: textY, opacity: textOpacity, willChange: "transform, opacity" }}
           >
             {/* Initial reveal animations for text children */}
             <EyebrowLabel label="01 About" />
@@ -354,6 +354,7 @@ export default function HeroSection() {
             transition={{ delay: 1.4, duration: 0.8 }}
             style={{
               opacity: useTransform(scrollYProgress, [0, 0.15], [1, 0]),
+              willChange: "opacity",
             }}
           >
             <span className="font-[var(--font-jetbrains)] text-[10px] tracking-[0.2em] text-neutral-600 uppercase rotate-90 origin-center mb-3">
