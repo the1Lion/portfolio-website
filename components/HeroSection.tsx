@@ -102,7 +102,14 @@ export default function HeroSection() {
         aria-label="About section"
       >
         {/* ── Sticky viewport ───────────────────────────────────────────── */}
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
+        {/*
+         * h-svh (not h-screen/100vh): on mobile browsers 100vh is the height
+         * with the address bar hidden, so on first open the bottom of this
+         * panel — where the headline and CTAs are anchored — falls below the
+         * fold. 100svh is the smallest viewport height, so the bottom-anchored
+         * content is always on screen.
+         */}
+        <div className="sticky top-0 h-svh w-full overflow-hidden">
 
           {/* ── Z-0 · Background ghost text ───────────────────────────────── */}
           <motion.div
