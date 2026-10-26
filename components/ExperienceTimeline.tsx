@@ -2,9 +2,18 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { experienceData, educationData } from "@/data/data";
+import type { ExperienceItem, EducationItem } from "@/data/data";
+import type { Dictionary } from "@/lib/dictionaries/en";
 
-export default function ExperienceTimeline() {
+export default function ExperienceTimeline({
+  t,
+  experience,
+  education,
+}: {
+  t: Dictionary["journey"];
+  experience: ExperienceItem[];
+  education: EducationItem[];
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Track the scroll position relative to the timeline container
@@ -29,27 +38,27 @@ export default function ExperienceTimeline() {
     >
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
-        <div className="mb-20 text-center md:text-left">
+        <div className="mb-20 text-center md:text-start">
           <p className="font-[var(--font-jetbrains)] text-xs sm:text-sm tracking-[0.25em] text-zinc-300 uppercase mb-4 font-semibold">
-            03 Journey
+            {t.eyebrow}
           </p>
           <h2 className="font-[var(--font-playfair)] font-black text-white text-4xl sm:text-5xl tracking-tight">
-            Experience Timeline
+            {t.title}
           </h2>
           <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-[var(--font-lora)] italic leading-relaxed tracking-wide">
-            Scroll to see my professional evolution and academic progression.
+            {t.intro}
           </p>
         </div>
 
         {/* Timeline Container */}
-        <div className="relative pl-4 sm:pl-8">
+        <div className="relative ps-4 sm:ps-8">
           
           {/* Background Track Line */}
-          <div className="absolute left-[7px] sm:left-[15px] top-2 bottom-2 w-px bg-zinc-800" />
+          <div className="absolute start-[7px] sm:start-[15px] top-2 bottom-2 w-px bg-zinc-800" />
 
           {/* Active Glowing Scroll Line */}
           <motion.div
-            className="absolute left-[7px] sm:left-[15px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-indigo-500 via-violet-500 to-fuchsia-500 origin-top shadow-[0_0_12px_rgba(139,92,246,0.6)]"
+            className="absolute start-[7px] sm:start-[15px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-indigo-500 via-violet-500 to-fuchsia-500 origin-top shadow-[0_0_12px_rgba(139,92,246,0.6)]"
             style={{ scaleY, willChange: "transform" }}
           />
 
@@ -57,15 +66,15 @@ export default function ExperienceTimeline() {
           <div className="space-y-16">
             
             {/* Timeline Header: Experience */}
-            <div className="relative pl-8 sm:pl-12">
-              <div className="absolute left-[-2px] sm:left-[6px] top-1.5 w-[5px] sm:w-[7px] h-[5px] sm:h-[7px] rounded-full bg-zinc-500" />
+            <div className="relative ps-8 sm:ps-12">
+              <div className="absolute start-[-2px] sm:start-[6px] top-1.5 w-[5px] sm:w-[7px] h-[5px] sm:h-[7px] rounded-full bg-zinc-500" />
               <h3 className="font-[var(--font-jetbrains)] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-200 mb-2 font-bold">
-                Professional Experience
+                {t.experience}
               </h3>
             </div>
 
             {/* Render Experience Items */}
-            {experienceData.map((role, idx) => {
+            {experience.map((role, idx) => {
               return (
                 <motion.div
                   key={`${role.company}-${role.role}-${idx}`}
@@ -73,10 +82,10 @@ export default function ExperienceTimeline() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-120px 0px -120px 0px" }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative pl-8 sm:pl-12 group"
+                  className="relative ps-8 sm:ps-12 group"
                 >
                   {/* Timeline Dot (Node) */}
-                  <div className="absolute left-[-5px] sm:left-[3px] top-1.5 w-3 h-3 rounded-full border border-zinc-700 bg-black group-hover:border-violet-400 group-hover:shadow-[0_0_8px_rgba(167,139,250,0.5)] transition-all duration-300 z-10 flex items-center justify-center">
+                  <div className="absolute start-[-5px] sm:start-[3px] top-1.5 w-3 h-3 rounded-full border border-zinc-700 bg-black group-hover:border-violet-400 group-hover:shadow-[0_0_8px_rgba(167,139,250,0.5)] transition-all duration-300 z-10 flex items-center justify-center">
                     <div className="w-1 h-1 rounded-full bg-zinc-700 group-hover:bg-violet-400 transition-colors duration-300" />
                   </div>
 
@@ -90,7 +99,7 @@ export default function ExperienceTimeline() {
                     {/* Title & Company */}
                     <h4 className="font-[var(--font-playfair)] font-bold text-white text-lg sm:text-xl mt-1 flex flex-wrap items-baseline gap-y-1">
                       <span>{role.role}</span>
-                      <span className="text-sm sm:text-base font-semibold text-zinc-300 font-mono sm:ml-2.5">
+                      <span className="text-sm sm:text-base font-semibold text-zinc-300 font-mono sm:ms-2.5">
                         @{" "}
                         {role.link ? (
                           <a
@@ -123,6 +132,7 @@ export default function ExperienceTimeline() {
                         {role.highlights.map((tag) => (
                           <span
                             key={tag}
+                            dir="auto"
                             className="text-xs font-mono text-zinc-200 px-2.5 py-1 bg-zinc-900 border border-zinc-800 rounded group-hover:border-zinc-700 transition-colors duration-300 font-semibold"
                           >
                             {tag}
@@ -136,15 +146,15 @@ export default function ExperienceTimeline() {
             })}
 
             {/* Timeline Header: Education */}
-            <div className="relative pl-8 sm:pl-12 pt-8">
-              <div className="absolute left-[-2px] sm:left-[6px] top-[38px] w-[5px] sm:w-[7px] h-[5px] sm:h-[7px] rounded-full bg-zinc-500" />
+            <div className="relative ps-8 sm:ps-12 pt-8">
+              <div className="absolute start-[-2px] sm:start-[6px] top-[38px] w-[5px] sm:w-[7px] h-[5px] sm:h-[7px] rounded-full bg-zinc-500" />
               <h3 className="font-[var(--font-jetbrains)] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-200 mb-2 font-bold">
-                Education &amp; Certifications
+                {t.education}
               </h3>
             </div>
 
             {/* Render Education Items */}
-            {educationData.map((edu, idx) => {
+            {education.map((edu, idx) => {
               return (
                 <motion.div
                   key={`${edu.institution}-${idx}`}
@@ -152,10 +162,10 @@ export default function ExperienceTimeline() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-120px 0px -120px 0px" }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative pl-8 sm:pl-12 group"
+                  className="relative ps-8 sm:ps-12 group"
                 >
                   {/* Timeline Dot (Node) */}
-                  <div className="absolute left-[-5px] sm:left-[3px] top-1.5 w-3 h-3 rounded-full border border-zinc-700 bg-black group-hover:border-violet-400 group-hover:shadow-[0_0_8px_rgba(167,139,250,0.5)] transition-all duration-300 z-10 flex items-center justify-center">
+                  <div className="absolute start-[-5px] sm:start-[3px] top-1.5 w-3 h-3 rounded-full border border-zinc-700 bg-black group-hover:border-violet-400 group-hover:shadow-[0_0_8px_rgba(167,139,250,0.5)] transition-all duration-300 z-10 flex items-center justify-center">
                     <div className="w-1 h-1 rounded-full bg-zinc-700 group-hover:bg-violet-400 transition-colors duration-300" />
                   </div>
 
@@ -169,7 +179,7 @@ export default function ExperienceTimeline() {
                     {/* Title & Institution */}
                     <h4 className="font-[var(--font-playfair)] font-bold text-white text-lg sm:text-xl mt-1 flex flex-wrap items-baseline gap-y-1">
                       <span>{edu.degree}</span>
-                      <span className="text-sm sm:text-base font-semibold text-zinc-300 font-mono sm:ml-2.5">
+                      <span className="text-sm sm:text-base font-semibold text-zinc-300 font-mono sm:ms-2.5">
                         @ {edu.institution}
                       </span>
                     </h4>
@@ -182,7 +192,7 @@ export default function ExperienceTimeline() {
                     {edu.thesis && (
                       <div className="mt-4 p-4 rounded-xl bg-zinc-950/40 border border-zinc-900 group-hover:border-zinc-800/80 transition-colors duration-300 max-w-2xl">
                         <span className="text-[10px] sm:text-xs uppercase font-mono tracking-wider text-violet-400 block mb-1.5 font-extrabold">
-                          Bachelor Thesis
+                          {t.thesis}
                         </span>
                         <p className="font-[var(--font-playfair)] font-bold text-white text-sm sm:text-base leading-normal">
                           {edu.thesis.title}
@@ -191,6 +201,7 @@ export default function ExperienceTimeline() {
                           {edu.thesis.tech.map((t) => (
                             <span
                               key={t}
+                              dir="auto"
                               className="text-xs font-mono text-zinc-200 px-2 py-0.5 bg-zinc-900 border border-zinc-800 rounded font-semibold"
                             >
                               {t}

@@ -3,7 +3,8 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { personalInfo } from "@/data/data";
+import type { Lang } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/dictionaries/en";
 import {
   motion,
   useScroll,
@@ -50,7 +51,15 @@ function EyebrowLabel({ label }: { label: string }) {
 
 // ─── Main Hero ───────────────────────────────────────────────────────────────
 
-export default function HeroSection() {
+export default function HeroSection({
+  lang,
+  t,
+  name,
+}: {
+  lang: Lang;
+  t: Dictionary["hero"];
+  name: string;
+}) {
   /** The tall scrollable container — scroll progress is measured here */
   const containerRef = useRef<HTMLElement>(null);
 
@@ -124,7 +133,7 @@ export default function HeroSection() {
                 -translate-y-16 md:-translate-y-24 lg:-translate-y-32
               "
             >
-              {personalInfo.name.split(" ").map((part) => (
+              {name.split(" ").map((part) => (
                 <span key={part} className="block">
                   {part}
                 </span>
@@ -167,7 +176,7 @@ export default function HeroSection() {
               <div className="relative h-full aspect-[3/4]">
                 <Image
                   src="/portrait-main.png"
-                  alt="Portfolio portrait"
+                  alt={t.portraitAlt}
                   fill
                   priority
                   sizes="(max-width: 640px) 100vw, 50vw"
@@ -182,16 +191,16 @@ export default function HeroSection() {
           <motion.div
             className="
               absolute z-20
-              bottom-16 left-6
-              sm:bottom-20 sm:left-10
-              md:bottom-24 md:left-14
-              lg:bottom-28 lg:left-20
+              bottom-16 start-6
+              sm:bottom-20 sm:start-10
+              md:bottom-24 md:start-14
+              lg:bottom-28 lg:start-20
               max-w-[90vw] sm:max-w-[55vw] md:max-w-[50vw] lg:max-w-[46vw]
             "
             style={{ y: textY, opacity: textOpacity, willChange: "transform, opacity" }}
           >
             {/* Initial reveal animations for text children */}
-            <EyebrowLabel label="01 About" />
+            <EyebrowLabel label={t.eyebrow} />
 
             {/* Main headline — CSS entrance animation so it paints before JS hydrates */}
             <h1
@@ -208,23 +217,23 @@ export default function HeroSection() {
               style={{ animationDelay: "0.15s" }}
             >
               {/* Split for gradient accent on "Full Stack" */}
-              <span className="block">I&apos;m a</span>
-              <span className="block">Computer</span>
+              <span className="block">{t.line1}</span>
+              <span className="block">{t.line2}</span>
               <span className="block">
-                Scientist &amp;{" "}
+                {t.line3}{" "}
                 <span className="relative inline-block">
                   <span className="relative z-10 bg-gradient-to-r from-indigo-300 via-violet-300 to-fuchsia-300 bg-clip-text text-transparent">
-                    Full Stack
+                    {t.accent}
                   </span>
                   {/* Subtle underline accent */}
                   <span
                     aria-hidden
-                    className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 rounded-full origin-left animate-grow-x motion-reduce:animate-none"
+                    className="absolute -bottom-1 start-0 h-[2px] bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 rounded-full origin-left rtl:origin-right animate-grow-x motion-reduce:animate-none"
                     style={{ width: "100%", animationDelay: "0.9s" }}
                   />
                 </span>
               </span>
-              <span className="block text-neutral-300">Developer</span>
+              {t.line4 && <span className="block text-neutral-300">{t.line4}</span>}
             </h1>
 
             {/* Sub-text descriptor */}
@@ -236,10 +245,11 @@ export default function HeroSection() {
               "
               style={{ animationDelay: "0.55s", animationDuration: "0.8s" }}
             >
-              Building elegant systems at the intersection of
-              <span className="text-neutral-200"> science </span>
-              and
-              <span className="text-neutral-200"> craft</span>.
+              {t.subBefore}
+              <span className="text-neutral-200"> {t.science} </span>
+              {t.and}
+              <span className="text-neutral-200"> {t.craft}</span>
+              {t.subAfter}
             </p>
 
             {/* CTA strip */}
@@ -257,10 +267,10 @@ export default function HeroSection() {
                   transition-all duration-300 hover:bg-neutral-200 active:scale-95
                 "
               >
-                View Work
+                {t.viewWork}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+                  className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -285,11 +295,11 @@ export default function HeroSection() {
                   transition-all duration-300 hover:border-white/30 hover:text-white active:scale-95
                 "
               >
-                Get in touch
+                {t.getInTouch}
               </a>
 
               <Link
-                href="/vision"
+                href={`/${lang}/vision`}
                 id="hero-cta-vision"
                 className="
                   group inline-flex items-center gap-2
@@ -319,7 +329,7 @@ export default function HeroSection() {
                     d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                   />
                 </svg>
-                Vision
+                {t.vision}
               </Link>
             </div>
           </motion.div>
@@ -327,7 +337,7 @@ export default function HeroSection() {
           {/* ── Scroll indicator ───────────────────────────────────────────── */}
           <motion.div
             aria-label="Scroll to explore"
-            className="absolute right-6 bottom-10 z-20 select-none"
+            className="absolute end-6 bottom-10 z-20 select-none max-sm:rtl:hidden"
             style={{
               opacity: useTransform(scrollYProgress, [0, 0.15], [1, 0]),
               willChange: "opacity",
@@ -342,7 +352,7 @@ export default function HeroSection() {
               style={{ animationDelay: "1.4s" }}
             >
               <span className="font-[var(--font-jetbrains)] text-[10px] tracking-[0.2em] text-neutral-600 uppercase rotate-90 origin-center mb-3">
-                Scroll
+                {t.scroll}
               </span>
               {/* Animated mouse icon */}
               <div className="w-5 h-8 rounded-full border border-neutral-700 flex items-start justify-center pt-1.5">

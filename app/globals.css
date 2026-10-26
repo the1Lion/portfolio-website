@@ -47,6 +47,40 @@
   --font-jetbrains: "JetBrains Mono", monospace;
 }
 
+/* ── Arabic (dir="rtl") ─────────────────────────────────────────────────────
+   None of the Latin faces have Arabic glyphs: Readex Pro (loaded only on /ar,
+   see app/[lang]/layout.tsx) follows each stack, so Latin words such as tech
+   names keep their font and Arabic falls through to Readex.
+   Arabic letters join, so letter-spacing tears words apart; there is no real
+   Arabic italic (browsers fake a slant); and the tight display line-heights
+   clip Arabic ascenders and descenders.
+────────────────────────────────────────────────────────────────────────── */
+
+:root:lang(ar) {
+  --font-inter: "Inter", "Readex Pro", sans-serif;
+  --font-playfair: "Playfair Display", "Readex Pro", serif;
+  --font-lora: "Lora", "Readex Pro", Georgia, serif;
+  --font-jetbrains: "JetBrains Mono", "Readex Pro", monospace;
+}
+
+:lang(ar) [class*="tracking-"] {
+  letter-spacing: 0 !important;
+}
+
+/* Tags and company names use font-mono. Readex goes first here: as a fallback
+   behind a monospace face, Arabic words get the wide monospace spaces. */
+:lang(ar) .font-mono {
+  font-family: "Readex Pro", var(--font-jetbrains);
+}
+
+:lang(ar) .italic {
+  font-style: normal;
+}
+
+:lang(ar) :is(h1, h2) {
+  line-height: 1.35 !important;
+}
+
 *,
 *::before,
 *::after {

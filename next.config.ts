@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // The root layout sits on the dynamic [lang] segment, so a URL that matches
+  // no route has no layout to render inside. global-not-found.tsx brings its
+  // own <html> for that case.
+  experimental: {
+    globalNotFound: true,
+  },
   // Allow static image optimization for local public assets
   images: {
     formats: ["image/avif", "image/webp"],

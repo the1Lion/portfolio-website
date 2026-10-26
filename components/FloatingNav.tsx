@@ -2,16 +2,17 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import type { Dictionary } from "@/lib/dictionaries/en";
 
 const navItems = [
-  { id: "about", label: "About", num: "01" },
-  { id: "skills", label: "Skills", num: "02" },
-  { id: "journey", label: "Journey", num: "03" },
-  { id: "projects", label: "Projects", num: "04" },
-  { id: "contact", label: "Contact", num: "05" },
-];
+  { id: "about", num: "01" },
+  { id: "skills", num: "02" },
+  { id: "journey", num: "03" },
+  { id: "projects", num: "04" },
+  { id: "contact", num: "05" },
+] as const;
 
-export default function FloatingNav() {
+export default function FloatingNav({ labels }: { labels: Dictionary["nav"] }) {
   const [activeSection, setActiveSection] = useState("about");
 
   useEffect(() => {
@@ -83,10 +84,10 @@ export default function FloatingNav() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 24 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed right-6 sm:right-10 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-end gap-6 select-none"
+            className="fixed end-6 sm:end-10 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-end gap-6 select-none"
           >
             {/* Faint vertical tracker line */}
-            <div className="absolute right-[5px] top-2 bottom-2 w-px bg-white/5 pointer-events-none" />
+            <div className="absolute end-[5px] top-2 bottom-2 w-px bg-white/5 pointer-events-none" />
 
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
@@ -95,7 +96,7 @@ export default function FloatingNav() {
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={(e) => handleNavClick(e, item.id)}
-                  className="group relative flex items-center gap-4 py-1 pr-6 cursor-pointer"
+                  className="group relative flex items-center gap-4 py-1 pe-6 cursor-pointer"
                 >
                   {/* Text label with modern JetBrains font */}
                   <span
@@ -103,16 +104,16 @@ export default function FloatingNav() {
                       font-[var(--font-jetbrains)] text-xs tracking-[0.18em] uppercase transition-all duration-300
                       ${isActive
                         ? "text-white font-bold opacity-100 translate-x-0"
-                        : "text-neutral-500 opacity-60 hover:text-neutral-300 hover:opacity-90 translate-x-1 hover:translate-x-0"
+                        : "text-neutral-500 opacity-60 hover:text-neutral-300 hover:opacity-90 translate-x-1 rtl:-translate-x-1 hover:translate-x-0"
                       }
                     `}
                   >
-                    <span className="text-[10px] opacity-50 mr-1.5">{item.num}</span>
-                    {item.label}
+                    <span className="text-[10px] opacity-50 me-1.5">{item.num}</span>
+                    {labels[item.id]}
                   </span>
 
                   {/* Dynamic Sliding Dot Indicator */}
-                  <div className="absolute right-0 w-3 h-3 flex items-center justify-center">
+                  <div className="absolute end-0 w-3 h-3 flex items-center justify-center">
                     {isActive ? (
                       <motion.span
                         layoutId="activeDot"

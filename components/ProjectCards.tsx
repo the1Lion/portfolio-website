@@ -2,7 +2,8 @@
 
 import React from "react";
 import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
-import { projectsData, ProjectItem } from "@/data/data";
+import type { ProjectItem } from "@/data/data";
+import type { Dictionary } from "@/lib/dictionaries/en";
 
 interface SpotlightCardProps {
   project: ProjectItem;
@@ -92,6 +93,7 @@ function SpotlightCard({ project, className = "" }: SpotlightCardProps) {
             {project.tech.map((t) => (
               <span
                 key={t}
+                dir="auto"
                 className="text-xs font-mono text-zinc-200 px-2.5 py-1 bg-zinc-900 border border-zinc-800 rounded group-hover:border-zinc-700/80 transition-colors duration-300 select-none font-semibold"
               >
                 {t}
@@ -105,7 +107,13 @@ function SpotlightCard({ project, className = "" }: SpotlightCardProps) {
   );
 }
 
-export default function ProjectCards() {
+export default function ProjectCards({
+  t,
+  projects,
+}: {
+  t: Dictionary["projects"];
+  projects: ProjectItem[];
+}) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -138,13 +146,13 @@ export default function ProjectCards() {
         {/* Section Header */}
         <div className="mb-16">
           <p className="font-[var(--font-jetbrains)] text-xs sm:text-sm tracking-[0.25em] text-zinc-300 uppercase mb-4 font-semibold">
-            04 Portfolio
+            {t.eyebrow}
           </p>
           <h2 className="font-[var(--font-playfair)] font-black text-white text-4xl sm:text-5xl tracking-tight">
-            Selected Projects
+            {t.title}
           </h2>
           <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-[var(--font-lora)] italic leading-relaxed tracking-wide">
-            Products, client work and robotics from my company{" "}
+            {t.introBefore}{" "}
             <a
               href="https://silicortex.de"
               target="_blank"
@@ -153,7 +161,7 @@ export default function ProjectCards() {
             >
               Silicortex
             </a>
-            , alongside earlier work in machine learning, data pipelines and cloud-native systems.
+            {t.introAfter}
           </p>
         </div>
 
@@ -165,7 +173,7 @@ export default function ProjectCards() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 md:grid-cols-12 gap-6"
         >
-          {projectsData.map((project: ProjectItem, index: number) => {
+          {projects.map((project: ProjectItem) => {
             // Asymmetrical layout configuration
             const colSpan = project.featured ? "md:col-span-8" : "md:col-span-4";
 
@@ -191,7 +199,7 @@ export default function ProjectCards() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/brand/silicortex-symbol-dark.svg" alt="" width={20} height={20} className="w-5 h-5" />
-            More work at silicortex.de ↗
+            {t.moreWork} ↗
           </a>
         </div>
       </div>

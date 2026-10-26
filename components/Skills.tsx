@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { skillsData, SkillCategory } from "@/data/data";
+import type { SkillCategory } from "@/data/data";
+import type { Dictionary } from "@/lib/dictionaries/en";
 
 // Column spans add up to 12 per row: 5+7, 8+4, 7+5, 4+3+5.
 const bentoStyles = [
@@ -52,7 +53,13 @@ const bentoStyles = [
   },
 ];
 
-export default function Skills() {
+export default function Skills({
+  t,
+  skills,
+}: {
+  t: Dictionary["skills"];
+  skills: SkillCategory[];
+}) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -85,13 +92,13 @@ export default function Skills() {
         {/* Section Header */}
         <div className="mb-16">
           <p className="font-[var(--font-jetbrains)] text-xs sm:text-sm tracking-[0.25em] text-zinc-300 uppercase mb-4 font-semibold">
-            02 Competencies
+            {t.eyebrow}
           </p>
           <h2 className="font-[var(--font-playfair)] font-black text-white text-4xl sm:text-5xl tracking-tight">
-            Skills Bento Box
+            {t.title}
           </h2>
           <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-[var(--font-lora)] italic leading-relaxed tracking-wide">
-            The stacks, frameworks, AI and robotics tooling I use day to day — including everything I built at Silicortex.
+            {t.intro}
           </p>
         </div>
 
@@ -103,7 +110,7 @@ export default function Skills() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 md:grid-cols-12 gap-5 auto-rows-auto"
         >
-          {skillsData.map((category: SkillCategory, index: number) => {
+          {skills.map((category: SkillCategory, index: number) => {
             const config = bentoStyles[index] || {
               colSpan: "md:col-span-4",
               glowColor: "from-neutral-500/10 to-neutral-500/5",
@@ -140,12 +147,12 @@ export default function Skills() {
                         key={skill.name}
                         className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900 border border-white/10 transition-all duration-300 hover:bg-neutral-800 hover:border-white/20 select-none"
                       >
-                        <span className="text-sm font-semibold text-white font-[var(--font-jetbrains)]">
+                        <span dir="auto" className="text-sm font-semibold text-white font-[var(--font-jetbrains)]">
                           {skill.name}
                         </span>
                         {skill.level && (
                           <span className="text-[10px] sm:text-xs font-mono tracking-wider text-zinc-200 px-1.5 py-0.5 bg-black/60 border border-zinc-800 rounded uppercase font-bold">
-                            {skill.level}
+                            {t.levels[skill.level]}
                           </span>
                         )}
                       </div>

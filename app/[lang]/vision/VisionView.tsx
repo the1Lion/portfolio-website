@@ -4,7 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { visionProjects, type VisionProject } from "@/data/vision/vision";
+import type { LocalizedVisionProject as VisionProject } from "@/data/vision/vision";
+import { fmt, type Lang } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/dictionaries/en";
+
+type T = Dictionary["vision"];
 
 // ─── Grain overlay ────────────────────────────────────────────────────────────
 function GrainOverlay() {
@@ -23,20 +27,20 @@ function GrainOverlay() {
 
 // ─── Status badge ─────────────────────────────────────────────────────────────
 const statusConfig = {
-  idea:      { label: "Idea",      color: "text-neutral-400 border-neutral-700  bg-neutral-900/60" },
-  research:  { label: "Research",  color: "text-sky-400    border-sky-800/60    bg-sky-950/40"     },
-  prototype: { label: "Prototype", color: "text-amber-400  border-amber-800/60  bg-amber-950/40"   },
-  building:  { label: "Building",  color: "text-emerald-400 border-emerald-800/60 bg-emerald-950/40"},
+  idea:      { color: "text-neutral-400 border-neutral-700  bg-neutral-900/60" },
+  research:  { color: "text-sky-400    border-sky-800/60    bg-sky-950/40"     },
+  prototype: { color: "text-amber-400  border-amber-800/60  bg-amber-950/40"   },
+  building:  { color: "text-emerald-400 border-emerald-800/60 bg-emerald-950/40"},
 } as const;
 
-function StatusBadge({ status }: { status: keyof typeof statusConfig }) {
+function StatusBadge({ status, t }: { status: keyof typeof statusConfig; t: T }) {
   const cfg = statusConfig[status] ?? statusConfig.idea;
   return (
     <span
       className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-[10px] font-[var(--font-jetbrains)] tracking-widest uppercase ${cfg.color}`}
     >
       <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
-      {cfg.label}
+      {t.status[status] ?? t.status.idea}
     </span>
   );
 }
@@ -46,10 +50,12 @@ function Lightbox({
   images,
   startIndex,
   onClose,
+  t,
 }: {
   images: string[];
   startIndex: number;
   onClose: () => void;
+  t: T;
 }) {
   const [idx, setIdx] = useState(startIndex);
 
@@ -73,7 +79,7 @@ function Lightbox({
         <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-white/10">
           <Image
             src={images[idx]}
-            alt={`Gallery image ${idx + 1}`}
+            alt={fmt(t.galleryImage, { n: idx + 1 })}
             fill
             className="object-contain"
             sizes="(max-width: 896px) 100vw, 896px"
@@ -85,7 +91,7 @@ function Lightbox({
           <>
             <button
               onClick={() => setIdx((i) => (i - 1 + images.length) % images.length)}
-              aria-label="Previous image"
+              aria-label={t.previousImage}
               className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-black/60 border border-white/10 text-white hover:bg-black/80 transition"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -94,7 +100,7 @@ function Lightbox({
             </button>
             <button
               onClick={() => setIdx((i) => (i + 1) % images.length)}
-              aria-label="Next image"
+              aria-label={t.nextImage}
               className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-black/60 border border-white/10 text-white hover:bg-black/80 transition"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -124,7 +130,7 @@ function Lightbox({
         {/* Close */}
         <button
           onClick={onClose}
-          aria-label="Close lightbox"
+          aria-label={t.closeLightbox}
           className="absolute -top-4 -right-4 w-8 h-8 flex items-center justify-center rounded-full bg-neutral-900 border border-white/10 text-white/70 hover:text-white transition"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -140,9 +146,10 @@ function Lightbox({
 interface DocumentViewerProps {
   project: VisionProject;
   onClose: () => void;
+  t: T;
 }
 
-function DocumentViewer({ project, onClose }: DocumentViewerProps) {
+function DocumentViewer({ project, onClose, t }: DocumentViewerProps) {
   return (
     <motion.div
       className="fixed inset-0 z-[150] flex flex-col bg-black"
@@ -170,7 +177,7 @@ function DocumentViewer({ project, onClose }: DocumentViewerProps) {
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 text-[10px] font-[var(--font-jetbrains)] tracking-widest text-neutral-400 uppercase hover:text-white hover:border-white/30 transition-all active:scale-95"
             >
-              Open in new tab
+              {t.openInNewTab}
               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
@@ -180,7 +187,7 @@ function DocumentViewer({ project, onClose }: DocumentViewerProps) {
             onClick={onClose}
             className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/[0.03] text-[10px] font-[var(--font-jetbrains)] tracking-widest text-white uppercase hover:bg-white/[0.06] hover:border-white/30 transition-all active:scale-95"
           >
-            Close
+            {t.close}
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -206,9 +213,10 @@ interface IdeaCardProps {
   idea: VisionProject;
   index: number;
   onOpenDoc: (project: VisionProject) => void;
+  t: T;
 }
 
-function IdeaCard({ idea, index, onOpenDoc }: IdeaCardProps) {
+function IdeaCard({ idea, index, onOpenDoc, t }: IdeaCardProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const gallery = idea.gallery ?? [];
   const status = idea.details?.status ?? "idea";
@@ -251,7 +259,7 @@ function IdeaCard({ idea, index, onOpenDoc }: IdeaCardProps) {
           >
             <Image
               src={idea.coverImage}
-              alt={`${idea.title} cover`}
+              alt={fmt(t.cover, { title: idea.title })}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
               sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
@@ -288,7 +296,7 @@ function IdeaCard({ idea, index, onOpenDoc }: IdeaCardProps) {
               {idea.category}
             </span>
             {idea.details?.status && (
-              <StatusBadge status={status} />
+              <StatusBadge status={status} t={t} />
             )}
           </div>
 
@@ -341,9 +349,10 @@ function IdeaCard({ idea, index, onOpenDoc }: IdeaCardProps) {
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
-                Read Proposal Document
+                {t.readDocument}
+                {t.documentNote && <span className="text-neutral-600">({t.documentNote})</span>}
               </span>
-              <svg className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <svg className="w-3.5 h-3.5 transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </div>
@@ -364,6 +373,7 @@ function IdeaCard({ idea, index, onOpenDoc }: IdeaCardProps) {
             images={gallery}
             startIndex={lightboxIndex}
             onClose={() => setLightboxIndex(null)}
+            t={t}
           />
         )}
       </AnimatePresence>
@@ -372,7 +382,15 @@ function IdeaCard({ idea, index, onOpenDoc }: IdeaCardProps) {
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
-export default function VisionPage() {
+export default function VisionView({
+  lang,
+  t,
+  visionProjects,
+}: {
+  lang: Lang;
+  t: T;
+  visionProjects: VisionProject[];
+}) {
   const [selectedProject, setSelectedProject] = useState<VisionProject | null>(null);
 
   return (
@@ -386,24 +404,24 @@ export default function VisionPage() {
 
       {/* ── Back navigation ───────────────────────────────────────────────── */}
       <motion.div
-        className="fixed top-6 left-6 sm:top-8 sm:left-10 z-40"
+        className="fixed top-6 start-6 sm:top-8 sm:start-10 z-40"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <Link
-          href="/"
+          href={`/${lang}`}
           id="vision-back-home"
           className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-md text-white/50 text-xs font-semibold tracking-widest uppercase transition-all duration-300 hover:border-white/25 hover:text-white hover:bg-white/[0.06] active:scale-95"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-3 h-3 transition-transform duration-300 group-hover:-translate-x-0.5"
+            className="w-3 h-3 transition-transform duration-300 group-hover:-translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:translate-x-0.5"
             fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
           </svg>
-          Back
+          {t.back}
         </Link>
       </motion.div>
 
@@ -411,7 +429,7 @@ export default function VisionPage() {
       <section className="relative pt-32 pb-16 px-6 sm:px-10 md:px-16 lg:px-24 max-w-6xl mx-auto w-full">
         <div aria-hidden className="pointer-events-none select-none absolute inset-0 flex items-center justify-center overflow-hidden">
           <span className="font-[var(--font-playfair)] font-black text-[18vw] text-white opacity-[0.025] leading-none tracking-tighter">
-            Vision
+            {t.ghost}
           </span>
         </div>
 
@@ -421,7 +439,7 @@ export default function VisionPage() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
         >
-          Ideas in progress
+          {t.eyebrow}
         </motion.p>
 
         <motion.h1
@@ -430,17 +448,17 @@ export default function VisionPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1, ease: "easeOut" }}
         >
-          <span className="block">Things I</span>
+          <span className="block">{t.line1}</span>
           <span className="block">
-            want to{" "}
+            {t.line2}{" "}
             <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-indigo-300 via-violet-300 to-fuchsia-300 bg-clip-text text-transparent">
-                build
+                {t.accent}
               </span>
               <motion.span
                 aria-hidden
-                className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 rounded-full"
-                initial={{ scaleX: 0, originX: 0 }}
+                className="absolute -bottom-1 start-0 h-[2px] bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 rounded-full"
+                initial={{ scaleX: 0, originX: lang === "ar" ? 1 : 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
                 style={{ width: "100%" }}
@@ -455,8 +473,7 @@ export default function VisionPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
         >
-          A running collection of product ideas, research directions, and passion
-          projects — some near, some far, all worth pursuing.
+          {t.intro}
         </motion.p>
 
         {/* Project count line */}
@@ -466,7 +483,7 @@ export default function VisionPage() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.6 }}
         >
-          {visionProjects.length} active project{visionProjects.length !== 1 ? "s" : ""}
+          {fmt(visionProjects.length === 1 ? t.count.one : visionProjects.length === 2 ? t.count.two : t.count.other, { n: visionProjects.length })}
         </motion.p>
       </section>
 
@@ -479,6 +496,7 @@ export default function VisionPage() {
               idea={project}
               index={i}
               onOpenDoc={setSelectedProject}
+              t={t}
             />
           ))}
         </div>
@@ -491,18 +509,18 @@ export default function VisionPage() {
           transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
         >
           <Link
-            href="/"
+            href={`/${lang}`}
             id="vision-cta-portfolio"
             className="group inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 text-white/60 text-xs font-semibold tracking-widest uppercase transition-all duration-300 hover:border-white/30 hover:text-white active:scale-95"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-0.5"
+              className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:translate-x-0.5"
               fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
             </svg>
-            Back to Portfolio
+            {t.backToPortfolio}
           </Link>
         </motion.div>
       </section>
@@ -513,6 +531,7 @@ export default function VisionPage() {
           <DocumentViewer
             project={selectedProject}
             onClose={() => setSelectedProject(null)}
+            t={t}
           />
         )}
       </AnimatePresence>

@@ -3,9 +3,16 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { personalInfo } from "@/data/data";
+import type { PersonalInfo } from "@/data/data";
+import type { Dictionary } from "@/lib/dictionaries/en";
 
-export default function ContactSection() {
+export default function ContactSection({
+  t,
+  personalInfo,
+}: {
+  t: Dictionary["contact"];
+  personalInfo: PersonalInfo;
+}) {
   const [revealed, setRevealed] = useState(false);
   const [copiedText, setCopiedText] = useState<string | null>(null);
   const [scanActive, setScanActive] = useState(false);
@@ -72,7 +79,7 @@ export default function ContactSection() {
             tracking-tighter
           "
         >
-          Contact
+          {t.ghost}
         </span>
       </motion.div>
 
@@ -85,7 +92,7 @@ export default function ContactSection() {
         <div className="relative w-full h-full translate-y-24 sm:translate-y-32">
           <Image
             src="/portrait-writing.png"
-            alt="Mohamad writing/working"
+            alt={t.portraitAlt}
             fill
             sizes="100vw"
             className="object-cover object-center lg:object-contain lg:object-right-bottom opacity-15 sm:opacity-20 transition-opacity duration-300"
@@ -104,13 +111,13 @@ export default function ContactSection() {
         >
           <div className="space-y-4 flex flex-col items-center">
             <p className="font-[var(--font-jetbrains)] text-xs tracking-[0.25em] text-neutral-500 uppercase select-none">
-              05 Contact
+              {t.eyebrow}
             </p>
             <h2 className="font-[var(--font-playfair)] font-black text-white leading-tight text-4xl sm:text-5xl md:text-6xl tracking-tight">
-              Let&apos;s Talk
+              {t.title}
             </h2>
             <p className="text-sm sm:text-base text-neutral-400 leading-relaxed font-[var(--font-lora)] italic tracking-wide max-w-lg">
-              Interested in working together, exploring custom integrations, or just want to connect? Unlock my coordinates below.
+              {t.intro}
             </p>
           </div>
 
@@ -136,28 +143,28 @@ export default function ContactSection() {
             <div className="flex items-center justify-between gap-4 mb-6">
               <h3 className="font-[var(--font-jetbrains)] text-xs sm:text-sm tracking-wider text-zinc-200 uppercase flex items-center gap-2 font-bold select-none">
                 <span className="w-1.5 h-1.5 rounded-full bg-violet-500 shadow-[0_0_8px_rgba(139,92,246,0.8)]" />
-                Secure Card Decryption
+                {t.cardTitle}
               </h3>
               <span className="text-[10px] font-mono text-zinc-600 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded uppercase select-none">
-                {revealed ? "Decrypted" : "Encrypted"}
+                {revealed ? t.decrypted : t.encrypted}
               </span>
             </div>
 
-            <div className="space-y-5 text-left relative z-20">
+            <div className="space-y-5 text-start relative z-20">
               {/* Location */}
               <div className="border-b border-zinc-900/85 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                 <div>
-                  <span className="text-[10px] uppercase tracking-wider text-zinc-500 block mb-1 font-bold select-none">Location</span>
+                  <span className="text-[10px] uppercase tracking-wider text-zinc-500 block mb-1 font-bold select-none">{t.location}</span>
                   <span className="text-sm font-normal text-white">{personalInfo.location}</span>
                 </div>
-                <span className="text-[10px] font-mono text-zinc-600 uppercase select-none hidden sm:block">Public</span>
+                <span className="text-[10px] font-mono text-zinc-600 uppercase select-none hidden sm:block">{t.public}</span>
               </div>
 
               {/* Email */}
               <div className="border-b border-zinc-900/85 pb-4">
-                <span className="text-[10px] uppercase tracking-wider text-zinc-500 block mb-1 font-bold select-none">Email Coordinates</span>
+                <span className="text-[10px] uppercase tracking-wider text-zinc-500 block mb-1 font-bold select-none">{t.email}</span>
                 <div className="flex items-center justify-between gap-4">
-                  <span className="text-sm font-mono text-white select-all font-medium transition-all duration-300">
+                  <span dir="ltr" className="text-sm font-mono text-white select-all font-medium transition-all duration-300">
                     {revealed ? personalInfo.email : "mohamad******@gmail.com"}
                   </span>
                   {revealed && (
@@ -165,9 +172,9 @@ export default function ContactSection() {
                       type="button"
                       onClick={() => handleCopy(personalInfo.email, "email")}
                       className="text-[10px] uppercase tracking-widest text-indigo-400 hover:text-indigo-300 transition-colors duration-200 font-bold cursor-pointer bg-indigo-500/5 hover:bg-indigo-500/10 border border-indigo-500/10 hover:border-indigo-500/20 px-2.5 py-1 rounded"
-                      aria-label="Copy email"
+                      aria-label={t.copyEmail}
                     >
-                      {copiedText === "email" ? "Copied!" : "Copy"}
+                      {copiedText === "email" ? t.copied : t.copy}
                     </button>
                   )}
                 </div>
@@ -175,9 +182,9 @@ export default function ContactSection() {
 
               {/* Phone */}
               <div className="pb-2">
-                <span className="text-[10px] uppercase tracking-wider text-zinc-500 block mb-1 font-bold select-none">Direct Phone</span>
+                <span className="text-[10px] uppercase tracking-wider text-zinc-500 block mb-1 font-bold select-none">{t.phone}</span>
                 <div className="flex items-center justify-between gap-4">
-                  <span className="text-sm font-mono text-white select-all font-medium transition-all duration-300">
+                  <span dir="ltr" className="text-sm font-mono text-white select-all font-medium transition-all duration-300">
                     {revealed ? personalInfo.phone : "+49 (0)174 *** ****"}
                   </span>
                   {revealed && (
@@ -185,9 +192,9 @@ export default function ContactSection() {
                       type="button"
                       onClick={() => handleCopy(personalInfo.phone, "phone")}
                       className="text-[10px] uppercase tracking-widest text-indigo-400 hover:text-indigo-300 transition-colors duration-200 font-bold cursor-pointer bg-indigo-500/5 hover:bg-indigo-500/10 border border-indigo-500/10 hover:border-indigo-500/20 px-2.5 py-1 rounded"
-                      aria-label="Copy phone"
+                      aria-label={t.copyPhone}
                     >
-                      {copiedText === "phone" ? "Copied!" : "Copy"}
+                      {copiedText === "phone" ? t.copied : t.copy}
                     </button>
                   )}
                 </div>
@@ -205,14 +212,14 @@ export default function ContactSection() {
                     <svg className="animate-pulse h-4 w-4 text-indigo-400 fill-current" viewBox="0 0 24 24">
                       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
                     </svg>
-                    Scanning Fingerprint...
+                    {t.scanning}
                   </>
                 ) : (
                   <>
                     <svg className="w-4 h-4 stroke-current" fill="none" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
-                    {revealed ? "Lock Details" : "Decrypt PII details"}
+                    {revealed ? t.lock : t.decrypt}
                   </>
                 )}
               </button>
@@ -260,7 +267,7 @@ export default function ContactSection() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              Email
+              {t.emailLink}
             </a>
           </div>
         </motion.div>

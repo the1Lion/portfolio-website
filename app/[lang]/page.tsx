@@ -4,8 +4,18 @@ import ProjectCards from "@/components/ProjectCards";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import ContactSection from "@/components/ContactSection";
 import FloatingNav from "@/components/FloatingNav";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { notFound } from "next/navigation";
+import { isValidLocale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/dictionaries";
+import { getContent } from "@/data/data";
 
-export default function Home() {
+export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  if (!isValidLocale(lang)) notFound();
+  const dict = getDictionary(lang);
+  const content = getContent(lang);
+
   // overflow-x-clip on <main>: the ambient glow blobs below are positioned past
   // the right edge (right-[-15%] etc.). Without clipping, they widen the document
   // and mobile browsers grow the layout viewport to fit — which pushes
@@ -22,22 +32,24 @@ export default function Home() {
       <div className="absolute top-[90%] left-[10%] w-[40vw] h-[40vw] rounded-full bg-violet-950/6 blur-[120px] pointer-events-none z-[-10]" />
 
       {/* Floating navigation system (scroll spy) */}
-      <FloatingNav />
+      <FloatingNav labels={dict.nav} />
+
+      <LanguageSwitcher lang={lang} label={dict.nav.language} />
 
       {/* Untouched HeroSection (maintains original styling) */}
-      <HeroSection />
+      <HeroSection lang={lang} t={dict.hero} name={content.personalInfo.name} />
 
       {/* Bento box skills grid */}
-      <Skills />
+      <Skills t={dict.skills} skills={content.skills} />
 
       {/* Advanced experience timeline with scroll-drawn glow line */}
-      <ExperienceTimeline />
+      <ExperienceTimeline t={dict.journey} experience={content.experience} education={content.education} />
 
       {/* Bento box project cards with cursor-spotlight border glow */}
-      <ProjectCards />
+      <ProjectCards t={dict.projects} projects={content.projects} />
 
       {/* Secure contact card section with PII click-to-reveal */}
-      <ContactSection />
+      <ContactSection t={dict.contact} personalInfo={content.personalInfo} />
     </main>
   );
 }
