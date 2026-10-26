@@ -315,6 +315,28 @@ export const projectsData: ProjectItem[] = [
     featured: false,
   },
   {
+    title: "RETO — Real Estate Tax Optimizer",
+    category: "Tax Tech · Client",
+    description: "A tax assistant for real estate investors: a rule engine that computes rental income under § 21 EStG — depreciation, the 15% rule and loss carryforward — with tax rules stored per year as data so AI agents can work with them.",
+    tech: ["Next.js", "Supabase", "Python", "FastAPI"],
+    featured: false,
+  },
+  {
+    title: "Alsalam School App",
+    category: "School Management · Voluntary",
+    description: "A free school management system for Arabic schools, built for Al-Salam School in Wiesbaden: students, teachers, classes, timetables, grades and attendance, plus invoices and subscription reminders — in Arabic, German and English.",
+    tech: ["Laravel", "Vue.js", "PHP", "Tailwind CSS"],
+    featured: false,
+  },
+  {
+    title: "Al Sharq — Old Damascus",
+    category: "Website · Client",
+    description: "A fast one-page site for a shop in Souq Al-Muradiyya, Old Damascus, in Arabic and English: WhatsApp, Instagram, calls and directions to the door, with structured data so it shows up in local search.",
+    tech: ["HTML", "CSS", "Vercel"],
+    link: "https://alsharq-damascus.vercel.app",
+    featured: false,
+  },
+  {
     title: "Admin & Bookkeeping",
     category: "Internal Tool · Silicortex",
     description: "Silicortex's own back office: GoBD-compliant invoices, receipts and VAT figures, synced with Google Drive and Calendar — with AI that reads incoming invoices and suggests the booking.",
