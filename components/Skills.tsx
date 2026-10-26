@@ -3,31 +3,52 @@
 import { motion } from "framer-motion";
 import { skillsData, SkillCategory } from "@/data/data";
 
+// Column spans add up to 12 per row: 5+7, 8+4, 7+5, 4+3+5.
 const bentoStyles = [
   {
-    colSpan: "md:col-span-7",
+    colSpan: "md:col-span-5",
     glowColor: "from-emerald-500/10 to-teal-500/5",
     accentColor: "bg-emerald-500",
   },
   {
-    colSpan: "md:col-span-5",
+    colSpan: "md:col-span-7",
     glowColor: "from-cyan-500/10 to-blue-500/5",
     accentColor: "bg-cyan-500",
   },
   {
-    colSpan: "md:col-span-6",
+    colSpan: "md:col-span-8",
     glowColor: "from-violet-500/10 to-fuchsia-500/5",
     accentColor: "bg-violet-500",
   },
   {
-    colSpan: "md:col-span-3",
+    colSpan: "md:col-span-4",
     glowColor: "from-amber-500/10 to-orange-500/5",
     accentColor: "bg-amber-500",
   },
   {
-    colSpan: "md:col-span-3",
+    colSpan: "md:col-span-7",
     glowColor: "from-rose-500/10 to-pink-500/5",
     accentColor: "bg-rose-500",
+  },
+  {
+    colSpan: "md:col-span-5",
+    glowColor: "from-lime-500/10 to-green-500/5",
+    accentColor: "bg-lime-500",
+  },
+  {
+    colSpan: "md:col-span-4",
+    glowColor: "from-sky-500/10 to-indigo-500/5",
+    accentColor: "bg-sky-500",
+  },
+  {
+    colSpan: "md:col-span-3",
+    glowColor: "from-yellow-500/10 to-amber-500/5",
+    accentColor: "bg-yellow-500",
+  },
+  {
+    colSpan: "md:col-span-5",
+    glowColor: "from-purple-500/10 to-violet-500/5",
+    accentColor: "bg-purple-500",
   },
 ];
 
@@ -70,7 +91,7 @@ export default function Skills() {
             Skills Bento Box
           </h2>
           <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-[var(--font-lora)] italic leading-relaxed tracking-wide">
-            A comprehensive overview of my technological stacks, frameworks, and database preferences.
+            The stacks, frameworks, AI and robotics tooling I use day to day — including everything I built at Silicortex.
           </p>
         </div>
 
