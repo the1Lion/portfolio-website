@@ -25,6 +25,7 @@ export interface ExperienceItem {
   description: string;
   highlights?: string[];
   isSchubwerk?: boolean;
+  link?: string;
 }
 
 export interface EducationItem {
@@ -98,6 +99,34 @@ export const skillsData: SkillCategory[] = [
 
 export const experienceData: ExperienceItem[] = [
   {
+    company: "Silicortex",
+    location: "Wiesbaden",
+    role: "Founder & CEO",
+    period: "04/2026 - Present",
+    description: "Founded my own AI and automation agency: AI agents built on RAG and LLMs, workflow automation with n8n, and custom full-stack development — from concept to operation.",
+    highlights: ["RAG & LLM agents", "n8n workflow automation", "Full-stack products"],
+    isSchubwerk: false,
+    link: "https://silicortex.de",
+  },
+  {
+    company: "DVKZWI Wiesbaden e. V.",
+    location: "Wiesbaden",
+    role: "Volunteer — Robotics Project",
+    period: "07/2026 - Present",
+    description: "Building the open-source humanoid robot pib (version 4): 3D printing, assembly and commissioning.",
+    highlights: ["Humanoid robotics", "3D printing", "ROS 2"],
+    isSchubwerk: false,
+  },
+  {
+    company: "UNICEF Germany",
+    location: "Wiesbaden",
+    role: "Volunteer — UNICEF Working Group",
+    period: "07/2026 - Present",
+    description: "Fundraising campaigns for UNICEF emergency relief and public outreach.",
+    highlights: ["Fundraising", "Public outreach"],
+    isSchubwerk: false,
+  },
+  {
     company: "schubwerk GmbH",
     location: "Wiesbaden",
     role: "Web Development & AI Integration",
@@ -126,7 +155,7 @@ export const experienceData: ExperienceItem[] = [
   },
   {
     company: "Evoila GmbH",
-    location: "Wiesbaden",
+    location: "Mainz",
     role: "Intern",
     period: "09/2021 - 10/2021",
     description: "Worked on Java and Spring Boot backend enterprise microservices.",
@@ -136,6 +165,12 @@ export const experienceData: ExperienceItem[] = [
 ];
 
 export const educationData: EducationItem[] = [
+  {
+    institution: "IBM via Coursera",
+    degree: "Build RAG Applications",
+    period: "06/2026",
+    details: "Certification in retrieval-augmented generation: embeddings, vector databases and connecting LLMs to real data.",
+  },
   {
     institution: "IBM via Coursera",
     degree: "Develop Generative AI Applications",
@@ -164,6 +199,79 @@ export interface ProjectItem {
 }
 
 export const projectsData: ProjectItem[] = [
+  {
+    title: "Noah — Humanoid Robot",
+    category: "Robotics / AI",
+    description: "A pib v4 humanoid assembled from 3D-printed parts and extended on a Raspberry Pi 5 with ROS 2: it talks in German and English, recognises people with their consent, detects objects with YOLOv8 on ONNX, and is run from a custom tablet control panel.",
+    tech: ["ROS 2", "Python", "FastAPI", "OpenCV", "YOLOv8", "Docker"],
+    link: "https://www.linkedin.com/posts/mohamad-katramez-a24705215_robotics-pibrocks-ros2-activity-7511658836634714112-PWnQ",
+    featured: true,
+  },
+  {
+    title: "Vibe Center",
+    category: "SaaS · Silicortex",
+    description: "Multi-tenant booking platform for salons and barber shops: each business gets its own booking site, a dashboard for appointments, team and clients, and a Stripe subscription.",
+    tech: ["Next.js", "TypeScript", "Stripe", "Vercel AI SDK"],
+    link: "https://vibecenter.de",
+    featured: false,
+  },
+  {
+    title: "Sada — Live Translation",
+    category: "Speech AI · Client",
+    description: "Arabic sermons are transcribed as they are spoken and translated into German and English — on a screen in the prayer room and on every visitor's phone via QR code.",
+    tech: ["FastAPI", "WebSockets", "Speechmatics", "Gemini"],
+    featured: false,
+  },
+  {
+    title: "Misraba — Workshop Platform",
+    category: "Automation · Client",
+    description: "One system for a heavy machinery repair workshop in Abu Dhabi: a drag-and-drop job board, quotes as PDF, a parts shop and public website in Arabic and English — with n8n and WhatsApp automation for mechanics and customers.",
+    tech: ["Next.js", "Prisma", "PostgreSQL", "n8n", "WhatsApp API", "Claude"],
+    featured: true,
+  },
+  {
+    title: "EuroCura",
+    category: "Web Platform · Client",
+    description: "A home care platform connecting people who need care with professional carers — from search and booking to online payment and PDF invoices.",
+    tech: ["Laravel", "Next.js", "Stripe", "Docker"],
+    featured: false,
+  },
+  {
+    title: "PowerSource",
+    category: "E-Commerce · Silicortex",
+    description: "A complete online shop for sports nutrition and apparel on its own Medusa v2 backend, with a multilingual storefront and an AI assistant for product questions.",
+    tech: ["Medusa v2", "Next.js", "React Query", "Claude"],
+    featured: false,
+  },
+  {
+    title: "DVKZWI Website",
+    category: "WordPress · Voluntary",
+    description: "A website for a Wiesbaden cultural association on a custom WordPress block theme, with a plugin for events, projects and team that the association maintains itself.",
+    tech: ["WordPress", "PHP", "Block Theme"],
+    featured: false,
+  },
+  {
+    title: "Admin & Bookkeeping",
+    category: "Internal Tool · Silicortex",
+    description: "Silicortex's own back office: GoBD-compliant invoices, receipts and VAT figures, synced with Google Drive and Calendar — with AI that reads incoming invoices and suggests the booking.",
+    tech: ["Next.js", "Neon Postgres", "Gemini", "Cloudflare R2"],
+    featured: false,
+  },
+  {
+    title: "Bayt — Fire TV Launcher",
+    category: "TV App · Silicortex",
+    description: "An ad-free, tracking-free home screen for Fire TV that puts Arabic channels and favourite apps first, with big tiles built for the remote.",
+    tech: ["Kotlin", "Jetpack Compose", "Fire OS"],
+    featured: false,
+  },
+  {
+    title: "silicortex.de",
+    category: "Company Website",
+    description: "My company's website in German, English and Arabic (right-to-left), with its own generated brand system, light and dark themes and interactive demos.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    link: "https://silicortex.de",
+    featured: false,
+  },
   {
     title: "Sales Forecasting ML System",
     category: "Machine Learning / AI",

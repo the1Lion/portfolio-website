@@ -67,7 +67,18 @@ function SpotlightCard({ project, className = "" }: SpotlightCardProps) {
 
             {/* Project Title */}
             <h4 className="font-[var(--font-playfair)] font-black text-white text-xl sm:text-2xl leading-tight">
-              {project.title}
+              {project.link ? (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-violet-300 transition-colors duration-300"
+                >
+                  {project.title} <span aria-hidden className="text-zinc-500 text-base align-middle">↗</span>
+                </a>
+              ) : (
+                project.title
+              )}
             </h4>
 
             {/* Project Description */}
@@ -133,7 +144,16 @@ export default function ProjectCards() {
             Selected Projects
           </h2>
           <p className="mt-4 text-zinc-300 text-base sm:text-lg max-w-2xl font-[var(--font-lora)] italic leading-relaxed tracking-wide">
-            Exploring scalable cloud-native architectures, time-series machine learning models, and complex data pipeline engineering.
+            Products, client work and robotics from my company{" "}
+            <a
+              href="https://silicortex.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="not-italic font-semibold text-white underline decoration-violet-500/50 underline-offset-4 hover:decoration-violet-400 transition-colors duration-300"
+            >
+              Silicortex
+            </a>
+            , alongside earlier work in machine learning, data pipelines and cloud-native systems.
           </p>
         </div>
 
@@ -160,6 +180,20 @@ export default function ProjectCards() {
             );
           })}
         </motion.div>
+
+        {/* Company CTA */}
+        <div className="mt-12 flex justify-center">
+          <a
+            href="https://silicortex.de"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-zinc-800/80 bg-zinc-950/50 hover:bg-zinc-900 hover:border-zinc-700/80 text-zinc-300 hover:text-white transition-all duration-300 text-xs font-semibold uppercase tracking-wider"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/silicortex-symbol-dark.svg" alt="" width={20} height={20} className="w-5 h-5" />
+            More work at silicortex.de ↗
+          </a>
+        </div>
       </div>
     </section>
   );

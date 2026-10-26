@@ -91,7 +91,19 @@ export default function ExperienceTimeline() {
                     <h4 className="font-[var(--font-playfair)] font-bold text-white text-lg sm:text-xl mt-1 flex flex-wrap items-baseline gap-y-1">
                       <span>{role.role}</span>
                       <span className="text-sm sm:text-base font-semibold text-zinc-300 font-mono sm:ml-2.5">
-                        @ {role.company}
+                        @{" "}
+                        {role.link ? (
+                          <a
+                            href={role.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline decoration-violet-500/50 underline-offset-4 hover:text-white hover:decoration-violet-400 transition-colors duration-300"
+                          >
+                            {role.company} ↗
+                          </a>
+                        ) : (
+                          role.company
+                        )}
                       </span>
                     </h4>
 

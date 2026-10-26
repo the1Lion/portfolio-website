@@ -222,6 +222,16 @@ export default function ContactSection() {
           {/* Interactive Social Links */}
           <div className="flex flex-wrap justify-center gap-3 items-center pt-4">
             <a
+              href="https://silicortex.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-zinc-800/80 bg-zinc-950/50 hover:bg-zinc-900 hover:border-zinc-700/80 text-zinc-400 hover:text-white transition-all duration-300 text-xs font-semibold uppercase tracking-wider"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/brand/silicortex-symbol-dark.svg" alt="" width={16} height={16} className="w-4 h-4" />
+              Silicortex
+            </a>
+            <a
               href="https://www.linkedin.com/in/mohamad-katramez-a24705215"
               target="_blank"
               rel="noopener noreferrer"
