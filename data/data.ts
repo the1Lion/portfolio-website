@@ -316,8 +316,8 @@ export const projectsData: ProjectItem[] = [
   },
   {
     title: "RETO — Real Estate Tax Optimizer",
-    category: "Tax Tech · Client",
-    description: "A tax assistant for real estate investors: a rule engine that computes rental income under § 21 EStG — depreciation, the 15% rule and loss carryforward — with tax rules stored per year as data so AI agents can work with them.",
+    category: "Tax Tech · Client · In Development",
+    description: "Currently in development — a tax assistant for real estate investors: a rule engine that computes rental income under § 21 EStG — depreciation, the 15% rule and loss carryforward — with tax rules stored per year as data so AI agents can work with them.",
     tech: ["Next.js", "Supabase", "Python", "FastAPI"],
     featured: false,
   },
